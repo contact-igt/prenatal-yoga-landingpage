@@ -189,11 +189,14 @@ svg { flex-shrink: 0; }
 
 /* 04 — a service dossier, with an understated fee presentation. */
 .yoga-section { background: var(--paper); }
-.yoga-details { display: grid; grid-template-columns: .82fr 1fr; background: #f4e9e1; border-radius: 4px; overflow: hidden; }
+.yoga-details { position: relative; min-height: 610px; display: block; background: #d9c8bc; border-radius: 4px; overflow: hidden; isolation: isolate; }
+.yoga-details::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgb(45 34 30 / .18), rgb(45 34 30 / .05) 42%, rgb(45 34 30 / .38)); pointer-events: none; }
+.yoga-background { position: absolute; inset: 0; z-index: -2; }
+.yoga-background img { object-fit: cover; object-position: center 42%; filter: saturate(.82) brightness(.82); }
 .class-photo { position: relative; min-height: 550px; }
 .class-photo img { object-fit: cover; object-position: 36% center; }
 .class-photo-label { position: absolute; bottom: 0; left: 0; right: 0; padding: 90px 32px 30px; background: linear-gradient(transparent,#302724b3); color: white; font-family: var(--font-jakarta),sans-serif; font-size: 24px; line-height: 1.4; letter-spacing: -.03em; }
-.yoga-price-panel { padding: 30px; }
+.yoga-price-panel { position: relative; z-index: 1; width: min(650px, calc(100% - 60px)); margin-left: auto; padding: 30px; background: rgb(248 240 233 / .93); min-height: 610px; backdrop-filter: blur(8px); }
 .price-summary { padding: 22px 25px; background: var(--paper); border-radius: 4px; box-shadow: 0 8px 20px -20px #59443c66; }
 .price-display { display: flex; flex-wrap: wrap; gap: 6px 15px; align-items: baseline; margin-top: 10px; color: var(--brown); }
 .price-display strong { font-family: var(--font-jakarta),sans-serif; font-size: 58px; font-weight: 400; letter-spacing: -.055em; line-height: 1.2; }
@@ -221,10 +224,10 @@ svg { flex-shrink: 0; }
 .journey-cta { margin-top: 35px; }
 
 /* 06 — clay, authentic group photography, and a proposed programme ledger. */
-.conscious-section { position: relative; background: #ead8ce; overflow: hidden; }
-.conscious-background { position: absolute; inset: 0; opacity: .1; }
-.conscious-background img { object-fit: cover; object-position: center; }
-.conscious-section::after { content: ""; position: absolute; inset: 0; background: linear-gradient(110deg,#ead8cedf,#f7eee8b8); pointer-events: none; }
+.conscious-section { position: relative; background: #f7eee8; overflow: hidden; }
+.conscious-background { position: absolute; inset: 0 auto 0 0; width: 50%; opacity: .38; filter: blur(2px); transform: scale(1.04); transform-origin: left center; }
+.conscious-background img { object-fit: cover; object-position: center 32%; }
+.conscious-section::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg,#ead8cea8 0%,#f3e5ddd0 45%,#f7eee8 67%,#f7eee8 100%); pointer-events: none; }
 .conscious-layout { position: relative; z-index: 1; display: grid; grid-template-columns: .95fr 1fr; gap: 36px 90px; align-items: start; }
 .conscious-section .eyebrow { color: #62483e; }
 .programme-status { display: inline-block; padding: 5px 0; font-size: 9px; letter-spacing: .14em; color: #62483e; margin-top: 20px; }
@@ -413,8 +416,10 @@ address p { color: var(--brown); }
   .benefit-4 { grid-row: 3; grid-column: 2; }
   .benefit p { max-width: none; }
   .yoga-details { grid-template-columns: 1fr; }
+  .yoga-details { min-height: 0; }
   .class-photo { min-height: 0; height: 340px; }
   .yoga-price-panel { padding: 27px; }
+  .yoga-price-panel { width: calc(100% - 32px); margin: 16px; min-height: 0; }
   .price-display strong { font-size: 49px; }
   .service-details { grid-template-columns: 1fr 1fr; gap: 14px; }
   .service-details dt { font-size: 12px; }
@@ -522,10 +527,12 @@ address p { color: var(--brown); }
   .safety-note { padding: 17px; font-size: 10px; gap: 11px; margin-top: 1px; }
   .safety-note svg { width: 20px; }
   .yoga-details { grid-template-columns: 1fr; }
+  .yoga-details { min-height: 0; }
   .class-photo { min-height: 0; height: 265px; }
   .class-photo img { object-position: center 45%; }
   .class-photo-label { font-size: 20px; padding: 60px 25px 23px; }
   .yoga-price-panel { padding: 22px; }
+  .yoga-price-panel { width: calc(100% - 24px); margin: 12px; min-height: 0; }
   .price-summary { padding: 19px 20px; }
   .price-display strong { font-size: 54px; }
   .service-details { grid-template-columns: 1fr; gap: 19px; }
@@ -549,6 +556,7 @@ address p { color: var(--brown); }
   .conscious-intro > .eyebrow { font-size: 8px; letter-spacing: .1em; }
   .conscious-intro h2 { font-size: 34px; }
   .conscious-intro > p:not(.eyebrow):not(.programme-status) { font-size: 12px; }
+  .conscious-background { width: 100%; opacity: .16; }
   .programme-status { margin-top: 19px; }
   .conscious-intro .button { width: 100%; font-size: 10px; padding-inline: 12px; gap: 10px; }
   .activities { padding: 24px; }

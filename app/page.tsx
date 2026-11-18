@@ -67,8 +67,8 @@ export default function Home() {
       <section id="prenatal-yoga" className="section yoga-section" aria-labelledby="yoga-heading">
         <div className="container">
           <div className="section-heading split-heading" data-reveal="up"><div><p className="eyebrow">YOUR GUIDED PRACTICE</p><h2 id="yoga-heading">{copy.yoga.title}</h2></div><p className="supporting-note">{copy.yoga.body}</p></div>
-          <div className="yoga-details" data-reveal="up">
-            <div className="class-photo"><Image src="/images/class-community.webp" alt="A guided group session in The BirthWave’s bright education space" fill sizes="(max-width: 700px) 92vw, 35vw" /><span className="class-photo-label">Room to learn.<br />Space to feel supported.</span></div>
+            <div className="yoga-details" data-reveal="up">
+            <div className="yoga-background"><Image src="/images/guided-practice.webp" alt="A BirthWave facilitator demonstrating gentle movement during a guided prenatal wellness session" fill sizes="(max-width: 700px) 92vw, 100vw" /></div>
             <div className="yoga-price-panel"><div className="price-summary"><p className="eyebrow">PRENATAL YOGA</p><div className="price-display">{yoga.showPrice ? <><strong>{yogaFee}</strong><span>per month</span></> : <strong className="enquire-price">Enquire about fees</strong>}</div><p className="tax-note">{yoga.tax}</p></div><p className="practice-label"><Check size={17} aria-hidden="true" />Guided pregnancy-appropriate practice.</p>
               <dl className="service-details"><div><dt>Class frequency & duration</dt><dd>{yoga.frequency}</dd></div><div><dt>Live online / in-clinic format</dt><dd>{yoga.format}</dd></div><div><dt>Batch days, timings & capacity</dt><dd>{yoga.batches}</dd></div><div><dt>Instructor & credentials</dt><dd>{yoga.instructor}</dd></div></dl>
               <p className="small-copy inclusions-note">{yoga.inclusions}</p><EnquiryLink interest="Prenatal Yoga">Get Batch & Enrolment Details</EnquiryLink>
@@ -86,7 +86,7 @@ export default function Home() {
       </section>
 
       <section id="conscious-pregnancy" className="section conscious-section" aria-labelledby="conscious-heading">
-        <div className="conscious-background"><Image src="/images/programme-background.webp" alt="" fill sizes="100vw" /></div>
+        <div className="conscious-background"><Image src="/images/conscious-reference.jpg" alt="" fill sizes="50vw" /></div>
         <div className="container conscious-layout">
           <div className="conscious-intro" data-reveal="up"><p className="eyebrow">SOMETHING MORE IS TAKING SHAPE</p><p className="programme-status">PROGRAM IN DEVELOPMENT</p><h2 id="conscious-heading">{copy.conscious.title}</h2><p>{copy.conscious.body}</p>
             <dl className="programme-details"><div><dt><CalendarDays size={17} aria-hidden="true" />Duration</dt><dd>{copy.conscious.duration}</dd></div><div><dt>Format</dt><dd>{copy.conscious.format}</dd></div><div><dt>Pricing</dt><dd>{copy.conscious.pricing}</dd></div></dl>

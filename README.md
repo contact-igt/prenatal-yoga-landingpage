@@ -45,6 +45,8 @@ The latest refinement keeps the final location and contact details open on the p
 
 The current revision adds a fixed five-action toolbar (WhatsApp, phone, Instagram, appointment and YouTube) using the official destinations verified on the BirthWave contact page. The landing page now uses “Program” consistently, and the hero, postpartum, FAQ and BirthWave Approach conversion actions all use the shared button system. The campaign phone remains +91 93630 31925 and WhatsApp remains +91 79042 51378; the official contact page also lists +91 98407 98472 as a separate CUG number, which was not substituted into the campaign CTA.
 
+The guided-practice section now uses the supplied facilitator movement photograph as an integrated image-led backdrop behind its pricing and detail panel. The Conscious Pregnancy image-backed treatment uses the attached blurred reference only on the left editorial zone; the proposed-experience panel remains on a clean separate surface.
+
 ## Source and component map
 
 - `app/page.tsx`: server-rendered ten-section composition, header and footer.
@@ -72,6 +74,7 @@ All 45 supplied WebPs were inspected visually using contact sheets. All 19 brand
 | `conscious-connection.webp` | `EXP04557 copy.webp` | Conscious Pregnancy offer, group connection |
 | `programme-background.webp` | `EXP04556 copy.webp` | Clay programme background |
 | `guided-practice.webp` | `EXP00951 copy.webp` | Benefits, facilitator demonstrating movement |
+| `conscious-reference.jpg` | User-supplied blurred reference image | Conscious Pregnancy left editorial background treatment |
 | `class-community.webp` | `EXP04508 copy.webp` | Service details, group learning |
 | `doctor-santoshi.webp` | `EXP07711 copy.webp` | Original doctor photograph; no facial edits |
 | `postpartum-consultation.webp` | `EXP07741 copy.webp` | Wider care consultation |
