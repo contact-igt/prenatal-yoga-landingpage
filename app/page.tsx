@@ -14,7 +14,7 @@ import { site, yoga, yogaFee } from "@/config/site";
 const benefitIcons = [MoveUpRight, Wind, Sparkles, Heart];
 const stepIcons = [MessageCircle, ShieldCheck, CalendarDays];
 const stepPhotos = [
-  { src: "/images/pregnancy-community.webp", alt: "Participants connecting during a BirthWave group session" },
+  { src: "/images/consultation-notebook.webp", alt: "A doctor writing notes during a BirthWave consultation" },
   { src: "/images/postpartum-consultation.webp", alt: "A doctor discussing care with a couple at The BirthWave" },
   { src: "/images/class-community.webp", alt: "A BirthWave educator guiding a group of participants" },
 ];
@@ -28,21 +28,10 @@ export default function Home() {
       <section id="top" className="hero" aria-labelledby="hero-heading">
         <div className="container hero-grid">
           <div className="hero-content">
+            <div className="hero-background" aria-hidden="true"><div className="hero-photo-layer"><Image src="/images/pregnancy.webp" alt="" fill unoptimized priority /></div></div>
             <p className="eyebrow hero-enter" style={{ animationDelay: "40ms" }}>{copy.hero.eyebrow}</p>
             <h1 id="hero-heading" className="hero-enter" style={{ animationDelay: "100ms" }}><span className="hero-title-opening">{copy.hero.title.slice(0, heroTitleEnding)}</span><span className="hero-title-ending">{copy.hero.title.slice(heroTitleEnding)}</span></h1>
             <p className="hero-description hero-enter" style={{ animationDelay: "180ms" }}>{copy.hero.body}</p>
-            <figure className="hero-visual hero-enter" style={{ animationDelay: "260ms" }}>
-              <div className="hero-image-wrap">
-                <div className="hero-photo"><Image src="/images/pregnancy.webp" alt="The warm entrance to a care room at The BirthWave" fill sizes="(max-width: 900px) 92vw, 48vw" priority className="maternity-image" /></div>
-                <span className="hero-pregnancy-emblem" aria-hidden="true">
-                  <svg viewBox="0 0 64 80" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M24 23c-5-3-6-9-3-14 3-5 11-6 15-1 3 4 3 10-1 13" />
-                    <path d="M26 22c-6 3-9 9-11 16m19-16c2 9 12 13 16 24 4 10 1 21-7 26-8 4-26 4-31-2-4-5 0-12 3-18l6-15m9-12c-5 4-7 9-6 15m-3-3c2 7 8 8 12 12m-9-9c0 7-4 12-6 17-3 6-2 11 2 15" />
-                    <path d="M40 58c-5-6-11 0-6 5l6 6 6-6c5-5-1-11-6-5Z" />
-                  </svg>
-                </span>
-              </div>
-            </figure>
             <p className="hero-location"><MapPin size={15} aria-hidden="true" /><span>{copy.hero.support}</span></p>
             <div className="hero-ctas hero-enter" style={{ animationDelay: "340ms" }}>
               <EnquiryLink target="hero" interest="Prenatal Yoga">Enquire About Prenatal Yoga</EnquiryLink>
@@ -96,7 +85,7 @@ export default function Home() {
       <section id="getting-started" className="section enrolment-section" aria-labelledby="enrolment-heading">
         <div className="container">
           <div className="journey-heading" data-reveal="up"><div><p className="eyebrow">AT YOUR OWN PACE</p><h2 id="enrolment-heading">Getting started is simple.</h2></div></div>
-          <ol className="journey-steps">{steps.map((step, index) => { const Icon = stepIcons[index]; return <li key={step.title} data-reveal="up" data-delay={index * 100}><div className="step-photo"><Image src={stepPhotos[index].src} alt={stepPhotos[index].alt} fill sizes="(max-width: 600px) 92vw, 30vw" /></div><div className="step-copy"><div className="step-symbol"><Icon size={20} strokeWidth={1.4} aria-hidden="true" /></div><h3>{step.title}</h3><p>{step.body}</p>{index === 0 && <p className="step-caption">A moment of connection at a BirthWave group session.</p>}</div></li>; })}</ol>
+          <ol className="journey-steps">{steps.map((step, index) => { const Icon = stepIcons[index]; return <li key={step.title} data-reveal="up" data-delay={index * 100}><div className="step-photo"><Image src={stepPhotos[index].src} alt={stepPhotos[index].alt} fill sizes="(max-width: 600px) 92vw, 30vw" /></div><div className="step-copy"><div className="step-symbol"><Icon size={20} strokeWidth={1.4} aria-hidden="true" /></div><h3>{step.title}</h3><p>{step.body}</p>{index === 2 && <p className="step-caption">A moment of connection at a BirthWave group session.</p>}</div></li>; })}</ol>
           <div className="journey-cta" data-reveal="up"><EnquiryLink interest="Prenatal Yoga" className="button button-outline">Ask the Team About Joining</EnquiryLink></div>
         </div>
       </section>
@@ -113,7 +102,7 @@ export default function Home() {
 
       <section id="our-approach" className="section doctor-section" aria-labelledby="doctor-heading">
         <div className="container doctor-layout">
-          <div className="doctor-portrait" data-reveal="image"><div className="doctor-photo"><Image src="/images/dr-santoshi-web.webp" alt="Dr. Santoshi Nandigam seated at her desk at The BirthWave" fill sizes="(max-width: 700px) 92vw, 38vw" /></div><div className="doctor-caption"><span className="eyebrow">FOUNDER, THE BIRTHWAVE</span><h3>Dr. Santoshi Nandigam</h3><p>Consultant Obstetrician & Gynaecologist</p><p className="small-copy">MBBS, DNB (Obstetrics & Gynaecology)</p></div></div>
+          <div className="doctor-portrait" data-reveal="image"><div className="doctor-photo"><Image src="/images/EXP01338 (1) copy.webp" alt="Dr. Santoshi Nandigam seated at her desk at The BirthWave" fill sizes="(max-width: 700px) 92vw, 38vw" unoptimized /></div><div className="doctor-caption"><span className="eyebrow">FOUNDER, THE BIRTHWAVE</span><h3>Dr. Santoshi Nandigam</h3><p>Consultant Obstetrician & Gynaecologist</p><p className="small-copy">MBBS, DNB (Obstetrics & Gynaecology)</p></div></div>
           <div className="doctor-copy" data-reveal="up"><p className="eyebrow">THE BIRTHWAVE APPROACH</p><h2 id="doctor-heading">{copy.doctor.title}</h2><div className="approach-symbol" aria-hidden="true"><Heart strokeWidth={1} size={40} /></div><p>{copy.doctor.body}</p><EnquiryLink className="button button-outline">Start with a conversation</EnquiryLink></div>
         </div>
       </section>
@@ -126,7 +115,7 @@ export default function Home() {
         <div className="container postpartum-layout">
           <div className="postpartum-copy" data-reveal="up"><p className="eyebrow">CARE BEYOND PREGNANCY</p><h2 id="postpartum-heading">{copy.postpartum.title}</h2><p>{copy.postpartum.body}</p><a className="button button-outline" href={site.postpartum}>Explore Postpartum Care<ArrowRight className="directional-arrow" size={17} aria-hidden="true" /></a></div>
           <div className="postpartum-cards" data-reveal="up" data-delay="100">
-            <figure className="postpartum-card postpartum-card-large"><Image src="/images/doctor-santoshi.webp" alt="Dr. Santoshi Nandigam speaking with a patient at The BirthWave" fill sizes="(max-width: 600px) 90vw, (max-width: 900px) 45vw, 28vw" /><figcaption>Pelvic Health Guidance</figcaption></figure>
+            <figure className="postpartum-card postpartum-card-large"><Image src="/images/card (1).webp" alt="A BirthWave facilitator supporting a woman leaning over an exercise ball" fill sizes="(max-width: 600px) 90vw, (max-width: 900px) 45vw, 28vw" /><figcaption>Pelvic Health Guidance</figcaption></figure>
             <figure className="postpartum-card"><Image src="/images/postpartum-consultation.webp" alt="A couple discussing their care with a BirthWave doctor" fill sizes="(max-width: 600px) 90vw, (max-width: 900px) 45vw, 26vw" /><figcaption>Postpartum Recovery</figcaption></figure>
             <figure className="postpartum-card"><Image src="/images/card (2).webp" alt="A newborn baby’s hand holding an adult’s finger" fill sizes="(max-width: 600px) 90vw, (max-width: 900px) 29vw, 20vw" /><figcaption>Breastfeeding</figcaption></figure>
           </div>

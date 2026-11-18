@@ -87,12 +87,11 @@ export function EnquiryForm({ placement }: { placement: "hero" | "final" }) {
               <option value="">Select your interest</option>{interests.map(interest => <option key={interest} value={interest}>{interest}</option>)}
             </select>{fieldError("interest")}</div>
           <div className="field field-wide"><label htmlFor={id("question")}>Message<span className="optional"> (optional)</span></label>
-            <textarea id={id("question")} name="question" rows={2} maxLength={600} value={data.question} onChange={(event) => update("question", event.target.value)} aria-invalid={!!errors.question} aria-describedby={errors.question ? id("question-error") : id("privacy-note")} />{fieldError("question")}</div>
+            <textarea id={id("question")} name="question" rows={2} maxLength={600} value={data.question} onChange={(event) => update("question", event.target.value)} aria-invalid={!!errors.question} aria-describedby={`${id("question-guidance")}${errors.question ? ` ${id("question-error")}` : ""}`} title={privacyMessage} /><span className="sr-only" id={id("question-guidance")}>{privacyMessage}</span>{fieldError("question")}</div>
         </div>
         <div className="consents">
           <label className="checkbox-label" htmlFor={id("contactConsent")}><input id={id("contactConsent")} name="contactConsent" type="checkbox" required checked={data.contactConsent} onChange={(event) => update("contactConsent", event.target.checked)} aria-invalid={!!errors.contactConsent} aria-describedby={errors.contactConsent ? id("contactConsent-error") : undefined} /><span>I agree to be contacted by The BirthWave about this enquiry and have read the <a href={site.privacy} target="_blank" rel="noreferrer">Privacy Policy</a>. <span aria-hidden="true">*</span></span></label>
           {fieldError("contactConsent")}
-          <p className="form-privacy-note" id={id("privacy-note")}>{privacyMessage}</p>
         </div>
         {submissionError && <p className="field-error" role="alert">{submissionError}</p>}
         <button ref={submitButton} type="submit" disabled={!hydrated || busy} className="button submit-button" aria-busy={busy}><span>{busy ? "Please wait…" : "Request Details"}</span><ArrowUpRight size={18} aria-hidden="true" /></button>

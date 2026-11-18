@@ -89,31 +89,27 @@ svg { flex-shrink: 0; }
 .mobile-nav a { display: block; padding: 12px 4px; }
 
 /* 01 — content and complete enquiry form, aligned at the same visual edge. */
-.hero { padding: 48px 0 60px; background: transparent; }
+.hero { padding: 48px 0 60px; background: var(--section-foundation); overflow: hidden; }
 .hero-grid { display: grid; grid-template-columns: 1.07fr 1fr; gap: 64px; align-items: stretch; }
-.hero-content { display: grid; grid-template-columns: minmax(0,1fr) 220px; grid-template-rows: auto auto 1fr auto auto; gap: 20px; }
-.hero-content > .eyebrow,.hero-content > h1 { grid-column: 1 / -1; }
-.hero-content > .eyebrow { display: flex; align-items: center; gap: 16px; }
+.hero-content { position: relative; isolation: isolate; container-type: inline-size; display: flex; flex-direction: column; }
+.hero-background { --hero-photo-height: 792.55px; --hero-photo-focus: .12; position: absolute; z-index: -1; inset: -48px -240px -60px 52%; overflow: hidden; clip-path: inset(0 0 0 1px); pointer-events: none; mask-image: linear-gradient(90deg,transparent,#000 12%),linear-gradient(#000 calc(100% - 50px),transparent); mask-composite: intersect; }
+.hero-form-wrap { position: relative; z-index: 1; }
+/* Retain the photograph's reference frame; expand only its painting area. */
+.hero-photo-layer { position: absolute; left: 0; top: 0; box-sizing: content-box; width: calc(48cqw + 24px); height: var(--hero-photo-height); border-right: calc((var(--hero-photo-height) * .6666667 - (48cqw + 24px)) * (1 - var(--hero-photo-focus))) solid transparent; background-image: url('/images/pregnancy.webp'); background-size: cover; background-position: 12% 50%; background-origin: content-box; background-clip: border-box; background-repeat: no-repeat; mask-image: linear-gradient(90deg,#000 calc(100% - 40px),transparent); }
+.hero-photo-layer img { opacity: 0; }
+.hero-background::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg,#f9f0e8f5,#f9f0e8c9 10%,#f9f0e880 35%,#f9f0e866 55%,#f9f0e833 75%,transparent); }
+.hero-content > .eyebrow { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
 .hero-content > .eyebrow::after { content: ""; height: 1px; width: 64px; flex-shrink: 1; background: var(--clay); opacity: .65; }
-.hero h1 { max-width: 100%; font-size: clamp(40px,3.65vw,52px); }
+.hero h1 { max-width: 72%; font-size: clamp(38px,3.3vw,46px); }
 .hero-title-opening { display: block; }
-.hero-title-ending { display: inline-block; position: relative; white-space: nowrap; }
+.hero-title-ending { display: inline-block; position: relative; }
 .hero-title-ending::after { content: ""; position: absolute; width: 44%; height: 13px; right: 0; bottom: -13px; border-top: 3px solid var(--clay); border-radius: 50%; pointer-events: none; }
-.hero-description { grid-column: 1; font-size: 13px; line-height: 1.95; margin-top: 12px; max-width: 590px; }
-.hero-ctas { grid-column: 1; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
-.hero-ctas .button { font-size: 11px; padding-inline: 18px; gap: 12px; }
+.hero-description { font-size: 14px; line-height: 1.9; margin-top: 28px; max-width: 68%; }
+.hero-ctas { display: flex; align-items: stretch; gap: 12px; width: min(100%,480px); margin-top: auto; padding-top: 22px; }
+.hero-ctas .button { flex: 1; min-width: 0; font-size: 11px; padding-inline: 18px; gap: 12px; }
 .hero-ctas .text-link { font-size: 11px; gap: 8px; }
-.hero-location { grid-column: 1; grid-row: 4; display: flex; align-items: flex-start; gap: 8px; font-size: 10px; line-height: 1.8; max-width: 500px; }
+.hero-location { display: flex; align-items: flex-start; gap: 8px; font-size: 10px; line-height: 1.8; max-width: 68%; margin-top: 26px; }
 .hero-location svg { margin-top: 1px; color: var(--clay-dark); }
-.hero-visual { grid-column: 2; grid-row: 3 / 6; display: flex; flex-direction: column; margin: 12px 0 0; min-height: 320px; }
-.hero-image-wrap { position: relative; isolation: isolate; display: flex; flex: 1; }
-.hero-image-wrap::before { content: ""; position: absolute; z-index: -1; inset: -10px -12px 18px -16px; border-radius: 40% 22% 38% 18% / 55% 40% 36% 46%; background: var(--wave-soft); opacity: .65; transform: rotate(-2deg); pointer-events: none; }
-.hero-photo { min-height: 250px; flex: 1; position: relative; overflow: hidden; border-radius: 70px 70px 22px 22px; background: var(--beige); box-shadow: 0 12px 24px -22px #865b4e80; }
-.hero-pregnancy-emblem { position: absolute; right: -8px; bottom: 14px; display: grid; place-items: center; width: 54px; height: 54px; border: 1px solid #ca958580; border-radius: 50%; background: var(--cream); color: var(--clay-dark); box-shadow: 0 7px 20px -12px #865b4e66; pointer-events: none; }
-.hero-pregnancy-emblem svg { width: 30px; height: 40px; }
-.maternity-image { object-fit: cover; object-position: 50% 52%; }
-.hero-photo-caption { padding-top: 12px; }
-.hero-photo-caption > p:first-child { font-size: 11px; color: var(--brown); font-weight: 500; }
 .hero-enter { animation: hero-enter .7s var(--ease) backwards; }
 @keyframes hero-enter { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
 
@@ -142,7 +138,6 @@ svg { flex-shrink: 0; }
 .checkbox-label a { text-decoration: underline; text-underline-offset: 2px; color: #714a3e; }
 .submit-button { width: 100%; justify-content: center; font-size: 12px; min-height: 46px; padding: 11px 17px; border-radius: 999px; background: var(--clay-dark); color: var(--cream); }
 .submit-button:hover { background: var(--brown); }
-.form-privacy-note { font-size: 9px; line-height: 1.7; color: #6f615a; }
 .form-privacy { display: flex; gap: 8px; margin-top: 14px; align-items: flex-start; }
 .form-privacy svg { color: var(--clay-dark); margin-top: 3px; width: 12px; }
 .form-privacy p { font-size: 10px; color: #75655c; line-height: 1.85; }
@@ -239,7 +234,8 @@ svg { flex-shrink: 0; }
 .journey-steps li { overflow: hidden; background: var(--paper); border-radius: 16px; border: 1px solid #e5d5ca; }
 .step-photo { position: relative; height: 195px; }
 .step-photo img { object-fit: cover; object-position: center 48%; }
-.journey-steps li:nth-child(2) .step-photo img { object-position: center 35%; }
+.journey-steps li:first-child .step-photo img { object-position: center 65%; }
+.journey-steps li:nth-child(2) .step-photo img { object-position: center 46%; }
 .step-copy { position: relative; padding: 26px; }
 .step-symbol { color: var(--clay-dark); margin-bottom: 15px; }
 .step-symbol > svg:first-child { box-sizing: content-box; padding: 9px; background: #f6ece4; border-radius: 50%; }
@@ -260,7 +256,6 @@ svg { flex-shrink: 0; }
 .conscious-section .eyebrow { color: #62483e; }
 .programme-status { display: inline-block; padding: 5px 0; font-size: 9px; letter-spacing: .14em; color: #62483e; margin-top: 20px; }
 .conscious-intro h2 { font-size: clamp(32px,3.2vw,44px); color: #503930; margin: 10px 0 23px; }
-.programme-story { padding: 28px; border: 1px solid #fffaf6; border-radius: 20px; background: rgb(255 250 246 / .86); box-shadow: 0 15px 35px -30px #634c4366; }
 .programme-story > p:not(.eyebrow):not(.programme-status) { color: #5d473d; font-size: 13px; line-height: 1.95; }
 .programme-details { display: flex; flex-direction: column; gap: 16px; margin-block: 18px; padding: 23px 28px; border: 1px solid #fffaf6; border-radius: 18px; background: rgb(255 250 246 / .9); }
 .programme-details > div + div { padding-top: 14px; border-top: 1px solid #e6d5ca; }
@@ -335,9 +330,9 @@ svg { flex-shrink: 0; }
 .postpartum-cards { display: grid; grid-template-columns: 1.05fr 1fr; grid-template-rows: 1fr 1fr; gap: 16px; }
 .postpartum-card { position: relative; aspect-ratio: 1.85; margin: 0; border: 4px solid #fffdfb; border-radius: 28px; overflow: hidden; box-shadow: 0 12px 28px -22px #59443c80; transition: transform .3s var(--ease),box-shadow .3s; }
 .postpartum-card-large { grid-row: 1 / 3; aspect-ratio: auto; }
-.postpartum-card-large img { object-position: 50% 35%; }
-.postpartum-card:nth-child(2) img { object-position: center 36%; }
 .postpartum-card img { object-fit: cover; object-position: center; }
+.postpartum-card-large img { object-position: 20% center; }
+.postpartum-card:nth-child(2) img { object-position: center 46%; }
 .postpartum-card::after { content: ""; position: absolute; inset: 0; z-index: 0; background: rgb(252 248 245 / .07); pointer-events: none; }
 .postpartum-card figcaption { position: absolute; z-index: 1; inset: auto 12px 12px; width: fit-content; max-width: calc(100% - 24px); padding: 8px 15px; border: 1px solid #ead5cd; border-radius: 999px; font-family: var(--font-jakarta),sans-serif; font-size: 13px; line-height: 1.5; font-weight: 600; color: var(--brown); background: #fcf8f5; }
 .postpartum-card-large figcaption { inset: auto 0 0; width: 100%; max-width: 100%; border: 0; border-radius: 23px 23px 0 0; padding: 20px 12px; font-size: 17px; text-align: center; }
@@ -398,14 +393,18 @@ main::before { content: ""; position: fixed; inset: 0; z-index: -1; background: 
 .offers-section,.benefits-section,.enrolment-section,.doctor-section,.faq-section { background: transparent; }
 .yoga-section,.conscious-section,.postpartum-section { background-color: var(--section-foundation); }
 
-@media (min-width: 1151px) and (max-width: 1350px) { .yoga-intro > p:not(.eyebrow) { max-width: 260px; } }
+@media (min-width: 1151px) and (max-width: 1350px) {
+  .yoga-intro > p:not(.eyebrow) { max-width: 260px; }
+  .hero-background { --hero-photo-height: 811.05px; --hero-photo-focus: .2; }
+  .hero-photo-layer { background-position: 20% 50%; }
+}
 @media (min-width: 901px) and (max-width: 1150px) { .yoga-intro > p:not(.eyebrow) { max-width: 190px; margin-left: -12px; } }
 @media (min-width: 1600px) { .yoga-intro > p:not(.eyebrow) { max-width: 200px; } }
 
 @media (min-width: 1600px) {
   .hero-grid { gap: 78px; }
   .final-grid { gap: 78px; }
-  .hero h1 { font-size: 52px; }
+  .hero h1 { font-size: 46px; }
 }
 
 @media (max-width: 1150px) {
@@ -414,10 +413,10 @@ main::before { content: ""; position: fixed; inset: 0; z-index: -1; background: 
   .desktop-nav a { font-size: 10px; }
   .hero-grid { gap: 35px; }
   .hero h1 { font-size: clamp(34px,3.8vw,44px); }
-  .hero-description { font-size: 12px; }
-  .hero-content { grid-template-columns: minmax(0,1fr) 165px; }
+  .hero-description { font-size: 12px; max-width: 64%; }
+  .hero-background { --hero-photo-height: 821.65px; --hero-photo-focus: .45; }
+  .hero-photo-layer { background-position: 45% 50%; }
   .hero-ctas { gap: 10px; }
-  .hero-photo { min-height: 250px; }
   .enquiry-card { padding: 27px 24px 23px; }
   .form-intro h2 { font-size: 23px; }
   .split-heading { gap: 50px; }
@@ -437,6 +436,9 @@ main::before { content: ""; position: fixed; inset: 0; z-index: -1; background: 
   .footer-main { gap: 30px; }
 }
 
+@media (min-width: 901px) and (max-width: 960px) { .hero-background { --hero-photo-height: 836.95px; } }
+@media (min-width: 1090px) and (max-width: 1150px) { .hero-background { --hero-photo-height: 806.35px; } }
+
 @media (max-width: 900px) {
   .container { width: calc(100% - 56px); }
   .section { padding-block: 64px; }
@@ -446,15 +448,12 @@ main::before { content: ""; position: fixed; inset: 0; z-index: -1; background: 
   .brand,.brand img { width: 128px; }
   .hero { padding-top: 36px; }
   .hero-grid { grid-template-columns: 1fr; gap: 36px; }
-  .hero-content { display: grid; }
-  .hero-content { grid-template-columns: minmax(0,1fr) 220px; }
-  .hero h1 { font-size: 49px; max-width: 710px; }
-  .hero-description { font-size: 13px; max-width: 690px; }
-  .hero-ctas { align-items: center; }
-  .hero-visual { min-height: 0; }
-  .hero-image-wrap { display: block; flex: none; }
-  .hero-photo { flex: none; height: 340px; min-height: 0; }
-  .hero-photo-caption { padding-top: 14px; }
+  /* Keep the blended image inside the content above the stacked tablet form. */
+  .hero-background { top: -36px; right: -24px; bottom: 0; mask-image: linear-gradient(90deg,transparent,#000 35%,#000 88%,transparent),linear-gradient(#000 80%,transparent); }
+  .hero-photo-layer { height: calc(100% + 60px); border-right: 0; mask-image: none; }
+  .hero h1 { font-size: clamp(36px,5.8vw,49px); max-width: 72%; }
+  .hero-description { font-size: 13px; max-width: 68%; }
+  .hero-ctas { margin-top: 22px; padding-top: 0; }
   .hero-form-wrap { max-width: 680px; width: 100%; margin-inline: auto; }
   .enquiry-card { padding: 30px; }
   .form-intro h2 { font-size: 27px; }
@@ -547,22 +546,20 @@ main::before { content: ""; position: fixed; inset: 0; z-index: -1; background: 
   .text-link { font-size: 12px; }
   .hero { padding: 30px 0 55px; }
   .hero-grid { gap: 29px; }
-  .hero-content { display: block; }
+  .hero-content { padding-bottom: 260px; }
+  /* This soft edge belongs to the hero image inside its content area. */
+  .hero-background { inset: auto -20px 0; height: 300px; mask-image: radial-gradient(ellipse 65% 50% at 55% 50%,#000 35%,transparent 100%); mask-composite: add; }
+  .hero-photo-layer { width: 100%; height: 100%; }
+  .hero-background::after { background: #f9f0e84d; }
   .hero-content > .eyebrow { font-size: 8px; letter-spacing: .12em; margin-bottom: 17px; }
-  .hero h1 { font-size: clamp(35px,9.5vw,46px); line-height: 1.17; letter-spacing: -.045em; }
+  .hero h1 { max-width: 100%; font-size: clamp(35px,9.5vw,46px); line-height: 1.17; letter-spacing: -.045em; }
   .hero-title-ending { white-space: normal; }
   .hero-content > .eyebrow::after { width: 30px; }
-  .hero-description { font-size: 12px; line-height: 1.95; margin-top: 28px; }
-  .hero-ctas { display: flex; gap: 14px; margin-top: 25px; }
-  .hero-ctas .button { min-height: 49px; font-size: 11px; }
+  .hero-description { max-width: 100%; font-size: 12px; line-height: 1.95; margin-top: 28px; }
+  .hero-ctas { flex-direction: column; align-items: flex-start; gap: 14px; width: 100%; margin-top: 25px; padding-top: 0; }
+  .hero-ctas .button { flex: none; min-height: 49px; font-size: 11px; }
   .hero-ctas .text-link { font-size: 11px; }
-  .hero-location { font-size: 10px; margin-top: 7px; }
-  .hero-visual { margin: 25px auto 0; max-width: 280px; }
-  .hero-photo { height: 340px; min-height: 0; border-top-right-radius: 70px; }
-  .hero-photo-caption { padding-top: 14px; }
-  .hero-pregnancy-emblem { width: 60px; height: 60px; right: -6px; bottom: 10px; }
-  .hero-pregnancy-emblem svg { width: 34px; height: 44px; }
-  .hero-photo-caption > p:first-child { font-size: 11px; }
+  .hero-location { max-width: 100%; font-size: 10px; margin-top: 24px; }
   .enquiry-card { padding: 26px 22px 24px; scroll-margin-top: 94px; }
   .form-intro h2 { font-size: 25px; }
   .form-intro .eyebrow { font-size: 8px; }
@@ -637,7 +634,6 @@ main::before { content: ""; position: fixed; inset: 0; z-index: -1; background: 
   .conscious-layout { grid-template-columns: 1fr; gap: 30px; }
   .conscious-intro > .eyebrow { font-size: 8px; letter-spacing: .1em; }
   .conscious-intro h2 { font-size: 34px; }
-  .programme-story { padding: 22px; }
   .programme-story > p:not(.eyebrow):not(.programme-status) { font-size: 12px; }
   .programme-details { padding: 22px; }
   .conscious-layout { gap: 60px; }

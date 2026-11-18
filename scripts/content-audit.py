@@ -1,4 +1,4 @@
-"""Compare rendered text with independent copy extracted from the client DOCX."""
+"""Compare visible and accessible copy with independent text from the client DOCX."""
 import re
 import urllib.request
 import xml.etree.ElementTree as ET

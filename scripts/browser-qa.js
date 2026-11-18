@@ -27,20 +27,25 @@ async (page) => {
     return found;
   });
   check(visibleCounters.length === 0, "No decorative section, photo, benefit, activity or FAQ counters");
-  check((await page.locator(".hero-photo img").getAttribute("src")).includes("pregnancy.webp"), "Hero uses the exact pregnancy asset");
-  check(await page.locator(".hero-background").count() === 0, "Hero has no composite photographic background");
+  check((await page.locator(".hero-background img").getAttribute("src")).includes("pregnancy.webp"), "Hero uses pregnancy as its left-side background");
+  check(await page.locator(".hero-photo,.hero-visual").count() === 0, "Hero has no standalone photograph card");
   check(await page.locator(".form-privacy").count() === 0, "Neither form has the standalone paragraph below submission");
   check(await page.locator(".form-guidance").count() === 0, "Both forms omit the separate expandable guidance row");
-  check(await page.locator(".form-privacy-note").count() === 2, "Both forms retain essential guidance above submission");
+  check(await page.locator(".form-privacy-note").count() === 0, "Both forms remove the repeated explanatory paragraph");
+  check(await page.locator('textarea[name="question"][aria-describedby][title]').count()===2,'Privacy and medical guidance remains on both message fields');
   check((await page.locator(".faq-photo img").getAttribute("src")).includes("doctor-santoshi.webp"), "FAQ uses doctor-santoshi");
-  check((await page.locator(".doctor-photo img").getAttribute("src")).includes("dr-santoshi-web.webp"), "Approach uses the newer selected doctor image");
+  check(decodeURIComponent(await page.locator(".doctor-photo img").getAttribute("src")).includes("EXP01338 (1) copy.webp"), "Approach uses the exact original EXP01338 asset");
   check((await page.locator(".benefits-photo img").getAttribute("src")).includes("clinic-space.webp"), "Benefits uses the original clinic lounge interior");
   check(!(await page.locator(".conscious-offer .offer-image img").getAttribute("src")).includes("conscious-connection.webp"), "Second offer replaces the hands photograph");
   check(await page.locator(".step-photo img").count() === 3, "All three getting-started cards use real photographs");
   check(await page.locator(".postpartum-background").count() === 0, "Care section has no full-section photograph");
-  check((await page.locator(".postpartum-card-large img").getAttribute("src")).includes("doctor-santoshi.webp"), "Large care image uses doctor-santoshi");
+  check(decodeURIComponent(await page.locator(".postpartum-card-large img").getAttribute("src")).includes("card (1).webp"), "Large care image uses card (1)");
   check((await page.locator(".postpartum-card:nth-child(2) img").getAttribute("src")).includes("postpartum-consultation.webp"), "Second care image uses postpartum-consultation");
   check((await page.locator(".final-background img").getAttribute("src")).includes("clinic-space.webp"), "Final consultation uses the original lounge background");
+  check((await page.locator('.journey-steps li:first-child img').getAttribute('src')).includes('consultation-notebook.webp'),'First getting-started image uses consultation-notebook');
+  check(await page.locator('.programme-story').evaluate(e=>{const s=getComputedStyle(e);return s.backgroundColor==='rgba(0, 0, 0, 0)'&&s.borderTopWidth==='0px'&&s.boxShadow==='none';}),'Program introduction has no outer box');
+  check(await page.locator('.programme-details').evaluate(e=>getComputedStyle(e).backgroundColor!=='rgba(0, 0, 0, 0)'),'Duration, Format and Pricing retain their box');
+  check(await page.locator('.final-background').evaluate(e=>getComputedStyle(e).maskImage==='none'),'Final section retains its approved straight boundary');
   check(await page.locator(".offer-features li").count() === 6, "Both offers highlight their key features");
   check(await page.locator(".faq-item").count() === 8, "All eight FAQ questions present");
   check(await page.locator(".floating-action").count() === 5, "Floating contact toolbar has five actions");
@@ -151,9 +156,8 @@ async (page) => {
         heroSideBySide: heroForm.left > heroContent.right && Math.abs(heroContent.top - heroForm.top) < 2,
         stacked: heroForm.top >= heroContent.bottom,
         heroSequence: (() => {
-          const [heading,description,photo,location,ctas] = ["h1", ".hero-description", ".hero-photo", ".hero-location", ".hero-ctas"].map((selector) => document.querySelector(selector).getBoundingClientRect());
-          const noOverlap=photo.left>=description.right-1||photo.top>=description.bottom-1;
-          return description.top>=heading.bottom-1&&photo.top>=heading.bottom-1&&ctas.top>=description.bottom-1&&ctas.top>=location.bottom-1&&noOverlap;
+          const [heading,description,location,ctas] = ["h1", ".hero-description", ".hero-location", ".hero-ctas"].map((selector) => document.querySelector(selector).getBoundingClientRect());
+          return description.top>=heading.bottom-1&&location.top>=description.bottom-1&&ctas.top>=location.bottom-1;
         })(),
         contactSequence: (() => {
           const elements = [".final-copy > h2", ".final-copy > p:not(.eyebrow)", ".clinic-contact address", ".clinic-contact .contact-actions"].map((selector) => document.querySelector(selector).getBoundingClientRect());
@@ -172,7 +176,7 @@ async (page) => {
     check(layout.scrollWidth <= width + 1, `No horizontal overflow at ${width}px`);
     check(layout.sequential, `Independent sections stack vertically at ${width}px`);
     check(width > 900 ? layout.heroSideBySide : layout.stacked, `Correct hero/form composition at ${width}px`);
-    check(layout.heroSequence, `Hero text and buttons stay clear of the photograph at ${width}px`);
+    check(layout.heroSequence, `Hero heading, description, location and boxed CTAs remain in order at ${width}px`);
     check(layout.contactSequence, `Contact content follows heading, description, address, actions at ${width}px`);
     check(layout.identicalForms,`Both forms have identical dimensions at ${width}px`);
     check(layout.careComposition,`Care uses one large and two smaller images at ${width}px`);
