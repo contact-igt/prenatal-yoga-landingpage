@@ -43,6 +43,8 @@ The refinement pass removes all visible decorative numbering and photo counters.
 
 The latest refinement keeps the final location and contact details open on the page while retaining boxed call-to-action buttons. The Conscious Pregnancy section now uses a lighter brand-toned background with a layered proposed-experience panel; enrolment removes the decorative arrow treatments; the prenatal practice note is unboxed beneath the ₹4,500 card; sections 03 and 04 use the same supporting-note treatment; and the postpartum photograph has a subtle organic background shape.
 
+The current revision adds a fixed five-action toolbar (WhatsApp, phone, Instagram, appointment and YouTube) using the official destinations verified on the BirthWave contact page. The landing page now uses “Program” consistently, and the hero, postpartum, FAQ and BirthWave Approach conversion actions all use the shared button system. The campaign phone remains +91 93630 31925 and WhatsApp remains +91 79042 51378; the official contact page also lists +91 98407 98472 as a separate CUG number, which was not substituted into the campaign CTA.
+
 ## Source and component map
 
 - `app/page.tsx`: server-rendered ten-section composition, header and footer.
@@ -141,8 +143,8 @@ Final checks completed on 18 November 2026:
 
 - `npm run build`, `npm run typecheck` and `npm run lint` passed. The landing page is statically prerendered by Next.js.
 - `scripts/content-audit.py` passed all 48 exact checks against the client DOCX, including complete descriptions, proposed activities, safety wording and FAQs. It reads the original document directly with Python's standard library, without depending on the ignored inspection folder.
-- `scripts/browser-qa.js` passed 137 real-browser assertions: both full forms, required-field and international-phone validation, exact thank-you copy, keyboard focus containment and dismissal, CTA interest selection, all FAQ controls, navigation anchors, reduced motion, no personal-data transmission or persistence, and no browser runtime errors. The refinement checks also verify removal of decorative counters, the replacement photos, feature highlights, the cleaner final form, and the requested hero/contact ordering at every tested width.
-- The latest refinement pass was rechecked with the same 137 browser assertions after the contact, Conscious Pregnancy, enrolment, pricing and postpartum presentation changes; the run completed with no browser runtime errors.
+- `scripts/browser-qa.js` passed 143 real-browser assertions: both full forms, required-field and international-phone validation, exact thank-you copy, keyboard focus containment and dismissal, CTA interest selection, all FAQ controls, navigation anchors, reduced motion, no personal-data transmission or persistence, five floating contact destinations, Program spelling consistency, button conversion checks and no browser runtime errors.
+- The latest refinement pass was rechecked after the contact toolbar, contact boxes, CTA, arrow, spelling and section-presentation changes; the run completed with no browser runtime errors.
 - Responsive checks passed at 360, 390, 768, 1024, 1280, 1440 and 1920 pixels. All ten sections stack independently without horizontal overflow; the hero form sits on the right at desktop widths.
 - Additional refinement checks passed at the 600/601-pixel FAQ breakpoint: the consultation image stays below its heading, the questions stay alongside it above the mobile breakpoint, and the two columns remain balanced. The benefits photograph is centered, and all headings retain one colour.
 - Both enquiry flows also passed at 390 × 844, including a fully visible, centered modal and clearing of in-memory form values. Modal centering was also checked at 1440 × 1000, with zero automated accessibility violations while open. With JavaScript disabled, all ten sections render and submission stays disabled.

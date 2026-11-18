@@ -18,6 +18,7 @@ class VisibleText(HTMLParser):
         if not self.skip: self.parts.append(data)
 
 def normalize(text):
+    text = re.sub(r'(?i)programme', 'program', text)
     return re.sub(r'\s+', ' ', text.replace('\u00a0',' ')).strip()
 
 with zipfile.ZipFile('BirthWave_Prenatal_Landing_Page_Developer_Brief_2026-11-18.docx') as source:

@@ -56,8 +56,8 @@ svg { flex-shrink: 0; }
 .button { display: inline-flex; justify-content: center; align-items: center; gap: 18px; padding: 15px 23px; min-height: 50px; border: 1px solid transparent; border-radius: 4px; background: var(--clay); color: #30201b; font-size: 12px; line-height: 1.6; font-weight: 600; transition: background .2s, border-color .2s, transform .2s; }
 .button:hover { background: #bd8675; }
 .button:active { transform: translateY(1px); }
-.button svg,.text-link svg { transition: transform .25s var(--ease); }
-.button:hover svg,.text-link:hover svg { transform: translate(2px,-2px); }
+.button .directional-arrow,.text-link .directional-arrow { transform-origin: center; transition: transform .25s var(--ease); }
+.button:hover .directional-arrow,.text-link:hover .directional-arrow { transform: rotate(-45deg); }
 .button-small { min-height: 43px; padding: 10px 18px; font-size: 11px; }
 .button-outline { background: transparent; border-color: #ad8e80; color: var(--brown); }
 .button-outline:hover { background: var(--blush); border-color: var(--clay-dark); }
@@ -67,6 +67,9 @@ svg { flex-shrink: 0; }
 .text-link:hover { color: #744739; }
 .skip-link { position: fixed; top: -80px; left: 20px; z-index: 200; background: var(--brown); color: white; padding: 12px 20px; }
 .skip-link:focus { top: 14px; }
+.floating-toolbar { position: fixed; z-index: 45; top: 50%; right: 18px; display: flex; flex-direction: column; gap: 10px; transform: translateY(-50%); }
+.floating-action { display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid #eaded6; border-radius: 50%; background: #fffdfb; color: #302724; box-shadow: 0 7px 20px -12px #30272499; transition: color .22s, background .22s, border-color .22s, transform .22s var(--ease), box-shadow .22s; }
+.floating-action:hover,.floating-action:focus-visible { background: var(--brown); border-color: var(--brown); color: white; transform: translateX(-3px); box-shadow: 0 10px 24px -12px #302724aa; }
 
 /* A quiet, compact header lets the page retain its editorial rhythm. */
 .site-header { position: sticky; top: 0; z-index: 50; background: rgb(252 248 245 / .97); backdrop-filter: blur(10px); }
@@ -304,11 +307,16 @@ svg { flex-shrink: 0; }
 .clinic-contact { margin-top: 20px; }
 .clinic-contact .contact-actions { margin-top: 23px; }
 address { font-style: normal; font-size: 12px; color: var(--brown); display: flex; flex-direction: column; gap: 8px; }
-address > div { display: flex; align-items: flex-start; gap: 13px; margin-bottom: 7px; max-width: 400px; }
+address > div { display: flex; align-items: flex-start; gap: 13px; margin-bottom: 7px; max-width: 100%; }
 address > div > svg { margin-top: 3px; color: #865b4e; }
 address p { color: var(--brown); }
-address > a { margin-left: 34px; width: fit-content; }
-address > a:hover { text-decoration: underline; }
+.contact-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.contact-box { display: flex; align-items: center; gap: 12px; min-height: 74px; padding: 13px 15px; border: 1px solid #c9a99a; border-radius: 4px; background: rgb(255 253 251 / .52); color: var(--brown); transition: background .2s, border-color .2s, transform .2s var(--ease); }
+.contact-box:hover { background: #fffdfb; border-color: var(--clay-dark); transform: translateY(-2px); }
+.contact-box > svg { color: var(--clay-dark); }
+.contact-box span { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.contact-box strong { font-size: 11px; line-height: 1.5; }
+.contact-box small { font-size: 10px; color: var(--muted); line-height: 1.5; }
 .clinic-photo { position: relative; height: 265px; overflow: hidden; border-radius: 4px 65px 4px 4px; margin-top: 27px; }
 .clinic-photo img { object-fit: cover; object-position: center 55%; }
 
@@ -575,11 +583,13 @@ address > a:hover { text-decoration: underline; }
   .final-copy { display: block; }
   .final-copy h2 { font-size: 38px; margin-block: 15px 20px; }
   .final-copy > p:not(.eyebrow) { font-size: 12px; }
-  .contact-actions { gap: 12px; margin-top: 20px; flex-direction: column; align-items: flex-start; }
+  .contact-actions { gap: 12px; margin-top: 20px; grid-template-columns: 1fr; }
   .contact-actions .button { font-size: 12px; }
   .contact-actions .text-link { font-size: 12px; }
   address { font-size: 11px; }
   .clinic-contact { padding: 22px 20px; margin-top: 17px; }
+  .floating-toolbar { top: auto; right: 12px; bottom: 14px; flex-direction: row; gap: 7px; transform: none; }
+  .floating-action { width: 39px; height: 39px; }
   .clinic-photo { height: 220px; min-height: 0; margin-top: 25px; }
   .site-footer { padding-top: 45px; }
   .footer-main { gap: 32px 20px; }

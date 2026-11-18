@@ -33,6 +33,12 @@ async (page) => {
   check(await page.locator(".faq-photo img").count() === 1, "FAQ includes the supplied consultation notebook photograph");
   check(await page.locator(".offer-features li").count() === 6, "Both offers highlight their key features");
   check(await page.locator(".faq-item").count() === 8, "All eight FAQ questions present");
+  check(await page.locator(".floating-action").count() === 5, "Floating contact toolbar has five actions");
+  check(JSON.stringify(await page.locator(".floating-action").evaluateAll((items) => items.map((item) => item.getAttribute("href")))) === JSON.stringify(["https://wa.me/917904251378", "tel:+919363031925", "https://www.instagram.com/thebirthwave", "https://www.thebirthwave.in/contact#contact-form", "https://www.youtube.com/@thebirthwaveclinic"]), "Floating contact destinations match the official configuration");
+  check(await page.locator(".contact-box").count() === 2, "Final contact details use two clickable contact boxes");
+  check(await page.locator(".hero-ctas a.button").count() === 2, "Hero uses two proper CTA buttons");
+  check(await page.locator("#postpartum-care a.button, #our-approach a.button, #faqs a.button").count() === 3, "Section conversion CTAs use proper buttons");
+  check(!/Programme|programme/.test(await page.locator("body").innerText()), "Landing page uses Program spelling consistently");
   const duplicateIDs = await page.evaluate(() => {
     const ids = [...document.querySelectorAll("[id]")].map((el) => el.id);
     return ids.filter((id, index) => ids.indexOf(id) !== index);
@@ -78,7 +84,7 @@ async (page) => {
     ["Register Your Interest", "final", "Conscious Pregnancy updates"],
     ["Get Batch & Enrolment Details", "final", "Prenatal Yoga"],
     ["Ask the Team About Joining", "final", "Prenatal Yoga"],
-    ["Keep Me Updated About the Programme", "final", "Conscious Pregnancy updates"],
+    ["Keep Me Updated About the Program", "final", "Conscious Pregnancy updates"],
   ];
   for (const [label, placement, value] of ctas) {
     await page.getByRole("link", { name: label, exact: true }).click();

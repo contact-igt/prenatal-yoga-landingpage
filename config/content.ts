@@ -24,10 +24,10 @@ export const copy = {
   },
   conscious: {
     title: "A thoughtful space for the journey before birth.",
-    body: "The BirthWave is developing a Conscious Pregnancy Program designed to bring different aspects of pregnancy wellbeing into one guided experience. The current concept combines movement, moments of reflection and opportunities to feel more connected to your own pregnancy journey. The final programme structure, schedule, availability and pricing are still being worked out.",
+    body: "The BirthWave is developing a Conscious Pregnancy Program designed to bring different aspects of pregnancy wellbeing into one guided experience. The current concept combines movement, moments of reflection and opportunities to feel more connected to your own pregnancy journey. The final program structure, schedule, availability and pricing are still being worked out.",
     duration: "Approximately three months — proposed.",
     format: "Online and in-person possibilities being assessed; specific availability to be confirmed.",
-    pricing: "Pricing to be announced after programme finalization.",
+    pricing: "Pricing to be announced after program finalization.",
     disclaimer: "Relaxation, storytelling and similar wellbeing activities are optional supportive practices; they do not determine a baby's intelligence, personality or birth outcome and do not replace medical care.",
   },
   doctor: {
@@ -62,7 +62,7 @@ export const activities = [
   { title: "Mobility, strength and stretching", body: "Approximately weekly sessions proposed, with in-person delivery more developed than online delivery." },
   { title: "Sound-based relaxation", body: "Facilitated group sessions under consideration for online and in-person formats." },
   { title: "Storytelling and guided reflection", body: "Approximately monthly activities around writing, imagining and connecting with the pregnancy experience." },
-  { title: "Optional maternity / postpartum essentials", body: "Curated kits or partner-supplied products under consideration; not confirmed as included in the programme fee." },
+  { title: "Optional maternity / postpartum essentials", body: "Curated kits or partner-supplied products under consideration; not confirmed as included in the program fee." },
 ];
 
 export const faqs = [
@@ -71,7 +71,7 @@ export const faqs = [
   { question: "Are sessions online or in person?", answer: "Please contact our team for the currently available batch formats, timings and any eligibility requirements." },
   { question: "How much does prenatal yoga cost?", answer: yoga.showPrice ? `The discussed monthly fee is ${yogaFee}. Our team will confirm the current rate, taxes if applicable, class inclusions and enrolment details before you join.` : "Our team will confirm the current rate, taxes if applicable, class inclusions and enrolment details before you join." },
   { question: "Do I need to be an existing BirthWave patient?", answer: "Please enquire with the team. They can guide you through the registration process and any clinical clearance or consultation requirements." },
-  { question: "What is the Conscious Pregnancy Program?", answer: "It is an upcoming, approximately three-month wellbeing programme currently being developed by The BirthWave. Planned elements include yoga, mobility, relaxation and storytelling-related activities. The final curriculum, price and dates will be announced once confirmed." },
-  { question: "Will yoga or the programme guarantee a vaginal birth or a particular outcome for my baby?", answer: "No. Pregnancy and childbirth outcomes depend on many individual clinical factors. These wellbeing services are supportive offerings and are not guarantees of any birth or developmental outcome." },
-  { question: "Does The BirthWave also provide postpartum care?", answer: "The BirthWave describes postpartum-related consultations and support within its wider services. A new structured postnatal strength/recovery programme was only discussed as a future idea; ask the team about currently available care." },
+  { question: "What is the Conscious Pregnancy Program?", answer: "It is an upcoming, approximately three-month wellbeing program currently being developed by The BirthWave. Planned elements include yoga, mobility, relaxation and storytelling-related activities. The final curriculum, price and dates will be announced once confirmed." },
+  { question: "Will yoga or the program guarantee a vaginal birth or a particular outcome for my baby?", answer: "No. Pregnancy and childbirth outcomes depend on many individual clinical factors. These wellbeing services are supportive offerings and are not guarantees of any birth or developmental outcome." },
+  { question: "Does The BirthWave also provide postpartum care?", answer: "The BirthWave describes postpartum-related consultations and support within its wider services. A new structured postnatal strength/recovery program was only discussed as a future idea; ask the team about currently available care." },
 ];

@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import type { Interest } from "@/lib/enquiry";
 
 export function EnquiryLink({ children, interest, target = "final", className = "button" }: {
@@ -16,6 +16,6 @@ export function EnquiryLink({ children, interest, target = "final", className = 
       form.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth", block: "start" });
       (form.querySelector("input") as HTMLInputElement | null)?.focus({ preventScroll: true });
     }}>
-    <span>{children}</span><ArrowUpRight size={17} aria-hidden="true" />
+    <span>{children}</span><ArrowRight className="directional-arrow" size={17} aria-hidden="true" />
   </a>;
 }
