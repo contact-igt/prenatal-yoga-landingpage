@@ -47,11 +47,11 @@ svg { flex-shrink: 0; }
 .container { width: min(1280px, calc(100% - 112px)); margin-inline: auto; }
 .section { padding-block: 100px; }
 .eyebrow { color: var(--clay-dark); font-size: 10px; line-height: 1.6; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; }
-.eyebrow > span:first-child:not(.status-dot) { margin-right: 14px; font-size: 10px; letter-spacing: .04em; }
 .section-heading { margin-bottom: 44px; }
 .split-heading { display: grid; grid-template-columns: 1fr 1fr; align-items: end; gap: 90px; }
 .section-heading h2 { margin-top: 16px; max-width: 520px; }
 .section-heading > p { max-width: 570px; font-size: 14px; line-height: 1.9; }
+.section-heading > .supporting-note { padding: 24px 27px; background: #f6eee6; border-left: 2px solid var(--clay); border-radius: 0 5px 5px 0; }
 .small-copy { font-size: 11px; line-height: 1.85; }
 .button { display: inline-flex; justify-content: center; align-items: center; gap: 18px; padding: 15px 23px; min-height: 50px; border: 1px solid transparent; border-radius: 4px; background: var(--clay); color: #30201b; font-size: 12px; line-height: 1.6; font-weight: 600; transition: background .2s, border-color .2s, transform .2s; }
 .button:hover { background: #bd8675; }
@@ -88,22 +88,22 @@ svg { flex-shrink: 0; }
 .hero-content { display: flex; flex-direction: column; }
 .hero-content > .eyebrow { margin-bottom: 20px; }
 .hero h1 { max-width: 620px; }
-.hero h1 span { font-weight: 600; }
 .hero-description { font-size: 14px; line-height: 1.95; margin-top: 24px; max-width: 590px; }
-.hero-ctas { display: flex; flex-wrap: wrap; align-items: center; gap: 9px 25px; margin-top: 27px; }
+.hero-ctas { display: flex; flex-wrap: wrap; align-items: center; gap: 9px 25px; margin-top: 23px; }
 .hero-ctas .button { font-size: 11px; padding-inline: 18px; gap: 12px; }
 .hero-ctas .text-link { font-size: 11px; gap: 8px; }
-.hero-location { display: flex; align-items: flex-start; gap: 10px; font-size: 10px; line-height: 1.8; max-width: 470px; margin-top: 22px; }
+.hero-location { display: flex; align-items: flex-start; gap: 8px; font-size: 10px; line-height: 1.8; max-width: 500px; margin-top: 7px; }
 .hero-location svg { margin-top: 1px; color: var(--clay-dark); }
-.hero-photo { height: 264px; min-height: 264px; flex: 1; position: relative; overflow: hidden; border-radius: 3px 68px 3px 3px; margin-top: 30px; background: var(--beige); }
-.maternity-image { object-fit: cover; object-position: 50% 62%; }
-.hero-photo-caption { position: absolute; inset: auto 0 0; display: flex; justify-content: space-between; align-items: end; padding: 33px 23px 20px; color: #fff5ed; background: linear-gradient(transparent, rgb(48 39 36 / .65)); font-family: var(--font-jakarta),sans-serif; font-size: 17px; font-weight: 400; }
-.photo-mark { font-family: var(--font-poppins),sans-serif; font-size: 9px; letter-spacing: .12em; }
+.hero-visual { display: flex; flex-direction: column; flex: 1; margin: 25px 0 0; }
+.hero-photo { min-height: 260px; flex: 1; position: relative; overflow: hidden; border-radius: 3px 62px 3px 3px; background: var(--beige); }
+.maternity-image { object-fit: cover; object-position: 50% 52%; }
+.hero-photo-caption { padding-top: 12px; }
+.hero-photo-caption > p:first-child { font-size: 11px; color: var(--brown); font-weight: 500; }
 .hero-enter { animation: hero-enter .7s var(--ease) backwards; }
 @keyframes hero-enter { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
 
 /* Shared enquiry form: all fields remain visible and independently labelled. */
-.enquiry-card { padding: 30px 32px 25px; background: var(--paper); border-radius: 6px; box-shadow: 0 12px 40px -24px #6b443433; scroll-margin-top: 112px; }
+.enquiry-card { padding: 30px 32px 25px; background: var(--paper); border: 1px solid #e7d9cf; border-radius: 6px; box-shadow: 0 14px 40px -28px #6b443433; scroll-margin-top: 112px; }
 .form-intro h2 { font-size: 25px; letter-spacing: -.04em; line-height: 1.35; margin-top: 9px; }
 .form-intro > p { font-size: 11px; margin-top: 7px; }
 .form-intro .eyebrow { font-size: 9px; letter-spacing: .14em; }
@@ -154,25 +154,31 @@ svg { flex-shrink: 0; }
 .offer-copy { padding: 29px 32px 30px; display: flex; flex-direction: column; flex: 1; align-items: flex-start; }
 .offer-copy h3 { margin: 12px 0 16px; max-width: 390px; font-size: 27px; }
 .offer-copy > p:not(.eyebrow) { font-size: 13px; line-height: 1.9; }
-.offer-meta { margin-top: auto; padding-top: 26px; margin-bottom: 21px; }
+.offer-features { display: flex; flex-direction: column; gap: 10px; margin: 24px 0; padding: 0; list-style: none; width: 100%; }
+.offer-features li { display: flex; align-items: center; gap: 10px; font-size: 12px; color: var(--brown); line-height: 1.7; }
+.offer-features svg { color: var(--clay-dark); }
+.offer-meta { width: 100%; min-height: 172px; margin-top: auto; padding: 19px 21px; margin-bottom: 19px; background: rgb(255 253 251 / .72); border: 1px solid #e4d2c5; border-radius: 4px; }
+.offer-meta > .eyebrow { font-size: 9px; margin-bottom: 8px; }
+.offer-meta .small-copy { display: flex; align-items: center; gap: 8px; }
+.offer-availability { margin-top: 10px; font-size: 11px; line-height: 1.8; color: var(--brown); }
 .offer-price { color: var(--brown); font-size: 13px; margin-bottom: 6px; }
 .offer-price strong { font-family: var(--font-jakarta),sans-serif; font-size: 30px; font-weight: 500; letter-spacing: -.04em; }
-.programme-fee { color: var(--brown); font-size: 15px; font-family: var(--font-jakarta),sans-serif; margin-bottom: 10px; }
+.programme-fee { color: var(--brown); font-size: 21px; font-family: var(--font-jakarta),sans-serif; line-height: 1.4; margin-bottom: 12px; max-width: 330px; }
 .status-label { display: flex; gap: 8px; align-items: center; }
 .status-dot { width: 5px; height: 5px; background: var(--clay-dark); border-radius: 50%; }
 
 /* 03 — four benefits arranged around an arched photograph. */
 .benefits-section { background: #f7f2eb; }
-.benefits-composition { display: grid; grid-template-columns: 1fr 1.12fr 1fr; grid-template-rows: auto auto; gap: 30px 54px; align-items: center; padding: 8px 0 32px; }
-.benefits-photo { grid-column: 2; grid-row: 1 / 3; height: 438px; border-radius: 180px 180px 6px 6px; overflow: hidden; position: relative; }
+.benefits-composition { display: grid; grid-template-columns: 1fr 1.1fr 1fr; grid-template-rows: auto auto; gap: 24px 30px; align-items: stretch; padding: 8px 0 32px; }
+.benefits-photo { grid-column: 2; grid-row: 1 / 3; min-height: 470px; border-radius: 180px 180px 6px 6px; overflow: hidden; position: relative; }
 .benefits-photo img { object-fit: cover; object-position: center 40%; }
 .photo-note { position: absolute; bottom: 0; inset-inline: 0; padding: 40px 24px 23px; background: linear-gradient(transparent,#302724b3); color: white; text-align: center; font-family: var(--font-jakarta),sans-serif; font-size: 25px; line-height: 1.3; letter-spacing: -.025em; }
 .benefit-1 { grid-column: 1; grid-row: 1; }
 .benefit-2 { grid-column: 3; grid-row: 1; }
 .benefit-3 { grid-column: 1; grid-row: 2; }
 .benefit-4 { grid-column: 3; grid-row: 2; }
-.benefit-top { display: flex; align-items: center; justify-content: space-between; max-width: 240px; margin-bottom: 17px; color: var(--clay-dark); }
-.benefit-number { font-size: 12px; font-family: var(--font-jakarta),sans-serif; }
+.benefit { padding: 26px; border: 1px solid #e6d8cb; border-radius: 5px; background: #fcf8f2; }
+.benefit-top { display: grid; place-items: center; width: 43px; height: 43px; border-radius: 50%; background: #f0e2d7; margin-bottom: 18px; color: var(--clay-dark); }
 .benefit h3 { font-size: 21px; max-width: 260px; margin-bottom: 11px; }
 .benefit p { font-size: 13px; line-height: 1.9; max-width: 275px; }
 .safety-note { display: flex; align-items: flex-start; gap: 16px; max-width: 950px; margin: 20px auto 0; padding: 19px 25px; background: #eee4d9; font-size: 11px; line-height: 1.9; border-radius: 3px; color: #655044; }
@@ -184,27 +190,31 @@ svg { flex-shrink: 0; }
 .class-photo { position: relative; min-height: 550px; }
 .class-photo img { object-fit: cover; object-position: 36% center; }
 .class-photo-label { position: absolute; bottom: 0; left: 0; right: 0; padding: 90px 32px 30px; background: linear-gradient(transparent,#302724b3); color: white; font-family: var(--font-jakarta),sans-serif; font-size: 24px; line-height: 1.4; letter-spacing: -.03em; }
-.yoga-price-panel { padding: 36px 42px; }
-.price-display { display: flex; gap: 15px; align-items: baseline; margin-top: 15px; color: var(--brown); }
+.yoga-price-panel { padding: 30px; }
+.price-summary { padding: 22px 25px; background: var(--paper); border-radius: 4px; box-shadow: 0 8px 20px -20px #59443c66; }
+.price-display { display: flex; flex-wrap: wrap; gap: 6px 15px; align-items: baseline; margin-top: 10px; color: var(--brown); }
 .price-display strong { font-family: var(--font-jakarta),sans-serif; font-size: 58px; font-weight: 400; letter-spacing: -.055em; line-height: 1.2; }
 .price-display span { font-size: 12px; }
 .price-display .enquire-price { font-size: 35px; }
 .tax-note { font-size: 10px; margin-top: 5px; }
-.practice-label { display: flex; align-items: center; gap: 9px; margin-top: 25px; font-size: 12px; color: var(--brown); }
-.service-details { display: grid; grid-template-columns: 1fr 1fr; gap: 19px 28px; margin-block: 25px; }
-.service-details dt { font-size: 12px; color: var(--brown); margin-bottom: 4px; }
+.practice-label { display: flex; align-items: center; gap: 9px; margin-top: 17px; padding: 13px 15px; background: #e9d5c8; border-radius: 3px; font-size: 12px; font-weight: 500; color: var(--brown); }
+.service-details { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-block: 17px; }
+.service-details > div { padding: 15px 17px; background: rgb(255 253 251 / .65); border-radius: 3px; }
+.service-details dt { font-size: 12px; font-weight: 500; color: var(--brown); margin-bottom: 6px; }
 .service-details dd { margin: 0; font-size: 12px; color: var(--muted); line-height: 1.8; }
-.yoga-price-panel .button { margin-top: 23px; }
+.inclusions-note { padding-inline: 2px; }
+.yoga-price-panel .button { margin-top: 19px; width: 100%; }
 
-/* 05 — open, numbered progression with subtle internal connectors. */
+/* 05 — a clear, icon-led enrolment journey. */
 .enrolment-section { background: #f9f4ed; }
 .journey-heading { display: flex; justify-content: space-between; align-items: center; margin-bottom: 45px; }
 .journey-heading h2 { margin-top: 16px; }
 .journey-flourish { width: 74px; height: 74px; border: 1px solid #d3b5a4; border-radius: 50%; display: grid; place-items: center; color: var(--clay-dark); }
-.journey-steps { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(3,1fr); gap: 54px; }
-.step-index { display: flex; align-items: center; justify-content: space-between; color: #a46e5e; margin-bottom: 20px; position: relative; }
-.step-index span { font-family: var(--font-jakarta),sans-serif; font-size: 58px; line-height: 1.4; font-weight: 300; letter-spacing: -.06em; }
-.step-index:has(svg)::after { content: ""; height: 1px; position: absolute; left: 83px; right: 43px; background: #dec6b8; }
+.journey-steps { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+.journey-steps li { padding: 28px 30px 30px; background: var(--paper); border-radius: 5px; border-bottom: 3px solid #dec6b8; }
+.step-symbol { position: relative; color: var(--clay-dark); padding-block: 4px; margin-bottom: 23px; }
+.step-symbol > svg:first-child { box-sizing: content-box; padding: 13px; background: #f6ece4; border-radius: 50%; }
+.step-arrow { position: absolute; right: 0; top: 16px; }
 .journey-steps h3 { font-size: 22px; max-width: 300px; margin-bottom: 15px; }
 .journey-steps p { font-size: 12px; line-height: 1.9; }
 .journey-cta { margin-top: 35px; }
@@ -227,7 +237,7 @@ svg { flex-shrink: 0; }
 .activities > .eyebrow { margin-bottom: 9px; }
 .activity { display: flex; align-items: flex-start; gap: 17px; padding: 19px 0; }
 .activity:last-child { padding-bottom: 3px; }
-.activity-number { font-size: 12px; color: #805241; padding-top: 23px; }
+.activity-icon { color: #805241; margin-top: 25px; }
 .proposed-label { font-size: 8px; font-weight: 600; letter-spacing: .12em; color: #895a4a; margin-bottom: 4px; }
 .activity h3 { font-size: 18px; margin-bottom: 7px; color: #4e352a; }
 .activity p:last-child { font-size: 11px; line-height: 1.9; color: #665045; }
@@ -240,32 +250,35 @@ svg { flex-shrink: 0; }
 .doctor-portrait { position: relative; }
 .doctor-photo { position: relative; height: 440px; border-radius: 120px 4px 4px 4px; overflow: hidden; }
 .doctor-photo img { object-fit: cover; object-position: center 35%; }
-.doctor-caption { padding: 25px 0 0; }
-.doctor-caption .eyebrow { font-size: 9px; }
-.doctor-caption h3 { font-size: 25px; margin: 9px 0 8px; }
-.doctor-caption p { font-size: 11px; }
-.doctor-caption .small-copy { font-size: 10px; margin-top: 4px; }
+.doctor-caption { padding: 25px 27px 27px; background: #f3e7dd; border-radius: 0 0 5px 5px; }
+.doctor-caption .eyebrow { display: block; font-size: 11px; letter-spacing: .1em; font-weight: 600; }
+.doctor-caption h3 { font-size: 27px; margin: 10px 0 10px; }
+.doctor-caption p { font-size: 13px; font-weight: 500; color: var(--brown); line-height: 1.8; }
+.doctor-caption .small-copy { font-size: 11px; font-weight: 400; margin-top: 6px; }
 .doctor-copy h2 { margin: 19px 0 25px; font-size: 42px; }
 .approach-symbol { margin: 25px 0; color: #b17d6a; }
 .doctor-copy > p:not(.eyebrow) { font-size: 14px; line-height: 2; }
 .doctor-copy .text-link { margin-top: 23px; }
 
 /* 08 — generously spaced, keyboard-accessible accordion. */
-.faq-section { background: #f1e8e0; }
-.faq-layout { display: grid; grid-template-columns: .7fr 1.3fr; gap: 95px; }
-.faq-heading h2 { margin: 18px 0 27px; max-width: 330px; }
-.faq-item { border-bottom: 1px solid #d8c6b9; }
-.faq-item:first-child { margin-top: -8px; }
-.faq-item:last-child { border-bottom: 0; }
+.faq-section { background: #faf8f5; }
+.faq-layout { display: grid; grid-template-columns: .85fr 1.25fr; gap: 75px; align-items: stretch; }
+.faq-heading { display: flex; flex-direction: column; align-items: flex-start; }
+.faq-heading h2 { margin: 18px 0 0; max-width: 360px; }
+.faq-photo { position: relative; flex: 1; min-height: 320px; width: 100%; margin: 28px 0 17px; overflow: hidden; border-radius: 80px 4px 4px 4px; }
+.faq-photo img { object-fit: cover; object-position: 50% 68%; }
+.faq-list { display: flex; flex-direction: column; gap: 10px; }
+.faq-item { border: 1px solid #e3d8ce; border-radius: 4px; background: var(--paper); transition: background .25s, border-color .25s; }
+.faq-item.is-open { background: #f5ebe3; border-color: #d2b7a6; }
 .faq-item h3 { margin: 0; }
-.faq-item h3 button { display: flex; align-items: flex-start; width: 100%; gap: 16px; border: 0; background: transparent; text-align: left; padding: 22px 0; font-family: var(--font-jakarta),sans-serif; font-size: 16px; font-weight: 500; line-height: 1.55; color: var(--brown); }
-.faq-number { font-size: 10px; color: #805b49; padding-top: 4px; }
-.faq-item h3 button > span:nth-child(2) { flex: 1; }
+.faq-item h3 button { display: flex; align-items: flex-start; width: 100%; gap: 16px; border: 0; background: transparent; text-align: left; padding: 21px 23px; font-family: var(--font-jakarta),sans-serif; font-size: 16px; font-weight: 500; line-height: 1.55; color: var(--brown); }
+.faq-item h3 button > span { flex: 1; }
+.faq-item h3 button:hover { color: #704b3c; }
 .faq-item h3 button > svg { margin-top: 2px; transition: transform .3s; color: #8b6151; }
 .faq-item.is-open h3 button > svg { transform: rotate(45deg); }
 .faq-answer { display: grid; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows .35s var(--ease), opacity .25s; visibility: hidden; }
 .faq-answer > div { overflow: hidden; }
-.faq-answer p { padding: 0 35px 23px 33px; font-size: 13px; line-height: 1.95; }
+.faq-answer p { padding: 0 55px 23px 23px; font-size: 13px; line-height: 1.95; }
 .is-open .faq-answer { grid-template-rows: 1fr; opacity: 1; visibility: visible; }
 
 /* 09 — a compact, independent continuation of the care journey. */
@@ -285,16 +298,17 @@ svg { flex-shrink: 0; }
 .final-copy > p:not(.eyebrow) { color: #605048; }
 .final-copy h2 { font-size: 48px; max-width: 480px; margin: 20px 0 24px; }
 .final-copy > p:not(.eyebrow) { font-size: 14px; max-width: 500px; line-height: 2; }
-.contact-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 26px; }
+.contact-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 20px; }
 .contact-actions .button { font-size: 11px; gap: 9px; }
 .contact-actions .text-link { font-size: 10px; gap: 7px; }
-address { font-style: normal; font-size: 12px; color: var(--brown); margin-top: 35px; display: flex; flex-direction: column; gap: 8px; }
+.clinic-contact { margin-top: 20px; padding: 23px 25px; background: rgb(255 253 251 / .48); border-radius: 4px; }
+address { font-style: normal; font-size: 12px; color: var(--brown); display: flex; flex-direction: column; gap: 8px; }
 address > div { display: flex; align-items: flex-start; gap: 13px; margin-bottom: 7px; max-width: 400px; }
 address > div > svg { margin-top: 3px; color: #865b4e; }
 address p { color: var(--brown); }
 address > a { margin-left: 34px; width: fit-content; }
 address > a:hover { text-decoration: underline; }
-.clinic-photo { position: relative; height: 265px; overflow: hidden; border-radius: 4px 65px 4px 4px; margin-top: 35px; }
+.clinic-photo { position: relative; height: 265px; overflow: hidden; border-radius: 4px 65px 4px 4px; margin-top: 27px; }
 .clinic-photo img { object-fit: cover; object-position: center 55%; }
 
 .site-footer { padding: 65px 0 25px; background: #49382f; color: #f3e6dc; }
@@ -325,12 +339,13 @@ address > a:hover { text-decoration: underline; }
   .hero h1 { font-size: 44px; }
   .hero-description { font-size: 12px; }
   .hero-ctas { gap: 10px; }
-  .hero-photo { height: 280px; }
+  .hero-photo { min-height: 250px; }
   .enquiry-card { padding: 27px 24px 23px; }
   .form-intro h2 { font-size: 23px; }
   .split-heading { gap: 50px; }
-  .benefits-composition { gap: 25px 30px; }
-  .benefits-photo { height: 420px; }
+  .benefits-composition { gap: 22px; }
+  .benefit { padding: 22px; }
+  .benefits-photo { min-height: 455px; }
   .yoga-price-panel { padding: 30px; }
   .service-details { gap: 17px; }
   .conscious-layout { gap: 35px 50px; }
@@ -351,14 +366,13 @@ address > a:hover { text-decoration: underline; }
   .brand,.brand img { width: 128px; }
   .hero { padding-top: 36px; }
   .hero-grid { grid-template-columns: 1fr; gap: 36px; }
-  .hero-content { display: grid; grid-template-columns: 1fr 1fr; column-gap: 35px; }
-  .hero-content > .eyebrow,.hero h1 { grid-column: 1 / -1; }
+  .hero-content { display: flex; }
   .hero h1 { font-size: 49px; max-width: 710px; }
-  .hero-description { grid-column: 1; font-size: 13px; }
-  .hero-ctas { grid-column: 1; align-self: start; flex-direction: column; align-items: flex-start; margin-top: 20px; }
-  .hero-location { grid-column: 1; margin-top: 17px; }
-  .hero-photo { grid-column: 2; grid-row: 3 / 6; margin-top: 28px; height: auto; min-height: 300px; }
-  .hero-photo-caption { font-size: 16px; flex-direction: column; align-items: flex-start; gap: 9px; }
+  .hero-description { font-size: 13px; max-width: 690px; }
+  .hero-ctas { align-items: center; margin-top: 22px; }
+  .hero-visual { flex: none; }
+  .hero-photo { flex: none; height: 340px; min-height: 0; }
+  .hero-photo-caption { padding-top: 13px; }
   .hero-form-wrap { max-width: 680px; width: 100%; margin-inline: auto; }
   .enquiry-card { padding: 30px; }
   .form-intro h2 { font-size: 27px; }
@@ -382,24 +396,24 @@ address > a:hover { text-decoration: underline; }
   .offer-copy h3 { font-size: 24px; }
   .offer-copy > p:not(.eyebrow) { font-size: 12px; }
   .offer-image { height: 220px; }
-  .benefits-composition { grid-template-columns: 1fr 1fr; gap: 32px; }
-  .benefits-photo { grid-row: 1 / 3; grid-column: 1; height: 455px; }
-  .benefit-1 { grid-row: 1; grid-column: 2; }
+  .benefits-composition { grid-template-columns: 1fr 1fr; gap: 24px; }
+  .benefits-photo { grid-row: 1; grid-column: 1 / -1; height: 410px; min-height: 0; width: min(70%, 380px); margin-inline: auto; }
+  .benefit-1 { grid-row: 2; grid-column: 1; }
   .benefit-2 { grid-row: 2; grid-column: 2; }
   .benefit-3 { grid-row: 3; grid-column: 1; }
   .benefit-4 { grid-row: 3; grid-column: 2; }
   .benefit p { max-width: none; }
-  .yoga-details { grid-template-columns: .65fr 1fr; }
+  .yoga-details { grid-template-columns: 1fr; }
+  .class-photo { min-height: 0; height: 340px; }
   .yoga-price-panel { padding: 27px; }
   .price-display strong { font-size: 49px; }
-  .service-details { grid-template-columns: 1fr; gap: 14px; }
+  .service-details { grid-template-columns: 1fr 1fr; gap: 14px; }
   .service-details dt { font-size: 12px; }
   .service-details dd { font-size: 11px; }
   .class-photo-label { font-size: 21px; padding-inline: 22px; }
-  .journey-steps { gap: 30px; }
+  .journey-steps { gap: 18px; }
+  .journey-steps li { padding: 23px 21px; }
   .journey-steps h3 { font-size: 20px; }
-  .step-index span { font-size: 48px; }
-  .step-index:has(svg)::after { left: 65px; right: 35px; }
   .conscious-layout { gap: 30px; }
   .conscious-intro h2 { font-size: 33px; }
   .activities { padding: 24px 21px; }
@@ -409,22 +423,17 @@ address > a:hover { text-decoration: underline; }
   .doctor-photo { height: 400px; border-top-left-radius: 90px; }
   .doctor-copy h2 { font-size: 32px; }
   .doctor-copy > p:not(.eyebrow) { font-size: 12px; }
-  .faq-layout { grid-template-columns: 1fr; gap: 30px; }
-  .faq-heading { display: grid; grid-template-columns: 1fr auto; align-items: end; }
-  .faq-heading > .eyebrow { grid-column: 1 / -1; }
-  .faq-heading h2 { max-width: 440px; margin-bottom: 0; }
-  .faq-item h3 button { font-size: 17px; }
+  .faq-layout { gap: 30px; }
+  .faq-heading h2 { max-width: 340px; margin-top: 15px; }
+  .faq-item h3 button { padding: 19px 18px; }
   .faq-answer p { font-size: 13px; }
   .postpartum-layout { gap: 40px; grid-template-columns: 1fr .8fr; }
   .postpartum-photo { height: 360px; }
   .final-grid { grid-template-columns: 1fr; gap: 35px; }
-  .final-copy { display: grid; grid-template-columns: 1fr 1fr; gap: 0 35px; }
-  .final-copy > .eyebrow,.final-copy > h2,.final-copy > p { grid-column: 1 / -1; }
+  .final-copy { max-width: 680px; width: 100%; margin-inline: auto; }
   .final-copy h2 { font-size: 43px; max-width: none; }
   .final-copy > p:not(.eyebrow) { max-width: 680px; }
-  .contact-actions { grid-column: 1; }
-  .final-copy address { grid-column: 1; }
-  .clinic-photo { grid-column: 2; grid-row: 4 / 6; height: auto; min-height: 300px; }
+  .clinic-photo { height: 310px; }
   .final-grid > div:last-child { max-width: 680px; width: 100%; margin-inline: auto; }
   .footer-main { grid-template-columns: 1fr 1fr; gap: 40px 60px; }
   .footer-main a,.footer-contact p { font-size: 12px; }
@@ -437,7 +446,6 @@ address > a:hover { text-decoration: underline; }
   .section { padding-block: 58px; }
   h2 { font-size: 31px; line-height: 1.3; }
   .eyebrow { font-size: 9px; letter-spacing: .13em; }
-  .eyebrow > span:first-child:not(.status-dot) { font-size: 9px; margin-right: 10px; }
   .header-inner { height: 76px; gap: 10px; }
   .brand,.brand img { width: 112px; }
   .header-actions { gap: 7px; }
@@ -454,10 +462,11 @@ address > a:hover { text-decoration: underline; }
   .hero-ctas { display: flex; gap: 14px; margin-top: 25px; }
   .hero-ctas .button { min-height: 49px; font-size: 11px; }
   .hero-ctas .text-link { font-size: 11px; }
-  .hero-location { font-size: 9px; margin-top: 20px; }
-  .hero-photo { height: 235px; min-height: 0; margin-top: 24px; border-top-right-radius: 55px; }
-  .hero-photo-caption { flex-direction: row; align-items: end; padding: 40px 18px 17px; font-size: 15px; }
-  .photo-mark { font-size: 8px; }
+  .hero-location { font-size: 10px; margin-top: 7px; }
+  .hero-visual { margin-top: 24px; }
+  .hero-photo { height: 230px; min-height: 0; border-top-right-radius: 45px; }
+  .hero-photo-caption { padding-top: 12px; }
+  .hero-photo-caption > p:first-child { font-size: 11px; }
   .enquiry-card { padding: 26px 22px 24px; scroll-margin-top: 94px; }
   .form-intro h2 { font-size: 25px; }
   .form-intro .eyebrow { font-size: 8px; }
@@ -477,47 +486,53 @@ address > a:hover { text-decoration: underline; }
   .section-heading { margin-bottom: 30px; }
   .section-heading h2 { margin-top: 13px; }
   .section-heading > p { font-size: 12px; line-height: 1.95; }
+  .section-heading > .supporting-note { padding: 20px 22px; }
   .offer-grid { grid-template-columns: 1fr; gap: 25px; }
   .offer-image { height: 220px; }
   .offer-copy { padding: 25px; }
   .offer-copy h3 { font-size: 26px; }
   .offer-copy > p:not(.eyebrow) { font-size: 12px; }
-  .offer-meta { margin-bottom: 19px; padding-top: 23px; }
+  .offer-meta { padding: 17px 18px; min-height: 0; margin-bottom: 15px; }
+  .offer-features { gap: 11px; margin-block: 22px; }
+  .offer-features li { font-size: 11px; align-items: flex-start; }
+  .offer-features svg { margin-top: 2px; }
+  .programme-fee { font-size: 22px; }
   .offer-copy .eyebrow { font-size: 9px; }
   .offer-grid .small-copy { font-size: 10px; }
-  .benefits-composition { gap: 28px 24px; padding-top: 0; }
+  .benefits-composition { gap: 15px; padding-top: 0; }
   .benefits-photo { grid-column: 1 / -1; grid-row: 1; height: 340px; width: min(85%,330px); margin: 0 auto 2px; border-radius: 160px 160px 5px 5px; }
   .benefit-1 { grid-column: 1; grid-row: 2; }
   .benefit-2 { grid-column: 2; grid-row: 2; }
   .benefit-3 { grid-column: 1; grid-row: 3; }
   .benefit-4 { grid-column: 2; grid-row: 3; }
-  .benefit h3 { font-size: 18px; line-height: 1.45; margin-bottom: 9px; }
+  .benefit { padding: 19px 16px; }
+  .benefit h3 { font-size: 17px; line-height: 1.45; margin-bottom: 9px; }
   .benefit p { font-size: 11px; line-height: 1.9; }
-  .benefit-top { margin-bottom: 12px; }
+  .benefit-top { margin-bottom: 15px; width: 37px; height: 37px; }
   .benefit-top svg { width: 21px; }
-  .benefit-number { font-size: 10px; }
   .safety-note { padding: 17px; font-size: 10px; gap: 11px; margin-top: 1px; }
   .safety-note svg { width: 20px; }
   .yoga-details { grid-template-columns: 1fr; }
   .class-photo { min-height: 0; height: 265px; }
   .class-photo img { object-position: center 45%; }
   .class-photo-label { font-size: 20px; padding: 60px 25px 23px; }
-  .yoga-price-panel { padding: 28px 25px; }
+  .yoga-price-panel { padding: 22px; }
+  .price-summary { padding: 19px 20px; }
   .price-display strong { font-size: 54px; }
   .service-details { grid-template-columns: 1fr; gap: 19px; }
+  .service-details > div { padding: 15px 17px; }
   .service-details dt { font-size: 12px; }
   .service-details dd { font-size: 11px; }
   .yoga-price-panel .button { width: 100%; font-size: 11px; gap: 12px; padding-inline: 13px; }
   .journey-heading { margin-bottom: 25px; gap: 20px; }
   .journey-flourish { width: 52px; height: 52px; flex-shrink: 0; }
   .journey-flourish svg { width: 30px; }
-  .journey-steps { grid-template-columns: 1fr; gap: 30px; }
-  .journey-steps li { display: grid; grid-template-columns: 55px 1fr; column-gap: 18px; }
-  .step-index { grid-column: 1; grid-row: 1 / 3; align-items: flex-start; position: relative; margin: 0; }
-  .step-index span { font-size: 39px; line-height: 1.2; }
-  .step-index svg { display: none; }
-  .step-index:has(svg)::after { top: 63px; left: 24px; bottom: -8px; width: 1px; height: auto; right: auto; }
-  .journey-steps h3 { font-size: 21px; margin-bottom: 12px; max-width: none; }
+  .journey-steps { grid-template-columns: 1fr; gap: 17px; }
+  .journey-steps li { display: grid; grid-template-columns: 44px 1fr; column-gap: 17px; padding: 24px 20px; }
+  .step-symbol { grid-column: 1; grid-row: 1 / 3; padding: 0; margin: 0; }
+  .step-symbol > svg:first-child { width: 21px; height: 21px; padding: 11px; }
+  .step-arrow { display: none; }
+  .journey-steps h3 { font-size: 20px; margin-bottom: 12px; max-width: none; }
   .journey-steps p { font-size: 12px; }
   .journey-cta { margin-top: 28px; }
   .journey-cta .button { width: 100%; font-size: 11px; }
@@ -536,17 +551,20 @@ address > a:hover { text-decoration: underline; }
   .doctor-portrait { max-width: 420px; width: 100%; margin-inline: auto; }
   .doctor-photo { height: 410px; }
   .doctor-caption h3 { font-size: 24px; }
+  .doctor-caption { padding: 23px; }
+  .doctor-caption .eyebrow { font-size: 10px; }
+  .doctor-caption p { font-size: 13px; }
   .doctor-copy h2 { font-size: 32px; margin-block: 15px 20px; }
   .approach-symbol { margin-block: 19px; }
   .approach-symbol svg { width: 33px; }
   .doctor-copy > p:not(.eyebrow) { font-size: 12px; }
   .faq-heading { display: block; }
   .faq-heading h2 { font-size: 31px; max-width: 340px; margin-block: 13px; }
-  .faq-layout { gap: 22px; }
-  .faq-item h3 button { gap: 11px; font-size: 16px; padding-block: 21px; }
+  .faq-photo { height: 290px; min-height: 0; margin: 24px 0 10px; border-top-left-radius: 65px; }
+  .faq-layout { grid-template-columns: 1fr; gap: 22px; }
+  .faq-item h3 button { gap: 13px; font-size: 16px; padding: 19px 20px; }
   .faq-item h3 button > svg { width: 18px; }
-  .faq-number { font-size: 9px; padding-top: 4px; }
-  .faq-answer p { padding-inline: 25px 10px; font-size: 12px; line-height: 1.95; }
+  .faq-answer p { padding-inline: 20px; font-size: 12px; line-height: 1.95; }
   .postpartum-layout { grid-template-columns: 1fr; gap: 27px; }
   .postpartum-copy h2 { margin-top: 14px; }
   .postpartum-copy > p:not(.eyebrow) { font-size: 12px; }
@@ -556,10 +574,11 @@ address > a:hover { text-decoration: underline; }
   .final-copy { display: block; }
   .final-copy h2 { font-size: 38px; margin-block: 15px 20px; }
   .final-copy > p:not(.eyebrow) { font-size: 12px; }
-  .contact-actions { gap: 15px; margin-top: 24px; flex-direction: column; align-items: flex-start; }
+  .contact-actions { gap: 12px; margin-top: 20px; flex-direction: column; align-items: flex-start; }
   .contact-actions .button { font-size: 12px; }
   .contact-actions .text-link { font-size: 12px; }
-  address { margin-top: 25px; font-size: 11px; }
+  address { font-size: 11px; }
+  .clinic-contact { padding: 22px 20px; margin-top: 17px; }
   .clinic-photo { height: 220px; min-height: 0; margin-top: 25px; }
   .site-footer { padding-top: 45px; }
   .footer-main { gap: 32px 20px; }

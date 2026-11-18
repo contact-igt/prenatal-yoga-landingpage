@@ -109,7 +109,7 @@ export function EnquiryForm({ placement }: { placement: "hero" | "final" }) {
         </div>
         {submissionError && <p className="field-error" role="alert">{submissionError}</p>}
         <button ref={submitButton} type="submit" disabled={!hydrated || busy} className="button submit-button" aria-busy={busy}><span>{busy ? "Please wait…" : "Request Details"}</span><ArrowUpRight size={18} aria-hidden="true" /></button>
-        <div className="form-privacy"><LockKeyhole size={15} aria-hidden="true" /><p>{privacyMessage}</p></div>
+        {placement === "hero" && <div className="form-privacy"><LockKeyhole size={15} aria-hidden="true" /><p>{privacyMessage}</p></div>}
       </form>
     </div>
     <dialog ref={dialog} className="thank-you" aria-labelledby={id("thanks-title")} aria-describedby={id("thanks-description")}

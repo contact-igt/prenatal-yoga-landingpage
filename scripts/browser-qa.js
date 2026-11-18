@@ -17,6 +17,21 @@ async (page) => {
   const expectedOrder = ["top", "your-support", "why-prenatal-yoga", "prenatal-yoga", "getting-started", "conscious-pregnancy", "our-approach", "faqs", "postpartum-care", "enquiry"];
   const actualOrder = await page.locator("main > section").evaluateAll((sections) => sections.map((section) => section.id));
   check(JSON.stringify(expectedOrder) === JSON.stringify(actualOrder), "All ten sections in the prescribed order");
+  const visibleCounters = await page.locator("main").evaluate((main) => {
+    const walker = document.createTreeWalker(main, NodeFilter.SHOW_TEXT);
+    const found = [];
+    while (walker.nextNode()) {
+      const value = walker.currentNode.textContent.trim();
+      if (/^(?:0[1-9]|10)(?:\s*\/\s*10)?$/.test(value)) found.push(value);
+    }
+    return found;
+  });
+  check(visibleCounters.length === 0, "No decorative section, photo, benefit, activity or FAQ counters");
+  check(await page.locator(".hero-photo img").getAttribute("alt") !== "An expectant mother resting her hands and tiny knitted booties on her belly", "Hero uses the replacement group photograph");
+  check(await page.locator(".hero-photo").innerText() === "", "Hero image has no text overlays");
+  check(await page.locator("#final-enquiry .form-privacy").count() === 0, "Final form has no verbose support paragraph below its submit button");
+  check(await page.locator(".faq-photo img").count() === 1, "FAQ includes the supplied consultation notebook photograph");
+  check(await page.locator(".offer-features li").count() === 6, "Both offers highlight their key features");
   check(await page.locator(".faq-item").count() === 8, "All eight FAQ questions present");
   const duplicateIDs = await page.evaluate(() => {
     const ids = [...document.querySelectorAll("[id]")].map((el) => el.id);
@@ -100,11 +115,21 @@ async (page) => {
         sequential: sections.every((rect, index) => !index || rect.top >= sections[index - 1].bottom - 1),
         heroSideBySide: heroForm.left > heroContent.right && Math.abs(heroContent.top - heroForm.top) < 2,
         stacked: heroForm.top >= heroContent.bottom,
+        heroSequence: (() => {
+          const elements = ["h1", ".hero-description", ".hero-photo", ".hero-photo-caption", ".hero-ctas"].map((selector) => document.querySelector(selector).getBoundingClientRect());
+          return elements.every((rect, index) => !index || rect.top >= elements[index - 1].bottom - 1);
+        })(),
+        contactSequence: (() => {
+          const elements = [".final-copy > h2", ".final-copy > p:not(.eyebrow)", ".clinic-photo", ".clinic-contact address", ".clinic-contact .contact-actions"].map((selector) => document.querySelector(selector).getBoundingClientRect());
+          return elements.every((rect, index) => !index || rect.top >= elements[index - 1].bottom - 1);
+        })(),
       };
     });
     check(layout.scrollWidth <= width + 1, `No horizontal overflow at ${width}px`);
     check(layout.sequential, `Independent sections stack vertically at ${width}px`);
     check(width > 900 ? layout.heroSideBySide : layout.stacked, `Correct hero/form composition at ${width}px`);
+    check(layout.heroSequence, `Hero content follows heading, description, image, caption, CTAs at ${width}px`);
+    check(layout.contactSequence, `Contact content follows description, image, address, actions at ${width}px`);
     viewportResults.push({ width, ...layout });
     if ([390, 768, 1440].includes(width)) {
       for (const section of await page.locator("main > section").all()) {

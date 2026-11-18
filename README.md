@@ -39,6 +39,8 @@ The root route contains exactly ten independent, vertically stacked main section
 
 Official clay `#CA9585` dominates the palette, with warm cream, blush, beige, brown and charcoal supporting tones. Sky Blue `#5DAEDB` and Soft Coral `#F88379` are retained as restrained brand tokens. Locally hosted Plus Jakarta Sans provides headings; Poppins supports navigation, forms and body text. Each section has its own composition without horizontal section separators. CSS handles hover and entrance transitions; one IntersectionObserver handles scroll reveals using the Web Animations API. Content is visible without motion or a working observer, and reduced-motion preferences disable animation.
 
+The refinement pass removes all visible decorative numbering and photo counters. The hero follows heading → description → authentic group photograph → caption → CTAs, with the complete enquiry form on the right on desktop. Offer features and fee/status information have dedicated emphasis areas; the four benefits frame a centered photograph; pricing and operational details are grouped for scanning. Enrolment uses meaningful icons, and the founder’s role and credentials sit in a more prominent caption panel. The lighter FAQ section pairs a consultation notebook photograph on the left with framed questions on the right. The final contact flow is heading → description → clinic photograph → address/details → contact actions. Headings use one consistent colour within each heading.
+
 ## Source and component map
 
 - `app/page.tsx`: server-rendered ten-section composition, header and footer.
@@ -70,15 +72,19 @@ All 45 supplied WebPs were inspected visually using contact sheets. All 19 brand
 | `doctor-santoshi.webp` | `EXP07711 copy.webp` | Original doctor photograph; no facial edits |
 | `postpartum-consultation.webp` | `EXP07741 copy.webp` | Wider care consultation |
 | `clinic-space.webp` | `EXP01310 copy.webp` | Final contact section |
-| `maternity-moment.webp` | Original photographic tiles embedded in brand-guide page 4 | Hero; reconstructed without document text, retaining original clay treatment |
+| `pregnancy-community.webp` | `EXP04556 copy.webp` | Replacement hero; crop emphasizes the real participants and shared activity |
+| `consultation-notebook.webp` | `EXP07725 copy.webp` | FAQ; doctor’s hand writing consultation notes |
+| `maternity-moment.webp` | Original photographic tiles embedded in brand-guide page 4 | Retained original derivative; no longer used in the page or social preview |
 
 The exact official wordmarks were downloaded from [BirthWave](https://www.thebirthwave.in/): `/brand/wordmark-shade.png` and `/brand/wordmark-cream.png`. They were not redrawn. The local Latin webfont files are the Plus Jakarta Sans and Poppins files published by the official site; regular-weight Poppins comes from Google Fonts. Both SIL Open Font Licenses are included in `public/fonts/`. Related care, privacy and terms destinations were sourced from its navigation. The postpartum destination is the existing [postpartum care chapter](https://www.thebirthwave.in/services#postpartum-care).
 
-Essential asset gaps for a later approved photography pass: the supplied archive has no dedicated prenatal-yoga photographs, no mother-and-newborn postpartum portrait, and no individual photograph for each proposed Conscious Pregnancy activity. Relevant supplied clinic, movement-education and consultation photography is used with accurate alt text. No AI or external stock images were generated or added. Several official-site image descriptions did not match the underlying files; these descriptions were not reused. The brand guide supplies the maternity hero photo. Confirm publication permissions for all patient/group images before a public launch.
+Essential asset gaps for a later approved photography pass: the supplied archive has no dedicated prenatal-yoga photographs, no mother-and-newborn postpartum portrait, and no individual photograph for each proposed Conscious Pregnancy activity. Relevant supplied clinic, movement-education and consultation photography is used with accurate alt text. No AI or external stock images were generated or added. Several official-site image descriptions did not match the underlying files; these descriptions were not reused. The replacement hero and FAQ photograph both come from the supplied archive. Confirm publication permissions for all patient/group images before a public launch.
 
 ## Both enquiry forms
 
 Both instances have all ten requested fields, the complete dropdown options, international telephone entry defaulting to `+91`, a 600-character optional question, required enquiry consent and separate optional promotional consent. Both checkboxes start unchecked. Phone validation accepts a leading international country code and 8–15 digits after formatting characters are removed. The form is intentionally an enquiry, not a medical intake or appointment confirmation.
+
+The final form omits the long paragraph beneath the submit button, as requested in the refinement brief. The full supplied privacy message remains beneath the hero form; both forms retain their required consent and Privacy Policy link.
 
 Successful frontend validation opens the exact final-override message:
 
@@ -133,8 +139,9 @@ Final checks completed on 18 November 2026:
 
 - `npm run build`, `npm run typecheck` and `npm run lint` passed. The landing page is statically prerendered by Next.js.
 - `scripts/content-audit.py` passed all 48 exact checks against the client DOCX, including complete descriptions, proposed activities, safety wording and FAQs. It reads the original document directly with Python's standard library, without depending on the ignored inspection folder.
-- `scripts/browser-qa.js` passed 117 real-browser assertions: both full forms, required-field and international-phone validation, exact thank-you copy, keyboard focus containment and dismissal, CTA interest selection, all FAQ controls, navigation anchors, reduced motion, no personal-data transmission or persistence, and no browser runtime errors.
+- `scripts/browser-qa.js` passed 137 real-browser assertions: both full forms, required-field and international-phone validation, exact thank-you copy, keyboard focus containment and dismissal, CTA interest selection, all FAQ controls, navigation anchors, reduced motion, no personal-data transmission or persistence, and no browser runtime errors. The refinement checks also verify removal of decorative counters, the replacement photos, feature highlights, the cleaner final form, and the requested hero/contact ordering at every tested width.
 - Responsive checks passed at 360, 390, 768, 1024, 1280, 1440 and 1920 pixels. All ten sections stack independently without horizontal overflow; the hero form sits on the right at desktop widths.
+- Additional refinement checks passed at the 600/601-pixel FAQ breakpoint: the consultation image stays below its heading, the questions stay alongside it above the mobile breakpoint, and the two columns remain balanced. The benefits photograph is centered, and all headings retain one colour.
 - Both enquiry flows also passed at 390 × 844, including a fully visible, centered modal and clearing of in-memory form values. Modal centering was also checked at 1440 × 1000, with zero automated accessibility violations while open. With JavaScript disabled, all ten sections render and submission stays disabled.
 - The axe-core scan reported zero automated WCAG 2 A/AA and 2.1 AA violations. This is an automated check, not a complete accessibility certification. Keyboard interactions and mobile/desktop layouts were also reviewed directly.
 - Desktop screenshots of every section and complete pages at 390, 768 and 1440 pixels were visually reviewed. `npm ci --dry-run --offline --no-audit --no-fund` passed against the lockfile.

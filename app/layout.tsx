@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     title: "A more connected pregnancy journey | The BirthWave",
     description: "Make space for movement, breath and support. Explore prenatal yoga and the upcoming Conscious Pregnancy Program.",
     type: "website", locale: "en_IN", siteName: site.name,
-    images: [{ url: "/images/maternity-moment.webp", width: 1190, height: 1080, alt: "A quiet maternity moment, hands holding tiny knitted booties" }],
+    images: [{ url: "/images/pregnancy-community.webp", width: 1800, height: 956, alt: "A moment of connection during a BirthWave group activity" }],
     ...(site.canonical ? { url: site.canonical } : {}),
   },
 };
