@@ -9,6 +9,9 @@
 }
 
 :root {
+  --section-foundation: #f9f0e8;
+  --wave-soft: #ead5cd;
+  --wave-faded: #f6ede8;
   --clay: #ca9585;
   --clay-dark: #865b4e;
   --cream: #fcf8f5;
@@ -198,7 +201,7 @@ svg { flex-shrink: 0; }
 .yoga-section::before { mask-image: linear-gradient(transparent,#000 48px,#000 calc(100% - 48px),transparent); }
 .yoga-editorial-layout { display: grid; grid-template-columns: .9fr 1fr; align-items: start; gap: 100px; }
 .yoga-intro h2 { margin: 20px 0 28px; max-width: 440px; }
-.yoga-intro > p:not(.eyebrow) { max-width: 450px; font-size: 14px; line-height: 1.95; color: #504039; }
+.yoga-intro > p:not(.eyebrow) { max-width: 300px; font-size: 14px; line-height: 1.95; color: #504039; }
 .yoga-details { background: rgb(248 239 231 / .94); border-radius: 6px; overflow: hidden; box-shadow: 0 15px 45px -28px #59443c66; }
 .class-photo { position: relative; min-height: 550px; }
 .class-photo img { object-fit: cover; object-position: 36% center; }
@@ -296,17 +299,18 @@ svg { flex-shrink: 0; }
 
 /* 09 — a compact, independent continuation of the care journey. */
 .postpartum-section { position: relative; isolation: isolate; background: transparent; overflow: hidden; }
-.postpartum-background { position: absolute; inset: 0 0 0 35%; z-index: -1; pointer-events: none; mask-image: linear-gradient(90deg,transparent,#000 22%),linear-gradient(transparent,#000 48px,#000 calc(100% - 48px),transparent); mask-composite: intersect; }
+.postpartum-background { position: absolute; inset: 0 0 0 35%; z-index: -1; pointer-events: none; mask-image: linear-gradient(90deg,transparent,#000 22%),linear-gradient(transparent,#000 clamp(64px,6vw,96px),#000 calc(100% - clamp(64px,6vw,96px)),transparent); mask-composite: intersect; }
 .postpartum-background img { object-fit: cover; object-position: center 50%; }
 .postpartum-background::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg,#f9f0e8eb,#f9f0e855 38%,#f9f0e826); pointer-events: none; }
 .postpartum-layout { display: grid; grid-template-columns: .9fr 1.35fr; gap: 56px; align-items: end; }
 .postpartum-copy h2 { max-width: 500px; margin: 17px 0 22px; }
 .postpartum-copy > p:not(.eyebrow) { font-size: 13px; line-height: 1.95; max-width: 570px; }
 .postpartum-copy .button { margin-top: 24px; }
-.postpartum-cards { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 16px; }
+.postpartum-cards { position: relative; top: clamp(8px,1.2vw,16px); display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 16px; }
 .postpartum-card { position: relative; aspect-ratio: 3 / 2; margin: 0; border: 2px solid #fffaf5; border-radius: 18px; overflow: hidden; box-shadow: 0 12px 28px -22px #59443c80; transition: transform .3s var(--ease),box-shadow .3s; }
 .postpartum-card img { object-fit: cover; object-position: center; }
-.postpartum-card figcaption { position: absolute; inset: auto 0 0; padding: 7px 9px; font-size: 10px; line-height: 1.5; font-weight: 500; color: var(--brown); background: rgb(252 248 245 / .91); }
+.postpartum-card::after { content: ""; position: absolute; inset: 0; z-index: 0; background: rgb(252 248 245 / .07); pointer-events: none; }
+.postpartum-card figcaption { position: absolute; z-index: 1; inset: auto 0 0; padding: 7px 9px; font-size: 10px; line-height: 1.5; font-weight: 500; color: var(--brown); background: rgb(252 248 245 / .91); }
 .postpartum-card:hover { transform: translateY(-4px); box-shadow: 0 16px 30px -20px #59443c80; }
 
 /* 10 — an inviting last conversation with direct clinic contact alternatives. */
@@ -352,9 +356,14 @@ address p { color: var(--brown); }
 .footer-bottom > div { display: flex; align-items: center; gap: 26px; }
 
 /* A single decorative surface continues underneath the plain sections. */
-main { position: relative; isolation: isolate; z-index: 0; background: #f9f0e8; }
-main::before { content: ""; position: fixed; inset: 0; z-index: -1; background: url('/images/soft-peach-waves.png') center / cover no-repeat; opacity: .28; filter: saturate(.65); pointer-events: none; }
+main { position: relative; isolation: isolate; z-index: 0; background: var(--section-foundation); }
+main::before { content: ""; position: fixed; inset: 0; z-index: -1; background: radial-gradient(ellipse at 10% 80%,#ca95851a,transparent 35%),linear-gradient(115deg,var(--wave-soft) 0%,var(--wave-soft) 58%,var(--wave-faded) 96%); mask-image: linear-gradient(#fff,#fff),url('/images/soft-peach-waves.png'); mask-mode: alpha,luminance; mask-size: cover; mask-position: center; mask-repeat: no-repeat; mask-composite: subtract; opacity: .72; pointer-events: none; }
 .offers-section,.benefits-section,.enrolment-section,.doctor-section,.faq-section,.postpartum-section,.final-section { background: transparent; }
+.yoga-section,.conscious-section,.postpartum-section { background-color: var(--section-foundation); }
+
+@media (min-width: 1151px) and (max-width: 1350px) { .yoga-intro > p:not(.eyebrow) { max-width: 260px; } }
+@media (min-width: 901px) and (max-width: 1150px) { .yoga-intro > p:not(.eyebrow) { max-width: 220px; margin-left: -12px; } }
+@media (min-width: 1600px) { .yoga-intro > p:not(.eyebrow) { max-width: 200px; } }
 
 @media (min-width: 1600px) {
   .hero-grid { gap: 78px; }
@@ -436,8 +445,9 @@ main::before { content: ""; position: fixed; inset: 0; z-index: -1; background: 
   .benefit-4 { grid-row: 3; grid-column: 2; }
   .benefit p { max-width: none; }
   .yoga-details { grid-template-columns: 1fr; }
-  .yoga-editorial-layout { grid-template-columns: 1fr; gap: 210px; }
+  .yoga-editorial-layout { grid-template-columns: 1fr; gap: 20px; }
   .yoga-intro { max-width: 540px; }
+  .yoga-intro > p:not(.eyebrow) { max-width: 180px; }
   .yoga-section-background img { object-fit: contain; object-position: center; height: auto !important; top: 160px !important; bottom: auto !important; mask-image: linear-gradient(to bottom,transparent,#000 30px,#000 calc(100% - 30px),transparent); }
   .yoga-section::before { background: linear-gradient(180deg,#fcf3e9cc 0%,#fcf3e999 180px,transparent 340px); }
   .class-photo { min-height: 0; height: 340px; }
@@ -585,6 +595,7 @@ main::before { content: ""; position: fixed; inset: 0; z-index: -1; background: 
   .yoga-editorial-layout { gap: 170px; }
   .yoga-section-background img { top: 285px !important; }
   .yoga-intro > p:not(.eyebrow) { font-size: 12px; }
+  .yoga-intro > p:not(.eyebrow) { max-width: 450px; }
   .yoga-intro h2 { margin: 13px 0 22px; }
   .programme-status { margin-top: 19px; }
   .conscious-intro .button { width: 100%; font-size: 10px; padding-inline: 12px; gap: 10px; }
