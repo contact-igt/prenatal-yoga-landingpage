@@ -39,17 +39,15 @@ The root route contains exactly ten independent, vertically stacked main section
 
 Official clay `#CA9585` dominates the palette, with warm cream, blush, beige, brown and charcoal supporting tones. Sky Blue `#5DAEDB` and Soft Coral `#F88379` are retained as restrained brand tokens. Locally hosted Plus Jakarta Sans provides headings; Poppins supports navigation, forms and body text. Each section has its own composition without horizontal section separators. CSS handles hover and entrance transitions; one IntersectionObserver handles scroll reveals using the Web Animations API. Content is visible without motion or a working observer, and reduced-motion preferences disable animation.
 
-The refinement pass removes all visible decorative numbering and photo counters. The hero follows heading → description → authentic group photograph → caption → CTAs, with the complete enquiry form on the right on desktop. Offer features and fee/status information have dedicated emphasis areas; the four benefits frame a centered photograph; pricing and operational details are grouped for scanning. Enrolment uses meaningful icons, and the founder’s role and credentials sit in a more prominent caption panel. The lighter FAQ section pairs a consultation notebook photograph on the left with framed questions on the right. The final contact flow is heading → description → clinic photograph → address/details → contact actions. Headings use one consistent colour within each heading.
+The hero pairs the complete existing introduction and boxed CTAs with a portrait framing of the supplied `pregnancy.webp`, beside the compact shared enquiry form. The previous group-session caption is retained with that group photograph in the first getting-started card. Offer features and fee/status information remain intact. Benefits frame the clinic lounge image; getting started uses three real photographs; FAQ uses `doctor-santoshi.webp`; the approach portrait uses the newer `dr-santoshi-web.webp`. Headings retain one consistent colour within each heading.
 
-The latest refinement keeps the final location and contact details open on the page while retaining boxed call-to-action buttons. The Conscious Pregnancy section now uses a lighter brand-toned background with a layered proposed-experience panel; enrolment removes the decorative arrow treatments; the prenatal practice note is unboxed beneath the ₹4,500 card; sections 03 and 04 use the same supporting-note treatment; and the postpartum photograph has a subtle organic background shape.
+Conscious Pregnancy retains its blurred photograph, with a separate story box and duration/format/pricing panel. Five individual cards reveal complete descriptions on hover, keyboard focus or tap. Care Beyond Pregnancy uses a clean cream background and one large doctor photograph beside two smaller consultation/newborn photographs. The final section puts the same compact form on the left over the original lounge photograph with a dark brown overlay; existing heading, description, location and contact actions sit on the right. The footer is unchanged.
 
 The current revision adds a fixed five-action toolbar (WhatsApp, phone, Instagram, appointment and YouTube) using the official destinations verified on the BirthWave contact page. The landing page now uses “Program” consistently, and the hero, postpartum, FAQ and BirthWave Approach conversion actions all use the shared button system. The campaign phone remains +91 93630 31925 and WhatsApp remains +91 79042 51378; the official contact page also lists +91 98407 98472 as a separate CUG number, which was not substituted into the campaign CTA.
 
 ## Source and component map
 
-The hero is restored to its earlier two-column composition: heading → complete description → original `pregnancy-community.webp` photograph → caption/location → CTAs, with the original form dimensions and spacing. Its background shares the continuous subtle wave surface used by the sections below. Composite hero images remain in the asset folder but are not rendered. Conscious Pregnancy now extends the sampled surrounding beige `#e6d5ca` across the section; the existing blurred image geometry and right-hand panel are unchanged. The official-style footer, campaign contacts and other sections remain intact.
-
-The finalized background pass starts from the restored version. Guided Practice now uses the specifically supplied `2bdbbdf6-60eb-4fa4-aadd-c93e2a44c64a.png` seated-yoga photograph, with its introduction on the left and the approved pricing/details panel on the right. On smaller screens the complete photograph scales to the section width with softly faded edges to avoid excessive cropping. Conscious Pregnancy uses the supplied `5327da0d-608a-4e6b-b778-e0fa35152b5a.png` only behind its left content zone; a masked edge blends into the right background, and both content columns stretch to equal heights on desktop/tablet. The supplied `soft-peach-waves.png` is shared by the other eight section backgrounds with varied tint and placement, softened by an extra ivory layer. Section padding and short colour-matched edge fades keep transitions compact and continuous. Content, contact destinations, forms and animations are unchanged. Desktop/mobile visual review and seven-width geometry checks confirm separation and alignment of the Conscious Pregnancy zones and all four Guided Practice detail boxes.
+The decorative wave surface uses `soft-peach-waves.png`, soft `#EAD5CD`, faded `#F6EDE8` and a restrained `#CA9585` accent on a warm cream base. Guided Practice, Conscious Pregnancy and the final consultation section retain their own photographic treatments without generic wave overlays. Short colour-matched fades blend transitions without adding layout gaps. Guided Practice keeps the original seated-yoga photograph and pricing panel; only the laptop description width is narrowed further to stay clear of the subject.
 
 - `app/page.tsx`: server-rendered ten-section composition, header and footer.
 - `app/layout.tsx`: local font loading, metadata, configurable canonical, non-indexable review defaults.
@@ -57,6 +55,7 @@ The finalized background pass starts from the restored version. Guided Practice 
 - `components/header.tsx`: compact desktop header and accessible mobile navigation.
 - `components/enquiry-form.tsx`: shared form, field errors, consent and native modal.
 - `components/faq.tsx`: accessible accordion.
+- `components/programme-activities.tsx`: hover, keyboard and touch disclosures for proposed activities.
 - `components/ui/enquiry-link.tsx`: CTA scrolling, focus and programme preselection.
 - `components/ui/reveal.tsx`: shared lightweight scroll animation observer.
 - `config/content.ts`: complete client content, benefits, steps, proposed activities and FAQs.
@@ -73,16 +72,18 @@ All 45 supplied WebPs were inspected visually using contact sheets. All 19 brand
 | Output image | Supplied original | Use |
 | --- | --- | --- |
 | `yoga-education.webp` | `EXP00908 copy.webp` | Yoga offer, group education |
-| `conscious-connection.webp` | `EXP04557 copy.webp` | Conscious Pregnancy offer, group connection |
+| `conscious-connection.webp` | `EXP04557 copy.webp` | Retained unused original derivative |
 | `programme-background.webp` | `EXP04556 copy.webp` | Clay programme background |
 | `5faf67df-f8b9-4f15-be90-ca09eed6064b.png` | User-supplied composite | Hero background with group photograph, waves and fading already embedded |
-| `guided-practice.webp` | `EXP00951 copy.webp` | Benefits, facilitator demonstrating movement |
-| `class-community.webp` | `EXP04508 copy.webp` | Service details, group learning |
-| `doctor-santoshi.webp` | `EXP07711 copy.webp` | Original doctor photograph; no facial edits |
+| `guided-practice.webp` | `EXP00951 copy.webp` | Retained unused original derivative |
+| `class-community.webp` | `EXP04508 copy.webp` | Conscious Pregnancy offer and getting-started card |
+| `doctor-santoshi.webp` | `EXP07711 copy.webp` | FAQ and large care card; no facial edits |
+| `dr-santoshi-web.webp` | Later user-supplied correct portrait | BirthWave approach |
+| `pregnancy.webp` | User-supplied exact filename | Portrait hero image |
 | `postpartum-consultation.webp` | `EXP07741 copy.webp` | Wider care consultation |
-| `clinic-space.webp` | `EXP01310 copy.webp` | Final contact section |
-| `pregnancy-community.webp` | `EXP04556 copy.webp` | Replacement hero; crop emphasizes the real participants and shared activity |
-| `consultation-notebook.webp` | `EXP07725 copy.webp` | FAQ; doctor’s hand writing consultation notes |
+| `clinic-space.webp` | `EXP01310 copy.webp` | Benefits centre and final full-section background |
+| `pregnancy-community.webp` | `EXP04556 copy.webp` | First getting-started card with original group-session caption |
+| `consultation-notebook.webp` | `EXP07725 copy.webp` | Retained unused original derivative |
 | `maternity-moment.webp` | Original photographic tiles embedded in brand-guide page 4 | Retained original derivative; no longer used in the page or social preview |
 
 The exact official wordmarks were downloaded from [BirthWave](https://www.thebirthwave.in/): `/brand/wordmark-shade.png` and `/brand/wordmark-cream.png`. They were not redrawn. The local Latin webfont files are the Plus Jakarta Sans and Poppins files published by the official site; regular-weight Poppins comes from Google Fonts. Both SIL Open Font Licenses are included in `public/fonts/`. Related care, privacy and terms destinations were sourced from its navigation. The postpartum destination is the existing [postpartum care chapter](https://www.thebirthwave.in/services#postpartum-care).
@@ -91,9 +92,9 @@ Essential asset gaps for a later approved photography pass: the supplied archive
 
 ## Both enquiry forms
 
-Both instances have all ten requested fields, the complete dropdown options, international telephone entry defaulting to `+91`, a 600-character optional question, required enquiry consent and separate optional promotional consent. Both checkboxes start unchecked. Phone validation accepts a leading international country code and 8–15 digits after formatting characters are removed. The form is intentionally an enquiry, not a medical intake or appointment confirmation.
+Both locations use one compact component: required name and international phone, optional email, required interest, optional message (600 characters), and required unchecked enquiry-contact consent. Existing interest options remain unchanged. The latest brief removes the non-mandatory mode, pregnancy stage, preferred contact, referral source and promotional-consent fields. The client DOCX marks these optional/recommended rather than required. Phone validation accepts a leading international country code and 8–15 digits after formatting characters are removed; email validates only when supplied. Both forms have identical dimensions, controls and typography at equivalent viewport widths.
 
-Neither form displays a standalone paragraph or lock icon below submission. The brief explicitly requires the privacy and urgent-care wording, so both forms preserve it in a compact keyboard-accessible “Privacy & medical guidance” disclosure within the consent area. Required consent, optional promotional consent and the Privacy Policy link remain unchanged.
+Neither form displays extra content below submission or a separate expandable guidance row. Both preserve the full required privacy and urgent-care message compactly within the consent area above submission, along with the Privacy Policy link. The form remains an enquiry, not a medical intake or appointment confirmation.
 
 Successful frontend validation opens the exact final-override message:
 
@@ -109,7 +110,7 @@ The native modal contains focus, closes with Done or Escape, restores focus to t
 
 ## Future integration handoff
 
-Replace only `submitEnquiry` in `lib/enquiry.ts` with an authorized service adapter. It receives a read-only `EnquiryData` object and context `{ placement: "hero" | "final", consentVersion: "2026-11-18" }`. Do not expose service credentials in browser code. Add an authenticated server-side endpoint and validate/normalize again on the server. Keep original interest, source and both distinct consent values. International phone validation can be extended with a maintained telephone-number parser once the supported countries are confirmed.
+Replace only `submitEnquiry` in `lib/enquiry.ts` with an authorized service adapter. It receives a read-only `EnquiryData` object and context `{ placement: "hero" | "final", consentVersion: "2026-11-18" }`. Do not expose service credentials in browser code. Add an authenticated server-side endpoint and validate/normalize again on the server. Keep the selected interest and enquiry consent. International phone validation can be extended with a maintained telephone-number parser once the supported countries are confirmed.
 
 Expected frontend fields:
 
@@ -117,14 +118,10 @@ Expected frontend fields:
 type EnquiryData = {
   fullName: string;
   mobile: string;
+  email: string;
   interest: "Prenatal Yoga" | "Conscious Pregnancy updates" | "Both" | "";
-  mode: string;
-  pregnancyStage: string;
-  preferredContact: string;
-  source: string;
   question: string;
   contactConsent: boolean;
-  promotionalConsent: boolean;
 };
 ```
 
@@ -148,7 +145,7 @@ Final checks completed on 18 November 2026:
 
 - `npm run build`, `npm run typecheck` and `npm run lint` passed. The landing page is statically prerendered by Next.js.
 - `scripts/content-audit.py` passed all 48 exact checks against the client DOCX, including complete descriptions, proposed activities, safety wording and FAQs. It reads the original document directly with Python's standard library, without depending on the ignored inspection folder.
-- `scripts/browser-qa.js` passed 144 real-browser assertions: both full forms, required-field and international-phone validation, exact thank-you copy, keyboard focus containment and dismissal, CTA interest selection, all FAQ controls, navigation anchors, reduced motion, no personal-data transmission or persistence, five floating contact destinations, Program spelling consistency, button conversion checks, retained compact guidance and no browser runtime errors.
+- `scripts/browser-qa.js` passed 170 real-browser assertions: compact form fields, optional-email and international-phone validation, required consent, identical form dimensions, exact thank-you copy, keyboard focus containment, CTA interest selection, FAQ controls, program hover/keyboard disclosures, selected image assets, care-card composition, navigation anchors, reduced motion, no personal-data transmission or persistence, five floating contact destinations and no browser runtime errors. A touch-enabled mobile browser separately verified program-card tap opening and closing; field dimensions, padding, typography and radii matched between both forms.
 - The latest refinement pass was rechecked after the contact toolbar, contact boxes, CTA, arrow, spelling and section-presentation changes; the run completed with no browser runtime errors.
 - Responsive checks passed at 360, 390, 768, 1024, 1280, 1440 and 1920 pixels. All ten sections stack independently without horizontal overflow; the hero form sits on the right at desktop widths.
 - Additional refinement checks passed at the 600/601-pixel FAQ breakpoint: the consultation image stays below its heading, the questions stay alongside it above the mobile breakpoint, and the two columns remain balanced. The benefits photograph is centered, and all headings retain one colour.

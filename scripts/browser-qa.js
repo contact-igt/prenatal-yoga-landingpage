@@ -27,11 +27,20 @@ async (page) => {
     return found;
   });
   check(visibleCounters.length === 0, "No decorative section, photo, benefit, activity or FAQ counters");
-  check((await page.locator(".hero-photo img").getAttribute("src")).includes("pregnancy-community.webp"), "Hero restores the original high-quality group photograph");
+  check((await page.locator(".hero-photo img").getAttribute("src")).includes("pregnancy.webp"), "Hero uses the exact pregnancy asset");
   check(await page.locator(".hero-background").count() === 0, "Hero has no composite photographic background");
   check(await page.locator(".form-privacy").count() === 0, "Neither form has the standalone paragraph below submission");
-  check(await page.locator(".form-guidance").count() === 2, "Both forms retain essential guidance in compact consent-area disclosures");
-  check(await page.locator(".faq-photo img").count() === 1, "FAQ includes the supplied consultation notebook photograph");
+  check(await page.locator(".form-guidance").count() === 0, "Both forms omit the separate expandable guidance row");
+  check(await page.locator(".form-privacy-note").count() === 2, "Both forms retain essential guidance above submission");
+  check((await page.locator(".faq-photo img").getAttribute("src")).includes("doctor-santoshi.webp"), "FAQ uses doctor-santoshi");
+  check((await page.locator(".doctor-photo img").getAttribute("src")).includes("dr-santoshi-web.webp"), "Approach uses the newer selected doctor image");
+  check((await page.locator(".benefits-photo img").getAttribute("src")).includes("clinic-space.webp"), "Benefits uses the original clinic lounge interior");
+  check(!(await page.locator(".conscious-offer .offer-image img").getAttribute("src")).includes("conscious-connection.webp"), "Second offer replaces the hands photograph");
+  check(await page.locator(".step-photo img").count() === 3, "All three getting-started cards use real photographs");
+  check(await page.locator(".postpartum-background").count() === 0, "Care section has no full-section photograph");
+  check((await page.locator(".postpartum-card-large img").getAttribute("src")).includes("doctor-santoshi.webp"), "Large care image uses doctor-santoshi");
+  check((await page.locator(".postpartum-card:nth-child(2) img").getAttribute("src")).includes("postpartum-consultation.webp"), "Second care image uses postpartum-consultation");
+  check((await page.locator(".final-background img").getAttribute("src")).includes("clinic-space.webp"), "Final consultation uses the original lounge background");
   check(await page.locator(".offer-features li").count() === 6, "Both offers highlight their key features");
   check(await page.locator(".faq-item").count() === 8, "All eight FAQ questions present");
   check(await page.locator(".floating-action").count() === 5, "Floating contact toolbar has five actions");
@@ -45,12 +54,14 @@ async (page) => {
     return ids.filter((id, index) => ids.indexOf(id) !== index);
   });
   check(duplicateIDs.length === 0, "Unique IDs across both forms and the page");
-  const fields = ["fullName", "mobile", "interest", "mode", "pregnancyStage", "preferredContact", "source", "question", "contactConsent", "promotionalConsent"];
+  const fields = ["fullName", "mobile", "email", "interest", "question", "contactConsent"];
   for (const placement of ["hero", "final"]) {
     const form = page.locator(`#${placement}-enquiry form`);
     for (const field of fields) check(await form.locator(`[name="${field}"]`).count() === 1, `${placement}: ${field} present`);
     check(await form.locator('input[type="checkbox"]:checked').count() === 0, `${placement}: consent unchecked by default`);
-    check(await form.locator('[name="source"] option').count() === 9, `${placement}: all eight referral sources plus empty choice`);
+    check(await form.locator('[name="mode"],[name="pregnancyStage"],[name="preferredContact"],[name="source"],[name="promotionalConsent"]').count() === 0, `${placement}: optional and recommended legacy fields removed`);
+    check(await form.locator('[name="email"]').getAttribute("required") === null, `${placement}: email remains optional`);
+    check(await form.locator('[name="interest"] option').count() === 4, `${placement}: all three existing interests retained`);
     await form.getByRole("button", { name: "Request Details", exact: true }).click();
     check(await form.locator('[aria-invalid="true"]').count() === 4, `${placement}: required fields validate`);
     check(await page.locator("dialog[open]").count() === 0, `${placement}: invalid form cannot open success modal`);
@@ -61,6 +72,10 @@ async (page) => {
     await form.getByRole("button", { name: "Request Details", exact: true }).click();
     check(await form.locator('[name="mobile"]').getAttribute("aria-invalid") === "true", `${placement}: invalid international telephone rejected`);
     await form.locator('[name="mobile"]').fill(placement === "hero" ? "+91 98765 43210" : "+44 7700 900123");
+    await form.locator('[name="email"]').fill('invalid-email');
+    await form.getByRole("button", { name: "Request Details", exact: true }).click();
+    check(await form.locator('[name="email"]').getAttribute("aria-invalid") === "true", `${placement}: invalid optional email rejected`);
+    await form.locator('[name="email"]').fill(placement === "hero" ? "visitor@example.com" : "");
     const mutations = [];
     const listener = (request) => { if (["POST", "PUT", "PATCH"].includes(request.method())) mutations.push(request.url()); };
     page.on("request", listener);
@@ -109,6 +124,19 @@ async (page) => {
   const visible = await page.locator("body").innerText();
   check(!/preview demonstration|test submission|pending client approval|needs verification|placeholder content|backend integration pending|development version|appointment booked/i.test(visible), "No visible internal messages or false booking claims");
   const viewportResults = [];
+  await page.setViewportSize({width:1440,height:1000});
+  await page.mouse.move(0,0);
+  check(await page.locator('.activity.is-expanded').count()===0,'Program descriptions start hidden');
+  const firstActivity=page.locator('.activity').first();
+  await firstActivity.hover();
+  check(await firstActivity.locator('button').getAttribute('aria-expanded')==='true','Program description reveals on hover');
+  await page.mouse.move(0,0);
+  check(await firstActivity.locator('button').getAttribute('aria-expanded')==='false','Program description closes after hover');
+  await firstActivity.locator('button').focus();
+  check(await firstActivity.locator('button').getAttribute('aria-expanded')==='true','Program description reveals on keyboard focus');
+  await page.keyboard.press('Enter');
+  check(await firstActivity.locator('button').getAttribute('aria-expanded')==='false','Program disclosure toggles by keyboard');
+  await firstActivity.locator('button').blur();
   for (const width of [360, 390, 768, 1024, 1280, 1440, 1920]) {
     await page.setViewportSize({ width, height: 1000 });
     await page.evaluate(() => window.scrollTo(0, 0));
@@ -123,20 +151,31 @@ async (page) => {
         heroSideBySide: heroForm.left > heroContent.right && Math.abs(heroContent.top - heroForm.top) < 2,
         stacked: heroForm.top >= heroContent.bottom,
         heroSequence: (() => {
-          const elements = ["h1", ".hero-description", ".hero-photo", ".hero-photo-caption", ".hero-ctas"].map((selector) => document.querySelector(selector).getBoundingClientRect());
-          return elements.every((rect, index) => !index || rect.top >= elements[index - 1].bottom - 1);
+          const [heading,description,photo,location,ctas] = ["h1", ".hero-description", ".hero-photo", ".hero-location", ".hero-ctas"].map((selector) => document.querySelector(selector).getBoundingClientRect());
+          const noOverlap=photo.left>=description.right-1||photo.top>=description.bottom-1;
+          return description.top>=heading.bottom-1&&photo.top>=heading.bottom-1&&ctas.top>=description.bottom-1&&ctas.top>=location.bottom-1&&noOverlap;
         })(),
         contactSequence: (() => {
-          const elements = [".final-copy > h2", ".final-copy > p:not(.eyebrow)", ".clinic-photo", ".clinic-contact address", ".clinic-contact .contact-actions"].map((selector) => document.querySelector(selector).getBoundingClientRect());
+          const elements = [".final-copy > h2", ".final-copy > p:not(.eyebrow)", ".clinic-contact address", ".clinic-contact .contact-actions"].map((selector) => document.querySelector(selector).getBoundingClientRect());
           return elements.every((rect, index) => !index || rect.top >= elements[index - 1].bottom - 1);
+        })(),
+        identicalForms: (()=>{
+          const a=document.querySelector('#hero-enquiry').getBoundingClientRect(),b=document.querySelector('#final-enquiry').getBoundingClientRect();
+          return Math.abs(a.width-b.width)<1&&Math.abs(a.height-b.height)<1;
+        })(),
+        careComposition:(()=>{
+          const cards=[...document.querySelectorAll('.postpartum-card')].map(e=>e.getBoundingClientRect());
+          return innerWidth<=600||cards[0].height>cards[1].height*1.8&&Math.abs(cards[0].top-cards[1].top)<1&&cards[2].top>cards[1].bottom;
         })(),
       };
     });
     check(layout.scrollWidth <= width + 1, `No horizontal overflow at ${width}px`);
     check(layout.sequential, `Independent sections stack vertically at ${width}px`);
     check(width > 900 ? layout.heroSideBySide : layout.stacked, `Correct hero/form composition at ${width}px`);
-    check(layout.heroSequence, `Hero content follows heading, description, photo, caption, CTAs at ${width}px`);
-    check(layout.contactSequence, `Contact content follows description, image, address, actions at ${width}px`);
+    check(layout.heroSequence, `Hero text and buttons stay clear of the photograph at ${width}px`);
+    check(layout.contactSequence, `Contact content follows heading, description, address, actions at ${width}px`);
+    check(layout.identicalForms,`Both forms have identical dimensions at ${width}px`);
+    check(layout.careComposition,`Care uses one large and two smaller images at ${width}px`);
     viewportResults.push({ width, ...layout });
     if ([390, 768, 1440].includes(width)) {
       for (const section of await page.locator("main > section").all()) {

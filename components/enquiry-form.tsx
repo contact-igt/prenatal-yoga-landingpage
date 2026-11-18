@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState, useSyncExternalStore, type FormEvent } from "react";
 import { ArrowUpRight, Check } from "lucide-react";
 import { privacyMessage, site } from "@/config/site";
-import { emptyEnquiry, enquiryOptions, interests, submitEnquiry, validateEnquiry, type EnquiryData, type EnquiryErrors, type Interest } from "@/lib/enquiry";
+import { emptyEnquiry, interests, submitEnquiry, validateEnquiry, type EnquiryData, type EnquiryErrors, type Interest } from "@/lib/enquiry";
 
 const subscribeToHydration = () => () => {};
 const clientSnapshot = () => true;
@@ -54,7 +54,7 @@ export function EnquiryForm({ placement }: { placement: "hero" | "final" }) {
     setBusy(true);
     setSubmissionError("");
     try {
-      await submitEnquiry({ ...data, fullName: data.fullName.trim(), mobile: data.mobile.trim(), question: data.question.trim() }, { placement, consentVersion: "2026-11-18" });
+      await submitEnquiry({ ...data, fullName: data.fullName.trim(), mobile: data.mobile.trim(), email: data.email.trim(), question: data.question.trim() }, { placement, consentVersion: "2026-11-18" });
       setData({ ...emptyEnquiry });
       previousOverflow.current = document.body.style.overflow;
       document.body.style.overflow = "hidden";
@@ -70,43 +70,29 @@ export function EnquiryForm({ placement }: { placement: "hero" | "final" }) {
   function fieldError(key: keyof EnquiryData) {
     return errors[key] ? <span id={id(`${key}-error`)} className="field-error" role="alert">{errors[key]}</span> : null;
   }
-  const selectField = (key: "interest" | "mode" | "pregnancyStage" | "preferredContact" | "source", label: string, options: readonly string[], required = false, wide = false) =>
-    <div className={`field ${wide ? "field-wide" : ""}`} key={key}>
-      <label htmlFor={id(key)}>{label}{required ? <span aria-hidden="true"> *</span> : <span className="optional"> (optional)</span>}</label>
-      <select id={id(key)} name={key} value={data[key]} required={required} aria-invalid={!!errors[key]} aria-describedby={errors[key] ? id(`${key}-error`) : undefined}
-        onChange={(event) => {
-          if (key === "interest") update(key, event.target.value as Interest | "");
-          else update(key, event.target.value);
-        }}>
-        <option value="">{required ? "Select your interest" : "Please select"}</option>
-        {options.map((option) => <option key={option} value={option}>{option}</option>)}
-      </select>{fieldError(key)}
-    </div>;
-
   return <>
     <div className="enquiry-card" id={`${placement}-enquiry`}>
       <div className="form-intro"><span className="eyebrow">LET’S FIND YOUR NEXT STEP</span><h2 id={id("title")}>A little support starts here.</h2><p>Tell us what you’re looking for.</p></div>
       <form ref={form} onSubmit={handleSubmit} noValidate aria-labelledby={id("title")}>
         <p className="required-note">* Required fields</p>
         <div className="form-grid">
-          <div className="field"><label htmlFor={id("fullName")}>Full name <span aria-hidden="true">*</span></label>
+          <div className="field field-wide"><label htmlFor={id("fullName")}>Name <span aria-hidden="true">*</span></label>
             <input id={id("fullName")} name="fullName" autoComplete="name" required maxLength={100} value={data.fullName} onChange={(event) => update("fullName", event.target.value)} aria-invalid={!!errors.fullName} aria-describedby={errors.fullName ? id("fullName-error") : undefined} />{fieldError("fullName")}</div>
-          <div className="field"><label htmlFor={id("mobile")}>Mobile number <span aria-hidden="true">*</span></label>
-            <input id={id("mobile")} name="mobile" type="tel" inputMode="tel" autoComplete="tel" required maxLength={24} value={data.mobile} onChange={(event) => update("mobile", event.target.value)} aria-invalid={!!errors.mobile} aria-describedby={`${id("phone-help")}${errors.mobile ? ` ${id("mobile-error")}` : ""}`} /><span className="field-help" id={id("phone-help")}>Include your country code.</span>{fieldError("mobile")}</div>
-          {selectField("interest", "Interested in", interests, true)}
-          {selectField("mode", "Preferred mode", enquiryOptions.mode)}
-          {selectField("pregnancyStage", "Pregnancy stage", enquiryOptions.pregnancyStage)}
-          {selectField("preferredContact", "Preferred contact", enquiryOptions.preferredContact)}
-          {selectField("source", "How did you hear about us?", enquiryOptions.source, false, true)}
-          <div className="field field-wide"><label htmlFor={id("question")}>Additional question<span className="optional"> (optional)</span></label>
-            <textarea id={id("question")} name="question" rows={2} maxLength={600} value={data.question} onChange={(event) => update("question", event.target.value)} aria-invalid={!!errors.question} aria-describedby={id("question-help")} />
-            <span className="field-help" id={id("question-help")}>Up to 600 characters. Please keep medical details minimal.</span>{fieldError("question")}</div>
+          <div className="field"><label htmlFor={id("mobile")}>Phone number <span aria-hidden="true">*</span></label>
+            <input id={id("mobile")} name="mobile" type="tel" inputMode="tel" autoComplete="tel" required maxLength={24} value={data.mobile} onChange={(event) => update("mobile", event.target.value)} aria-invalid={!!errors.mobile} aria-describedby={errors.mobile ? id("mobile-error") : undefined} />{fieldError("mobile")}</div>
+          <div className="field"><label htmlFor={id("email")}>Email <span className="optional">(optional)</span></label>
+            <input id={id("email")} name="email" type="email" autoComplete="email" maxLength={254} value={data.email} onChange={(event) => update("email", event.target.value)} aria-invalid={!!errors.email} aria-describedby={errors.email ? id("email-error") : undefined} />{fieldError("email")}</div>
+          <div className="field field-wide"><label htmlFor={id("interest")}>Interested in <span aria-hidden="true">*</span></label>
+            <select id={id("interest")} name="interest" required value={data.interest} onChange={(event) => update("interest", event.target.value as Interest | "")} aria-invalid={!!errors.interest} aria-describedby={errors.interest ? id("interest-error") : undefined}>
+              <option value="">Select your interest</option>{interests.map(interest => <option key={interest} value={interest}>{interest}</option>)}
+            </select>{fieldError("interest")}</div>
+          <div className="field field-wide"><label htmlFor={id("question")}>Message<span className="optional"> (optional)</span></label>
+            <textarea id={id("question")} name="question" rows={2} maxLength={600} value={data.question} onChange={(event) => update("question", event.target.value)} aria-invalid={!!errors.question} aria-describedby={errors.question ? id("question-error") : id("privacy-note")} />{fieldError("question")}</div>
         </div>
         <div className="consents">
           <label className="checkbox-label" htmlFor={id("contactConsent")}><input id={id("contactConsent")} name="contactConsent" type="checkbox" required checked={data.contactConsent} onChange={(event) => update("contactConsent", event.target.checked)} aria-invalid={!!errors.contactConsent} aria-describedby={errors.contactConsent ? id("contactConsent-error") : undefined} /><span>I agree to be contacted by The BirthWave about this enquiry and have read the <a href={site.privacy} target="_blank" rel="noreferrer">Privacy Policy</a>. <span aria-hidden="true">*</span></span></label>
           {fieldError("contactConsent")}
-          <label className="checkbox-label" htmlFor={id("promotionalConsent")}><input id={id("promotionalConsent")} name="promotionalConsent" type="checkbox" checked={data.promotionalConsent} onChange={(event) => update("promotionalConsent", event.target.checked)} /><span>I would also like to receive program news and promotional updates. (Optional)</span></label>
-          <details className="form-guidance"><summary>Privacy &amp; medical guidance</summary><p>{privacyMessage}</p></details>
+          <p className="form-privacy-note" id={id("privacy-note")}>{privacyMessage}</p>
         </div>
         {submissionError && <p className="field-error" role="alert">{submissionError}</p>}
         <button ref={submitButton} type="submit" disabled={!hydrated || busy} className="button submit-button" aria-busy={busy}><span>{busy ? "Please wait…" : "Request Details"}</span><ArrowUpRight size={18} aria-hidden="true" /></button>
