@@ -65,7 +65,7 @@ export default function Home() {
       </section>
 
       <section id="prenatal-yoga" className="section yoga-section" aria-labelledby="yoga-heading">
-        <div className="yoga-section-background" aria-hidden="true"><Image src="/images/programme-background.webp" alt="" fill sizes="100vw" /></div>
+        <div className="yoga-section-background" aria-hidden="true"><Image src="/images/2bdbbdf6-60eb-4fa4-aadd-c93e2a44c64a.png" alt="" fill sizes="100vw" /></div>
         <div className="container yoga-editorial-layout">
           <div className="yoga-intro" data-reveal="up"><p className="eyebrow">YOUR GUIDED PRACTICE</p><h2 id="yoga-heading">{copy.yoga.title}</h2><p>{copy.yoga.body}</p></div>
           <div className="yoga-details" data-reveal="up">
