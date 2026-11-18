@@ -1,13 +1,14 @@
 import Image from "next/image";
-import { ArrowRight, ArrowUpRight, BookOpen, CalendarDays, Check, Heart, MapPin, MessageCircle, MoveUpRight, Music2, Package, Phone, ShieldCheck, Sparkles, Wind } from "lucide-react";
+import { ArrowRight, BookOpen, CalendarDays, Check, Heart, MapPin, MessageCircle, MoveUpRight, Music2, Package, Phone, ShieldCheck, Sparkles, Wind } from "lucide-react";
 import { Header } from "@/components/header";
 import { EnquiryForm } from "@/components/enquiry-form";
 import { EnquiryLink } from "@/components/ui/enquiry-link";
 import { RevealObserver } from "@/components/ui/reveal";
 import { FAQ } from "@/components/faq";
 import { FloatingToolbar } from "@/components/floating-toolbar";
+import { Footer } from "@/components/footer";
 import { activities, benefits, copy, steps } from "@/config/content";
-import { navigation, site, yoga, yogaFee } from "@/config/site";
+import { site, yoga, yogaFee } from "@/config/site";
 
 const benefitIcons = [MoveUpRight, Wind, Sparkles, Heart];
 const stepIcons = [MessageCircle, ShieldCheck, CalendarDays];
@@ -21,17 +22,15 @@ export default function Home() {
       <section id="top" className="hero" aria-labelledby="hero-heading">
         <div className="container hero-grid">
           <div className="hero-content">
+            <div className="hero-background" aria-hidden="true"><Image src="/images/5faf67df-f8b9-4f15-be90-ca09eed6064b.png" alt="" fill sizes="100vw" priority /></div>
             <p className="eyebrow hero-enter" style={{ animationDelay: "40ms" }}>{copy.hero.eyebrow}</p>
             <h1 id="hero-heading" className="hero-enter" style={{ animationDelay: "100ms" }}>{copy.hero.title}</h1>
             <p className="hero-description hero-enter" style={{ animationDelay: "180ms" }}>{copy.hero.body}</p>
-            <figure className="hero-visual hero-enter" style={{ animationDelay: "260ms" }}>
-              <div className="hero-photo"><Image src="/images/pregnancy-community.webp" alt="Women connecting through a guided group activity at The BirthWave, with other participants gathered around them" fill sizes="(max-width: 900px) 92vw, 48vw" priority className="maternity-image" /></div>
-              <figcaption className="hero-photo-caption"><p>A moment of connection at a BirthWave group session.</p><p className="hero-location"><MapPin size={15} aria-hidden="true" /><span>{copy.hero.support}</span></p></figcaption>
-            </figure>
             <div className="hero-ctas hero-enter" style={{ animationDelay: "340ms" }}>
               <EnquiryLink target="hero" interest="Prenatal Yoga">Enquire About Prenatal Yoga</EnquiryLink>
               <a className="button button-outline" href="#conscious-pregnancy">Explore Conscious Pregnancy<ArrowRight className="directional-arrow" size={17} aria-hidden="true" /></a>
             </div>
+            <div className="hero-photo-caption hero-enter" style={{ animationDelay: "400ms" }}><p>A moment of connection at a BirthWave group session.</p><p className="hero-location"><MapPin size={15} aria-hidden="true" /><span>{copy.hero.support}</span></p></div>
           </div>
           <div className="hero-form-wrap hero-enter" style={{ animationDelay: "500ms" }}><EnquiryForm placement="hero" /></div>
         </div>
@@ -121,7 +120,7 @@ export default function Home() {
         </div>
       </section>
     </main>
-    <footer className="site-footer"><div className="container"><div className="footer-main"><div className="footer-brand"><a href="#top" aria-label="The BirthWave — back to top"><Image src="/brand/logo-cream.png" width={192} height={94} alt="The BirthWave" /></a><p>Care that meets you where you are.</p></div><div><h2>Explore</h2><nav aria-label="Footer navigation">{navigation.map((item) => <a key={item.href} href={item.href}>{item.label}</a>)}</nav></div><div><h2>Care & support</h2><nav aria-label="Related care"><a href={site.antenatal}>Pregnancy & Antenatal Care</a><a href={site.birthPreparation}>Birth Preparation</a><a href={site.postpartum}>Postpartum Care</a></nav></div><div className="footer-contact"><h2>Find us in Chennai</h2><p>8/15 Mahalingapuram Main Road,<br />Nungambakkam, Chennai – 600034.</p><a href={site.phoneHref}>{site.phone}</a><a href={site.whatsappHref}>WhatsApp: {site.whatsapp}</a></div></div><div className="footer-bottom"><p>© {new Date().getFullYear()} The BirthWave. All rights reserved.</p><div><a href={site.privacy}>Privacy Policy</a><a href={site.terms}>Terms & Conditions</a><a href="#top" aria-label="Back to top"><ArrowUpRight size={18} aria-hidden="true" /></a></div></div></div></footer>
+    <Footer />
     <RevealObserver /><FloatingToolbar />
   </>;
 }

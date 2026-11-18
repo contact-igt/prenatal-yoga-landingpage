@@ -86,12 +86,14 @@ svg { flex-shrink: 0; }
 .mobile-nav a { display: block; padding: 12px 4px; }
 
 /* 01 — content and complete enquiry form, aligned at the same visual edge. */
-.hero { padding: 48px 0 60px; background: #f8f0e9; }
-.hero-grid { display: grid; grid-template-columns: 1.07fr 1fr; gap: 64px; align-items: stretch; }
-.hero-content { display: flex; flex-direction: column; }
+.hero { position: relative; isolation: isolate; padding: 48px 0 60px; background: transparent; }
+.hero-background { position: absolute; inset: 0; z-index: -1; pointer-events: none; mask-image: linear-gradient(#000 calc(100% - 48px),transparent); }
+.hero-background img { object-fit: cover; object-position: center bottom; }
+.hero-grid { display: grid; grid-template-columns: 1.25fr 1fr; gap: 48px; align-items: start; }
+.hero-content { display: flex; flex-direction: column; align-items: flex-start; }
 .hero-content > .eyebrow { margin-bottom: 20px; }
 .hero h1 { max-width: 620px; }
-.hero-description { font-size: 14px; line-height: 1.95; margin-top: 24px; max-width: 590px; }
+.hero-description { font-size: 14px; line-height: 1.95; margin-top: 24px; max-width: 360px; }
 .hero-ctas { display: flex; flex-wrap: wrap; align-items: center; gap: 9px 25px; margin-top: 23px; }
 .hero-ctas .button { font-size: 11px; padding-inline: 18px; gap: 12px; }
 .hero-ctas .text-link { font-size: 11px; gap: 8px; }
@@ -100,7 +102,8 @@ svg { flex-shrink: 0; }
 .hero-visual { display: flex; flex-direction: column; flex: 1; margin: 25px 0 0; }
 .hero-photo { min-height: 260px; flex: 1; position: relative; overflow: hidden; border-radius: 3px 62px 3px 3px; background: var(--beige); }
 .maternity-image { object-fit: cover; object-position: 50% 52%; }
-.hero-photo-caption { padding-top: 12px; }
+.hero-photo-caption { margin-top: 20px; max-width: 360px; }
+.hero-ctas .button-outline { background: rgb(252 248 245 / .88); }
 .hero-photo-caption > p:first-child { font-size: 11px; color: var(--brown); font-weight: 500; }
 .hero-enter { animation: hero-enter .7s var(--ease) backwards; }
 @keyframes hero-enter { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
@@ -188,11 +191,11 @@ svg { flex-shrink: 0; }
 .safety-note svg { color: var(--clay-dark); margin-top: 2px; }
 
 /* 04 — a service dossier, with an understated fee presentation. */
-.yoga-section { position: relative; isolation: isolate; overflow: hidden; background: #f3e7dc; }
-.yoga-section-background { position: absolute; inset: 0; z-index: -2; pointer-events: none; }
+.yoga-section { position: relative; isolation: isolate; overflow: hidden; background: transparent; }
+.yoga-section-background { position: absolute; inset: 0; z-index: -2; pointer-events: none; mask-image: linear-gradient(transparent,#000 48px,#000 calc(100% - 48px),transparent); }
 .yoga-section-background img { object-fit: cover; object-position: center bottom; }
 .yoga-section::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: linear-gradient(90deg, #fcf3e9cc 0%, #fcf3e999 24%, #fcf3e910 43%, transparent 60%); }
-.yoga-section::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: linear-gradient(to bottom,#f9f0e8,transparent 24px,transparent calc(100% - 24px),#f9f0e8); }
+.yoga-section::before { mask-image: linear-gradient(transparent,#000 48px,#000 calc(100% - 48px),transparent); }
 .yoga-editorial-layout { display: grid; grid-template-columns: .9fr 1fr; align-items: start; gap: 100px; }
 .yoga-intro h2 { margin: 20px 0 28px; max-width: 440px; }
 .yoga-intro > p:not(.eyebrow) { max-width: 450px; font-size: 14px; line-height: 1.95; color: #504039; }
@@ -228,13 +231,12 @@ svg { flex-shrink: 0; }
 .journey-cta { margin-top: 35px; }
 
 /* 06 — clay, authentic group photography, and a proposed programme ledger. */
-.conscious-section { position: relative; background: #f3e6dd; overflow: hidden; }
+.conscious-section { position: relative; background: transparent; overflow: hidden; }
 .conscious-layout { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 96px; align-items: stretch; }
 .conscious-intro { position: relative; isolation: isolate; }
-.conscious-background { position: absolute; z-index: -1; top: -80px; bottom: -80px; left: calc((min(1280px, 100vw - 112px) - 100vw) / 2); right: -48px; pointer-events: none; mask-image: linear-gradient(90deg,#000 78%,transparent 100%); }
-.conscious-section::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(to bottom,#f9f0e8,transparent 24px,transparent calc(100% - 24px),#f9f0e8); }
+.conscious-background { position: absolute; z-index: -1; top: -80px; bottom: -80px; left: calc((min(1280px, 100vw - 112px) - 100vw) / 2); right: -48px; pointer-events: none; mask-image: linear-gradient(90deg,#000 78%,transparent 100%),linear-gradient(transparent,#000 48px,#000 calc(100% - 48px),transparent); mask-composite: intersect; }
 .conscious-background img { object-fit: cover; object-position: 65% center; }
-.conscious-background::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg,#fcf2e8e8 0%,#fcf2e8c4 46%,#fcf2e838 90%,#f3e6dd 100%); }
+.conscious-background::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg,#fcf2e8e8 0%,#fcf2e8c4 46%,#fcf2e838 90%,#f9f0e8 100%); }
 .conscious-section .eyebrow { color: #62483e; }
 .programme-status { display: inline-block; padding: 5px 0; font-size: 9px; letter-spacing: .14em; color: #62483e; margin-top: 20px; }
 .conscious-intro h2 { font-size: clamp(32px,3.2vw,44px); color: #503930; margin: 10px 0 23px; }
@@ -344,22 +346,10 @@ address p { color: var(--brown); }
 .footer-bottom p { color: #decbbf; font-size: 9px; }
 .footer-bottom > div { display: flex; align-items: center; gap: 26px; }
 
-/* One supplied wave asset, with soft edge fades to join the independent sections. */
-.hero,.offers-section,.benefits-section,.enrolment-section,.doctor-section,.faq-section,.postpartum-section,.final-section {
-  background-color: #f9f0e8;
-  background-image: linear-gradient(to bottom,#f9f0e8,transparent 24px,transparent calc(100% - 24px),#f9f0e8),linear-gradient(#fffaf54d,#fffaf54d),linear-gradient(var(--wave-tint, #fffaf550),var(--wave-tint, #fffaf550)),url('/images/soft-peach-waves.png');
-  background-size: cover;
-  background-position: center,center,center,var(--wave-position, center);
-  background-repeat: no-repeat;
-}
-.hero { --wave-position: left center; --wave-tint: #fffaf54a; }
-.offers-section { --wave-position: right bottom; --wave-tint: #fffaf575; }
-.benefits-section { --wave-position: left bottom; --wave-tint: #fffaf55a; }
-.enrolment-section { --wave-position: 65% center; --wave-tint: #fffaf57a; }
-.doctor-section { --wave-position: left top; --wave-tint: #fffaf568; }
-.faq-section { --wave-position: right center; --wave-tint: #fffaf590; }
-.postpartum-section { --wave-position: left bottom; --wave-tint: #fffaf550; }
-.final-section { --wave-position: 35% bottom; --wave-tint: #fffaf53d; }
+/* A single decorative surface continues underneath the plain sections. */
+main { position: relative; isolation: isolate; z-index: 0; background: #f9f0e8; }
+main::before { content: ""; position: fixed; inset: 0; z-index: -1; background: url('/images/soft-peach-waves.png') center / cover no-repeat; opacity: .28; filter: saturate(.65); pointer-events: none; }
+.offers-section,.benefits-section,.enrolment-section,.doctor-section,.faq-section,.postpartum-section,.final-section { background: transparent; }
 
 @media (min-width: 1600px) {
   .hero-grid { gap: 78px; }
@@ -403,13 +393,15 @@ address p { color: var(--brown); }
   .brand,.brand img { width: 128px; }
   .hero { padding-top: 36px; }
   .hero-grid { grid-template-columns: 1fr; gap: 36px; }
-  .hero-content { display: flex; }
+  .hero-content { position: relative; isolation: isolate; display: flex; }
+  .hero-background { inset: -36px -28px -20px; opacity: .35; }
+  .hero-background img { object-position: center; }
   .hero h1 { font-size: 49px; max-width: 710px; }
   .hero-description { font-size: 13px; max-width: 690px; }
   .hero-ctas { align-items: center; margin-top: 22px; }
   .hero-visual { flex: none; }
   .hero-photo { flex: none; height: 340px; min-height: 0; }
-  .hero-photo-caption { padding-top: 13px; }
+  .hero-photo-caption { padding-top: 0; }
   .hero-form-wrap { max-width: 680px; width: 100%; margin-inline: auto; }
   .enquiry-card { padding: 30px; }
   .form-intro h2 { font-size: 27px; }
@@ -498,6 +490,7 @@ address p { color: var(--brown); }
   .hero { padding: 30px 0 55px; }
   .hero-grid { gap: 29px; }
   .hero-content { display: block; }
+  .hero-background { inset: -30px -20px -20px; }
   .hero-content > .eyebrow { font-size: 8px; letter-spacing: .12em; margin-bottom: 17px; }
   .hero h1 { font-size: clamp(35px,9.5vw,46px); line-height: 1.17; letter-spacing: -.045em; }
   .hero-description { font-size: 12px; line-height: 1.95; margin-top: 22px; }
@@ -507,7 +500,7 @@ address p { color: var(--brown); }
   .hero-location { font-size: 10px; margin-top: 7px; }
   .hero-visual { margin-top: 24px; }
   .hero-photo { height: 230px; min-height: 0; border-top-right-radius: 45px; }
-  .hero-photo-caption { padding-top: 12px; }
+  .hero-photo-caption { padding-top: 0; }
   .hero-photo-caption > p:first-child { font-size: 11px; }
   .enquiry-card { padding: 26px 22px 24px; scroll-margin-top: 94px; }
   .form-intro h2 { font-size: 25px; }
@@ -651,4 +644,44 @@ address p { color: var(--brown); }
   html { scroll-behavior: auto; }
   *,*::before,*::after { animation: none !important; transition: none !important; }
   .offer-panel:hover,.offer-panel:hover img,.button:hover svg,.text-link:hover svg { transform: none; }
+}
+
+/* Match the official homepage footer's measured palette, type and grid. */
+.site-footer { position: relative; z-index: 1; padding: 96px 0 36px; background: #241a17; color: #fbf4f1; font-family: var(--font-jakarta),Arial,sans-serif; }
+.footer-container { width: 100%; max-width: 1240px; padding-inline: 56px; margin-inline: auto; }
+.footer-main { grid-template-columns: minmax(0,1.1fr) minmax(0,1.35fr) minmax(0,.85fr) minmax(0,1.1fr); gap: 48px 64px; }
+.footer-brand img { width: 152px; }
+.footer-brand p { font-size: 15px; line-height: 1.65; color: #fbf4f1a6; margin-top: 24px; max-width: 288px; }
+.footer-main h2 { color: #fbf4f1; font-family: var(--font-poppins),Arial,sans-serif; font-size: 15px; line-height: 1.6; font-weight: 600; letter-spacing: .01em; margin-bottom: 20px; }
+.footer-main nav { gap: 10px; }
+.footer-main a { color: #fbf4f1; font-size: 14px; line-height: 24px; opacity: .72; transition: opacity .2s; }
+.footer-main a:hover { opacity: 1; }
+.footer-brand > a { opacity: 1; }
+.footer-contact { display: block; grid-column: auto; }
+.footer-contact ul { display: flex; flex-direction: column; gap: 16px; padding: 0; margin: 0; list-style: none; }
+.footer-contact li { display: flex; align-items: flex-start; gap: 12px; }
+.footer-contact svg { margin-top: 4px; color: #ca9585; }
+.footer-contact a { overflow-wrap: anywhere; }
+.footer-bottom { border-top: 1px solid #fbf4f11f; padding-top: 28px; margin-top: 80px; font-size: 13px; line-height: 24px; }
+.footer-bottom p,.footer-bottom a { color: #fbf4f199; font-size: 13px; }
+.footer-bottom > div { gap: 24px; }
+.site-footer a:focus-visible { outline-color: #fbf4f1; }
+@media (min-width: 1024px) and (max-width: 1279px) { .footer-main { column-gap: 48px; } }
+@media (max-width: 1023px) {
+  .site-footer { padding: 80px 0 32px; }
+  .footer-container { padding-inline: 40px; }
+  .footer-main { grid-template-columns: 1fr 1fr; gap: 48px 56px; }
+  .footer-brand { grid-column: 1 / -1; }
+  .footer-brand img { width: 136px; }
+  .footer-main > div:nth-child(2) { grid-row: 2 / 4; }
+  .footer-bottom { margin-top: 56px; }
+}
+@media (max-width: 639px) {
+  .site-footer { padding: 64px 0 96px; }
+  .footer-container { padding-inline: 24px; }
+  .footer-main { grid-template-columns: 1fr; gap: 40px; }
+  .footer-main > div { grid-row: auto; grid-column: auto; }
+  .footer-bottom { align-items: flex-start; flex-direction: column; gap: 12px; }
+  .footer-bottom > div { width: auto; }
+  .footer-bottom > div a:last-child { margin-left: 0; }
 }

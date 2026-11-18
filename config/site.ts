@@ -45,3 +45,28 @@ export const navigation = [
   { href: "#faqs", label: "FAQs" },
   { href: "#enquiry", label: "Contact" },
 ];
+
+// Verified against the official homepage footer; campaign contacts above stay separate.
+export const footerLinks = {
+  care: [
+    {label:"Fertility & Preconception",href:"https://www.thebirthwave.in/services/fertility-preconception"},
+    {label:"Vaginismus & Intimate Wellness",href:"https://www.thebirthwave.in/services/vaginismus"},
+    {label:"Pregnancy & Antenatal Care",href:site.antenatal},
+    {label:"Birth Preparation & Childbirth Education",href:site.birthPreparation},
+    {label:"Natural Birth",href:"https://www.thebirthwave.in/services/natural-birth"},
+    {label:"VBAC — Vaginal Birth After Caesarean",href:"https://www.thebirthwave.in/services/vbac"},
+  ],
+  explore: [
+    {label:"About Us",href:"https://www.thebirthwave.in/about"},
+    {label:"Our Care Team",href:"https://www.thebirthwave.in/doctors"},
+    {label:"Blog",href:"https://www.thebirthwave.in/blog"},
+    {label:"FAQ",href:"https://www.thebirthwave.in/faq"},
+    {label:"Contact Us",href:"https://www.thebirthwave.in/contact"},
+  ],
+  contact: [
+    {kind:"phone",label:"+91 79042 51378",href:"tel:+917904251378"},
+    {kind:"phone",label:"+91 98407 98472",href:"tel:+919840798472"},
+    {kind:"email",label:"thebirthwave@gmail.com",href:"mailto:thebirthwave@gmail.com"},
+    {kind:"address",label:"No. 8/15, Mahalingapuram Main Road, Nungambakkam, Chennai – 600034",href:"https://maps.app.goo.gl/7bLsmm87HDyki1DJA"},
+  ],
+} as const;

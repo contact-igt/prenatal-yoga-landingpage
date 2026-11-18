@@ -47,6 +47,8 @@ The current revision adds a fixed five-action toolbar (WhatsApp, phone, Instagra
 
 ## Source and component map
 
+The latest hero uses the supplied `5faf67df-f8b9-4f15-be90-ca09eed6064b.png` as its sole photographic background. Caption and location follow the two CTAs in natural flow with a 20px gap. Plain sections now share one continuous, low-opacity, desaturated wave surface behind the page rather than separate white edge-fade layers. Photographic edges blend by revealing that same underlying surface. The footer was matched to the live official homepage: `#241a17` background, four columns, official service/explore/contact links, contact icons, and copyright/legal row. Campaign contacts remain independent. Scroll captures cover all nine section joins at desktop and mobile widths.
+
 The finalized background pass starts from the restored version. Guided Practice now uses the specifically supplied `2bdbbdf6-60eb-4fa4-aadd-c93e2a44c64a.png` seated-yoga photograph, with its introduction on the left and the approved pricing/details panel on the right. On smaller screens the complete photograph scales to the section width with softly faded edges to avoid excessive cropping. Conscious Pregnancy uses the supplied `5327da0d-608a-4e6b-b778-e0fa35152b5a.png` only behind its left content zone; a masked edge blends into the right background, and both content columns stretch to equal heights on desktop/tablet. The supplied `soft-peach-waves.png` is shared by the other eight section backgrounds with varied tint and placement, softened by an extra ivory layer. Section padding and short colour-matched edge fades keep transitions compact and continuous. Content, contact destinations, forms and animations are unchanged. Desktop/mobile visual review and seven-width geometry checks confirm separation and alignment of the Conscious Pregnancy zones and all four Guided Practice detail boxes.
 
 - `app/page.tsx`: server-rendered ten-section composition, header and footer.
@@ -73,6 +75,7 @@ All 45 supplied WebPs were inspected visually using contact sheets. All 19 brand
 | `yoga-education.webp` | `EXP00908 copy.webp` | Yoga offer, group education |
 | `conscious-connection.webp` | `EXP04557 copy.webp` | Conscious Pregnancy offer, group connection |
 | `programme-background.webp` | `EXP04556 copy.webp` | Clay programme background |
+| `5faf67df-f8b9-4f15-be90-ca09eed6064b.png` | User-supplied composite | Hero background with group photograph, waves and fading already embedded |
 | `guided-practice.webp` | `EXP00951 copy.webp` | Benefits, facilitator demonstrating movement |
 | `class-community.webp` | `EXP04508 copy.webp` | Service details, group learning |
 | `doctor-santoshi.webp` | `EXP07711 copy.webp` | Original doctor photograph; no facial edits |
