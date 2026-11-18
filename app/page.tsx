@@ -108,7 +108,15 @@ export default function Home() {
       </section>
 
       <section id="postpartum-care" className="section postpartum-section" aria-labelledby="postpartum-heading">
-        <div className="container postpartum-layout"><div className="postpartum-copy" data-reveal="up"><p className="eyebrow">CARE BEYOND PREGNANCY</p><h2 id="postpartum-heading">{copy.postpartum.title}</h2><p>{copy.postpartum.body}</p><a className="button button-outline" href={site.postpartum}>Explore Postpartum Care<ArrowRight className="directional-arrow" size={17} aria-hidden="true" /></a></div><div className="postpartum-photo" data-reveal="image"><Image src="/images/postpartum-consultation.webp" alt="A BirthWave clinician in conversation with a woman and her partner" fill sizes="(max-width: 700px) 92vw, 40vw" /></div></div>
+        <div className="postpartum-background" aria-hidden="true"><Image src="/images/postpartum-consultation.webp" alt="" fill sizes="(max-width: 600px) 100vw, 65vw" /></div>
+        <div className="container postpartum-layout">
+          <div className="postpartum-copy" data-reveal="up"><p className="eyebrow">CARE BEYOND PREGNANCY</p><h2 id="postpartum-heading">{copy.postpartum.title}</h2><p>{copy.postpartum.body}</p><a className="button button-outline" href={site.postpartum}>Explore Postpartum Care<ArrowRight className="directional-arrow" size={17} aria-hidden="true" /></a></div>
+          <div className="postpartum-cards" data-reveal="up" data-delay="100">
+            <figure className="postpartum-card"><Image src="/images/card (1).webp" alt="A BirthWave facilitator assisting a woman leaning over an exercise ball" fill sizes="(max-width: 600px) 90vw, (max-width: 900px) 29vw, 20vw" /><figcaption>Pelvic Health Guidance</figcaption></figure>
+            <figure className="postpartum-card"><Image src="/images/card.webp" alt="Hands gently supporting a woman’s abdominal area" fill sizes="(max-width: 600px) 90vw, (max-width: 900px) 29vw, 20vw" /><figcaption>Postpartum Recovery</figcaption></figure>
+            <figure className="postpartum-card"><Image src="/images/card (2).webp" alt="A newborn baby’s hand holding an adult’s finger" fill sizes="(max-width: 600px) 90vw, (max-width: 900px) 29vw, 20vw" /><figcaption>Breastfeeding</figcaption></figure>
+          </div>
+        </div>
       </section>
 
       <section id="enquiry" className="section final-section" aria-labelledby="enquiry-heading">
