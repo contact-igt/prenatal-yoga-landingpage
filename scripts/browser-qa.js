@@ -36,10 +36,11 @@ async (page) => {
   check((await page.locator(".faq-photo img").getAttribute("src")).includes("doctor-santoshi.webp"), "FAQ uses doctor-santoshi");
   check(decodeURIComponent(await page.locator(".doctor-photo img").getAttribute("src")).includes("EXP01338 (1) copy.webp"), "Approach uses the exact original EXP01338 asset");
   check((await page.locator(".benefits-photo img").getAttribute("src")).includes("clinic-space.webp"), "Benefits uses the original clinic lounge interior");
-  check(!(await page.locator(".conscious-offer .offer-image img").getAttribute("src")).includes("conscious-connection.webp"), "Second offer replaces the hands photograph");
+  check((await page.locator(".offer-image img").first().getAttribute("src")).includes("d056632c-5977-49a3-97ed-7995e66680f7-clean.webp"), "First offer uses the supplied photograph with its embedded label removed");
+  check(decodeURIComponent(await page.locator(".conscious-offer .offer-image img").getAttribute("src")).includes("EXP04556 copy.webp"), "Second offer uses the exact original EXP04556 photograph");
   check(await page.locator(".step-photo img").count() === 3, "All three getting-started cards use real photographs");
   check(await page.locator(".postpartum-background").count() === 0, "Care section has no full-section photograph");
-  check(decodeURIComponent(await page.locator(".postpartum-card-large img").getAttribute("src")).includes("card (1).webp"), "Large care image uses card (1)");
+  check((await page.locator(".postpartum-card-large img").getAttribute("src")).includes("pelvic-health-original-highres.webp"), "Large care image uses the higher-resolution source of the same card (1) photograph");
   check((await page.locator(".postpartum-card:nth-child(2) img").getAttribute("src")).includes("postpartum-consultation.webp"), "Second care image uses postpartum-consultation");
   check((await page.locator(".final-background img").getAttribute("src")).includes("clinic-space.webp"), "Final consultation uses the original lounge background");
   check((await page.locator('.journey-steps li:first-child img').getAttribute('src')).includes('consultation-notebook.webp'),'First getting-started image uses consultation-notebook');

@@ -92,8 +92,10 @@ svg { flex-shrink: 0; }
 .hero { padding: 48px 0 60px; background: var(--section-foundation); overflow: hidden; }
 .hero-grid { display: grid; grid-template-columns: 1.07fr 1fr; gap: 64px; align-items: stretch; }
 .hero-content { position: relative; isolation: isolate; container-type: inline-size; display: flex; flex-direction: column; }
-.hero-background { --hero-photo-height: 792.55px; --hero-photo-focus: .12; position: absolute; z-index: -1; inset: -48px -240px -60px 52%; overflow: hidden; clip-path: inset(0 0 0 1px); pointer-events: none; mask-image: linear-gradient(90deg,transparent,#000 12%),linear-gradient(#000 calc(100% - 50px),transparent); mask-composite: intersect; }
+.hero-background { --hero-photo-height: 792.55px; --hero-photo-focus: .12; position: absolute; z-index: -1; inset: -48px -240px 0 52%; overflow: hidden; clip-path: inset(0 0 0 1px); pointer-events: none; mask-image: linear-gradient(90deg,transparent,#000 12%),linear-gradient(#000 calc(100% - 50px),transparent); mask-composite: intersect; }
 .hero-form-wrap { position: relative; z-index: 1; }
+/* Use only spare space beyond the desktop grid; retain the shared form size. */
+@media (min-width: 1400px) { .hero-form-wrap { left: clamp(0px,calc((100vw - 1400px) * .15),16px); } }
 /* Retain the photograph's reference frame; expand only its painting area. */
 .hero-photo-layer { position: absolute; left: 0; top: 0; box-sizing: content-box; width: calc(48cqw + 24px); height: var(--hero-photo-height); border-right: calc((var(--hero-photo-height) * .6666667 - (48cqw + 24px)) * (1 - var(--hero-photo-focus))) solid transparent; background-image: url('/images/pregnancy.webp'); background-size: cover; background-position: 12% 50%; background-origin: content-box; background-clip: border-box; background-repeat: no-repeat; mask-image: linear-gradient(90deg,#000 calc(100% - 40px),transparent); }
 .hero-photo-layer img { opacity: 0; }
@@ -105,7 +107,7 @@ svg { flex-shrink: 0; }
 .hero-title-ending { display: inline-block; position: relative; }
 .hero-title-ending::after { content: ""; position: absolute; width: 44%; height: 13px; right: 0; bottom: -13px; border-top: 3px solid var(--clay); border-radius: 50%; pointer-events: none; }
 .hero-description { font-size: 14px; line-height: 1.9; margin-top: 28px; max-width: 68%; }
-.hero-ctas { display: flex; align-items: stretch; gap: 12px; width: min(100%,480px); margin-top: auto; padding-top: 22px; }
+.hero-ctas { display: flex; align-items: stretch; gap: 12px; width: min(100%,480px); margin-top: auto; margin-bottom: 24px; }
 .hero-ctas .button { flex: 1; min-width: 0; font-size: 11px; padding-inline: 18px; gap: 12px; }
 .hero-ctas .text-link { font-size: 11px; gap: 8px; }
 .hero-location { display: flex; align-items: flex-start; gap: 8px; font-size: 10px; line-height: 1.8; max-width: 68%; margin-top: 26px; }
@@ -453,7 +455,7 @@ main::before { content: ""; position: fixed; inset: 0; z-index: -1; background: 
   .hero-photo-layer { height: calc(100% + 60px); border-right: 0; mask-image: none; }
   .hero h1 { font-size: clamp(36px,5.8vw,49px); max-width: 72%; }
   .hero-description { font-size: 13px; max-width: 68%; }
-  .hero-ctas { margin-top: 22px; padding-top: 0; }
+  .hero-ctas { margin-top: 22px; margin-bottom: 0; padding-top: 0; }
   .hero-form-wrap { max-width: 680px; width: 100%; margin-inline: auto; }
   .enquiry-card { padding: 30px; }
   .form-intro h2 { font-size: 27px; }

@@ -39,9 +39,9 @@ The root route contains exactly ten independent, vertically stacked main section
 
 Official clay `#CA9585` dominates the palette, with warm cream, blush, beige, brown and charcoal supporting tones. Sky Blue `#5DAEDB` and Soft Coral `#F88379` are retained as restrained brand tokens. Locally hosted Plus Jakarta Sans provides headings; Poppins supports navigation, forms and body text. Each section has its own composition without horizontal section separators. CSS handles hover and entrance transitions; one IntersectionObserver handles scroll reveals using the Web Animations API. Content is visible without motion or a working observer, and reduced-motion preferences disable animation.
 
-The hero uses `pregnancy.webp` as a softly blended background within its left content area, with the existing introduction, location and boxed CTAs clear of the maternity artwork. There is no standalone image card. The compact shared form stays on the right. The group-session caption is retained beside the group photograph in the third getting-started card. Offer features and fee/status information remain intact. Benefits frame the clinic lounge image; the first getting-started image uses `consultation-notebook.webp`; FAQ retains `doctor-santoshi.webp`. The approach serves the exact full-resolution `EXP01338 (1) copy.webp` without another compression pass. Headings retain one consistent colour within each heading.
+The hero uses `pregnancy.webp` as a softly blended background within its left content area, with the existing introduction, location and boxed CTAs clear of the maternity artwork. On desktop its local photo mask ends at the form bottom, without changing the photograph's reference frame; the CTA row sits 24px higher and the form shifts right only where viewport space allows. There is no standalone image card. The compact shared form stays on the right. The group-session caption is retained beside the group photograph in the third getting-started card. Offer features and fee/status information remain intact. Benefits frame the clinic lounge image; the first getting-started image uses `consultation-notebook.webp`; FAQ retains `doctor-santoshi.webp`. The approach serves the exact full-resolution `EXP01338 (1) copy.webp` without another compression pass. Headings retain one consistent colour within each heading.
 
-Conscious Pregnancy retains its blurred photograph and open heading/description, with a separate duration/format/pricing panel. Five individual cards reveal complete descriptions on hover, keyboard focus or tap. Care Beyond Pregnancy uses a clean cream background and the large `card (1).webp` pelvic-health image beside the smaller consultation/newborn photographs. Both uses of `postpartum-consultation.webp` have an upward-adjusted crop to show the doctor and both patients. The final section retains the compact form on the left over the original lounge photograph with its dark brown overlay; existing heading, description, location and contact actions sit on the right. The footer is unchanged.
+Conscious Pregnancy retains its blurred photograph and open heading/description, with a separate duration/format/pricing panel. Five individual cards reveal complete descriptions on hover, keyboard focus or tap. Care Beyond Pregnancy uses a clean cream background and the same pelvic-health photograph as `card (1).webp`, recovered from its high-resolution original, beside the smaller consultation/newborn photographs. Both uses of `postpartum-consultation.webp` have an upward-adjusted crop to show the doctor and both patients. The final section retains the compact form on the left over the original lounge photograph with its dark brown overlay; existing heading, description, location and contact actions sit on the right. The footer is unchanged.
 
 The current revision adds a fixed five-action toolbar (WhatsApp, phone, Instagram, appointment and YouTube) using the official destinations verified on the BirthWave contact page. The landing page now uses “Program” consistently, and the hero, postpartum, FAQ and BirthWave Approach conversion actions all use the shared button system. The campaign phone remains +91 93630 31925 and WhatsApp remains +91 79042 51378; the official contact page also lists +91 98407 98472 as a separate CUG number, which was not substituted into the campaign CTA.
 
@@ -71,17 +71,20 @@ All 45 supplied WebPs were inspected visually using contact sheets. All 19 brand
 
 | Output image | Supplied original | Use |
 | --- | --- | --- |
-| `yoga-education.webp` | `EXP00908 copy.webp` | Yoga offer, group education |
+| `d056632c-5977-49a3-97ed-7995e66680f7-clean.webp` | User-supplied PNG with the same identifier | Yoga offer; local floor/fabric clone removes embedded label; lossless, all other pixels unchanged |
+| `yoga-education.webp` | `EXP00908 copy.webp` | Retained prior yoga-offer asset |
 | `conscious-connection.webp` | `EXP04557 copy.webp` | Retained unused original derivative |
 | `programme-background.webp` | `EXP04556 copy.webp` | Clay programme background |
 | `5faf67df-f8b9-4f15-be90-ca09eed6064b.png` | User-supplied composite | Hero background with group photograph, waves and fading already embedded |
 | `guided-practice.webp` | `EXP00951 copy.webp` | Retained unused original derivative |
-| `class-community.webp` | `EXP04508 copy.webp` | Conscious Pregnancy offer and getting-started card |
+| `EXP04556 copy.webp` | Exact supplied WebP, unchanged | Conscious Pregnancy offer |
+| `class-community.webp` | `EXP04508 copy.webp` | Getting-started card |
 | `doctor-santoshi.webp` | `EXP07711 copy.webp` | FAQ; no facial edits |
 | `dr-santoshi-web.webp` | Earlier user-supplied derivative | Retained unused asset |
 | `EXP01338 (1) copy.webp` | Exact same-named original from WEBP folder | Sharp BirthWave approach portrait |
 | `pregnancy.webp` | User-supplied exact filename | Blended left-side hero background |
-| `card (1).webp` | User-supplied exact filename | Large pelvic-health care card |
+| `pelvic-health-original-highres.webp` | Existing `reference/official-movement.jpg`, exact same photograph as `card (1).webp` | Large pelvic-health care card; matching crop at 2400 × 1600 from the 4672 × 7008 oriented original |
+| `card (1).webp` | User-supplied exact filename | Retained untouched low-resolution original |
 | `postpartum-consultation.webp` | `EXP07741 copy.webp` | Wider care consultation |
 | `clinic-space.webp` | `EXP01310 copy.webp` | Benefits centre and final full-section background |
 | `pregnancy-community.webp` | `EXP04556 copy.webp` | Retained unused original derivative |
