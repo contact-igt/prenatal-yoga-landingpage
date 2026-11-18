@@ -15,6 +15,7 @@ const stepIcons = [MessageCircle, ShieldCheck, CalendarDays];
 const activityIcons = [Wind, MoveUpRight, Music2, BookOpen, Package];
 
 export default function Home() {
+  const heroTitleEnding = copy.hero.title.indexOf("one gentle");
   return <>
     <a className="skip-link" href="#main">Skip to content</a>
     <Header />
@@ -23,10 +24,19 @@ export default function Home() {
         <div className="container hero-grid">
           <div className="hero-content">
             <p className="eyebrow hero-enter" style={{ animationDelay: "40ms" }}>{copy.hero.eyebrow}</p>
-            <h1 id="hero-heading" className="hero-enter" style={{ animationDelay: "100ms" }}>{copy.hero.title}</h1>
+            <h1 id="hero-heading" className="hero-enter" style={{ animationDelay: "100ms" }}><span className="hero-title-opening">{copy.hero.title.slice(0, heroTitleEnding)}</span><span className="hero-title-ending">{copy.hero.title.slice(heroTitleEnding)}</span></h1>
             <p className="hero-description hero-enter" style={{ animationDelay: "180ms" }}>{copy.hero.body}</p>
             <figure className="hero-visual hero-enter" style={{ animationDelay: "260ms" }}>
-              <div className="hero-photo"><Image src="/images/pregnancy-community.webp" alt="Women connecting through a guided group activity at The BirthWave, with other participants gathered around them" fill sizes="(max-width: 900px) 92vw, 48vw" priority className="maternity-image" /></div>
+              <div className="hero-image-wrap">
+                <div className="hero-photo"><Image src="/images/pregnancy-community.webp" alt="Women connecting through a guided group activity at The BirthWave, with other participants gathered around them" fill sizes="(max-width: 900px) 92vw, 48vw" priority className="maternity-image" /></div>
+                <span className="hero-pregnancy-emblem" aria-hidden="true">
+                  <svg viewBox="0 0 64 80" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M24 23c-5-3-6-9-3-14 3-5 11-6 15-1 3 4 3 10-1 13" />
+                    <path d="M26 22c-6 3-9 9-11 16m19-16c2 9 12 13 16 24 4 10 1 21-7 26-8 4-26 4-31-2-4-5 0-12 3-18l6-15m9-12c-5 4-7 9-6 15m-3-3c2 7 8 8 12 12m-9-9c0 7-4 12-6 17-3 6-2 11 2 15" />
+                    <path d="M40 58c-5-6-11 0-6 5l6 6 6-6c5-5-1-11-6-5Z" />
+                  </svg>
+                </span>
+              </div>
               <figcaption className="hero-photo-caption"><p>A moment of connection at a BirthWave group session.</p><p className="hero-location"><MapPin size={15} aria-hidden="true" /><span>{copy.hero.support}</span></p></figcaption>
             </figure>
             <div className="hero-ctas hero-enter" style={{ animationDelay: "340ms" }}>

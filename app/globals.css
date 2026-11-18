@@ -92,16 +92,24 @@ svg { flex-shrink: 0; }
 .hero { padding: 48px 0 60px; background: transparent; }
 .hero-grid { display: grid; grid-template-columns: 1.07fr 1fr; gap: 64px; align-items: stretch; }
 .hero-content { display: flex; flex-direction: column; }
-.hero-content > .eyebrow { margin-bottom: 20px; }
-.hero h1 { max-width: 620px; }
-.hero-description { font-size: 14px; line-height: 1.95; margin-top: 24px; max-width: 590px; }
+.hero-content > .eyebrow { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+.hero-content > .eyebrow::after { content: ""; height: 1px; width: 64px; flex-shrink: 1; background: var(--clay); opacity: .65; }
+.hero h1 { max-width: 100%; font-size: clamp(40px,3.65vw,52px); }
+.hero-title-opening { display: block; }
+.hero-title-ending { display: inline-block; position: relative; white-space: nowrap; }
+.hero-title-ending::after { content: ""; position: absolute; width: 44%; height: 13px; right: 0; bottom: -13px; border-top: 3px solid var(--clay); border-radius: 50%; pointer-events: none; }
+.hero-description { font-size: 14px; line-height: 1.95; margin-top: 32px; max-width: 590px; }
 .hero-ctas { display: flex; flex-wrap: wrap; align-items: center; gap: 9px 25px; margin-top: 23px; }
 .hero-ctas .button { font-size: 11px; padding-inline: 18px; gap: 12px; }
 .hero-ctas .text-link { font-size: 11px; gap: 8px; }
 .hero-location { display: flex; align-items: flex-start; gap: 8px; font-size: 10px; line-height: 1.8; max-width: 500px; margin-top: 7px; }
 .hero-location svg { margin-top: 1px; color: var(--clay-dark); }
 .hero-visual { display: flex; flex-direction: column; flex: 1; margin: 25px 0 0; }
-.hero-photo { min-height: 260px; flex: 1; position: relative; overflow: hidden; border-radius: 3px 62px 3px 3px; background: var(--beige); }
+.hero-image-wrap { position: relative; isolation: isolate; display: flex; flex: 1; }
+.hero-image-wrap::before { content: ""; position: absolute; z-index: -1; inset: -10px -12px 18px -16px; border-radius: 40% 22% 38% 18% / 55% 40% 36% 46%; background: var(--wave-soft); opacity: .65; transform: rotate(-2deg); pointer-events: none; }
+.hero-photo { min-height: 260px; flex: 1; position: relative; overflow: hidden; border-radius: 36px 72px 28px 28px; background: var(--beige); box-shadow: 0 12px 24px -22px #865b4e80; }
+.hero-pregnancy-emblem { position: absolute; right: -8px; bottom: 14px; display: grid; place-items: center; width: 78px; height: 78px; border: 1px solid #ca958580; border-radius: 50%; background: var(--cream); color: var(--clay-dark); box-shadow: 0 7px 20px -12px #865b4e66; pointer-events: none; }
+.hero-pregnancy-emblem svg { width: 45px; height: 57px; }
 .maternity-image { object-fit: cover; object-position: 50% 52%; }
 .hero-photo-caption { padding-top: 12px; }
 .hero-photo-caption > p:first-child { font-size: 11px; color: var(--brown); font-weight: 500; }
@@ -306,7 +314,7 @@ svg { flex-shrink: 0; }
 .postpartum-copy h2 { max-width: 500px; margin: 17px 0 22px; }
 .postpartum-copy > p:not(.eyebrow) { font-size: 13px; line-height: 1.95; max-width: 570px; }
 .postpartum-copy .button { margin-top: 24px; }
-.postpartum-cards { position: relative; top: clamp(8px,1.2vw,16px); display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 16px; }
+.postpartum-cards { position: relative; top: clamp(18px,2.2vw,30px); display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 16px; }
 .postpartum-card { position: relative; aspect-ratio: 3 / 2; margin: 0; border: 2px solid #fffaf5; border-radius: 18px; overflow: hidden; box-shadow: 0 12px 28px -22px #59443c80; transition: transform .3s var(--ease),box-shadow .3s; }
 .postpartum-card img { object-fit: cover; object-position: center; }
 .postpartum-card::after { content: ""; position: absolute; inset: 0; z-index: 0; background: rgb(252 248 245 / .07); pointer-events: none; }
@@ -357,9 +365,13 @@ address p { color: var(--brown); }
 
 /* A single decorative surface continues underneath the plain sections. */
 main { position: relative; isolation: isolate; z-index: 0; background: var(--section-foundation); }
-main::before { content: ""; position: fixed; inset: 0; z-index: -1; background: radial-gradient(ellipse at 10% 80%,#ca95851a,transparent 35%),linear-gradient(115deg,var(--wave-soft) 0%,var(--wave-soft) 58%,var(--wave-faded) 96%); mask-image: linear-gradient(#fff,#fff),url('/images/soft-peach-waves.png'); mask-mode: alpha,luminance; mask-size: cover; mask-position: center; mask-repeat: no-repeat; mask-composite: subtract; opacity: .72; pointer-events: none; }
+main::before { content: ""; position: fixed; inset: 0; z-index: -1; background: radial-gradient(ellipse at 10% 80%,#ca958526,transparent 35%),linear-gradient(115deg,var(--wave-soft) 0%,var(--wave-soft) 58%,var(--wave-faded) 96%); mask-image: linear-gradient(#fff,#fff),url('/images/soft-peach-waves.png'); mask-mode: alpha,luminance; mask-size: cover; mask-position: center; mask-repeat: no-repeat; mask-composite: subtract; opacity: .9; pointer-events: none; }
 .offers-section,.benefits-section,.enrolment-section,.doctor-section,.faq-section,.postpartum-section,.final-section { background: transparent; }
 .yoga-section,.conscious-section,.postpartum-section { background-color: var(--section-foundation); }
+/* Quiet the decorative surface only where it meets an opaque photographic section. */
+.benefits-section,.enrolment-section,.doctor-section,.faq-section,.final-section { background-image: linear-gradient(var(--wave-edge-top,transparent),transparent 64px,transparent calc(100% - 64px),var(--wave-edge-bottom,transparent)); }
+.benefits-section,.enrolment-section,.faq-section { --wave-edge-bottom: var(--section-foundation); }
+.enrolment-section,.doctor-section,.final-section { --wave-edge-top: var(--section-foundation); }
 
 @media (min-width: 1151px) and (max-width: 1350px) { .yoga-intro > p:not(.eyebrow) { max-width: 260px; } }
 @media (min-width: 901px) and (max-width: 1150px) { .yoga-intro > p:not(.eyebrow) { max-width: 220px; margin-left: -12px; } }
@@ -367,7 +379,7 @@ main::before { content: ""; position: fixed; inset: 0; z-index: -1; background: 
 
 @media (min-width: 1600px) {
   .hero-grid { gap: 78px; }
-  .hero h1 { font-size: 56px; }
+  .hero h1 { font-size: 52px; }
 }
 
 @media (max-width: 1150px) {
@@ -375,7 +387,7 @@ main::before { content: ""; position: fixed; inset: 0; z-index: -1; background: 
   .desktop-nav { gap: 17px; }
   .desktop-nav a { font-size: 10px; }
   .hero-grid { gap: 35px; }
-  .hero h1 { font-size: 44px; }
+  .hero h1 { font-size: clamp(34px,3.8vw,44px); }
   .hero-description { font-size: 12px; }
   .hero-ctas { gap: 10px; }
   .hero-photo { min-height: 250px; }
@@ -412,8 +424,9 @@ main::before { content: ""; position: fixed; inset: 0; z-index: -1; background: 
   .hero-description { font-size: 13px; max-width: 690px; }
   .hero-ctas { align-items: center; margin-top: 22px; }
   .hero-visual { flex: none; }
+  .hero-image-wrap { display: block; flex: none; }
   .hero-photo { flex: none; height: 340px; min-height: 0; }
-  .hero-photo-caption { padding-top: 0; }
+  .hero-photo-caption { padding-top: 14px; }
   .hero-form-wrap { max-width: 680px; width: 100%; margin-inline: auto; }
   .enquiry-card { padding: 30px; }
   .form-intro h2 { font-size: 27px; }
@@ -507,14 +520,18 @@ main::before { content: ""; position: fixed; inset: 0; z-index: -1; background: 
   .hero-content { display: block; }
   .hero-content > .eyebrow { font-size: 8px; letter-spacing: .12em; margin-bottom: 17px; }
   .hero h1 { font-size: clamp(35px,9.5vw,46px); line-height: 1.17; letter-spacing: -.045em; }
-  .hero-description { font-size: 12px; line-height: 1.95; margin-top: 22px; }
+  .hero-title-ending { white-space: normal; }
+  .hero-content > .eyebrow::after { width: 30px; }
+  .hero-description { font-size: 12px; line-height: 1.95; margin-top: 28px; }
   .hero-ctas { display: flex; gap: 14px; margin-top: 25px; }
   .hero-ctas .button { min-height: 49px; font-size: 11px; }
   .hero-ctas .text-link { font-size: 11px; }
   .hero-location { font-size: 10px; margin-top: 7px; }
   .hero-visual { margin-top: 24px; }
   .hero-photo { height: 230px; min-height: 0; border-top-right-radius: 45px; }
-  .hero-photo-caption { padding-top: 0; }
+  .hero-photo-caption { padding-top: 14px; }
+  .hero-pregnancy-emblem { width: 60px; height: 60px; right: -6px; bottom: 10px; }
+  .hero-pregnancy-emblem svg { width: 34px; height: 44px; }
   .hero-photo-caption > p:first-child { font-size: 11px; }
   .enquiry-card { padding: 26px 22px 24px; scroll-margin-top: 94px; }
   .form-intro h2 { font-size: 25px; }
@@ -590,7 +607,7 @@ main::before { content: ""; position: fixed; inset: 0; z-index: -1; background: 
   .conscious-intro h2 { font-size: 34px; }
   .conscious-intro-content > p:not(.eyebrow):not(.programme-status) { font-size: 12px; }
   .conscious-layout { gap: 60px; }
-  .conscious-background { top: -50px; bottom: -30px; left: -20px; right: -20px; mask-image: linear-gradient(#000 88%,transparent 100%); }
+  .conscious-background { top: -50px; bottom: -30px; left: -20px; right: -20px; mask-image: linear-gradient(transparent,#000 48px,#000 88%,transparent 100%); }
   .conscious-background::after { background: linear-gradient(90deg,#fcf2e8e0,#fcf2e899); }
   .yoga-editorial-layout { gap: 170px; }
   .yoga-section-background img { top: 285px !important; }
