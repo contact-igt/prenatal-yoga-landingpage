@@ -206,10 +206,9 @@ svg { flex-shrink: 0; }
 
 /* 04 — a service dossier, with an understated fee presentation. */
 .yoga-section { position: relative; isolation: isolate; overflow: hidden; background: transparent; }
-.yoga-section-background { position: absolute; inset: 0; z-index: -2; pointer-events: none; mask-image: linear-gradient(transparent,#000 48px,#000 calc(100% - 48px),transparent); }
+.yoga-section-background { position: absolute; inset: 0; z-index: -2; pointer-events: none; }
 .yoga-section-background img { object-fit: cover; object-position: center bottom; }
 .yoga-section::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: linear-gradient(90deg, #fcf3e9cc 0%, #fcf3e999 24%, #fcf3e910 43%, transparent 60%); }
-.yoga-section::before { mask-image: linear-gradient(transparent,#000 48px,#000 calc(100% - 48px),transparent); }
 .yoga-editorial-layout { display: grid; grid-template-columns: .9fr 1fr; align-items: start; gap: 100px; }
 .yoga-intro h2 { margin: 20px 0 28px; max-width: 440px; }
 .yoga-intro > p:not(.eyebrow) { max-width: 300px; font-size: 14px; line-height: 1.95; color: #504039; }
@@ -251,10 +250,10 @@ svg { flex-shrink: 0; }
 
 /* 06 — clay, authentic group photography, and a proposed programme ledger. */
 .conscious-section { position: relative; background: transparent; overflow: hidden; }
-.conscious-section::before { content: ""; position: absolute; inset: 0; background: #e6d5ca; mask-image: linear-gradient(transparent,#000 48px,#000 calc(100% - 48px),transparent); pointer-events: none; }
+.conscious-section::before { content: ""; position: absolute; inset: 0; background: #e6d5ca; pointer-events: none; }
 .conscious-layout { position: relative; z-index: 1; display: grid; grid-template-columns: 1.05fr 1fr; gap: 48px; align-items: start; }
 .conscious-intro { position: relative; isolation: isolate; }
-.conscious-background { position: absolute; z-index: -1; top: -80px; bottom: -80px; left: calc((min(1280px, 100vw - 112px) - 100vw) / 2); right: -48px; pointer-events: none; mask-image: linear-gradient(90deg,#000 78%,transparent 96%),linear-gradient(transparent,#000 48px,#000 calc(100% - 48px),transparent); mask-composite: intersect; }
+.conscious-background { position: absolute; z-index: -1; top: -80px; bottom: -80px; left: calc((min(1280px, 100vw - 112px) - 100vw) / 2); right: -48px; pointer-events: none; mask-image: linear-gradient(90deg,#000 78%,transparent 96%); }
 .conscious-background img { object-fit: cover; object-position: 65% center; }
 .conscious-background { clip-path: inset(0 1px 0 0); }
 .conscious-background::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg,#fcf2e8e8 0%,#fcf2e8c4 46%,#fcf2e838 90%,#e6d5ca 100%); }
@@ -346,9 +345,9 @@ svg { flex-shrink: 0; }
 
 /* 10 — an inviting last conversation with direct clinic contact alternatives. */
 .final-section { position: relative; isolation: isolate; overflow: hidden; background: var(--section-foundation); }
-.final-background { position: absolute; z-index: -1; inset: 0; mask-image: linear-gradient(transparent,#000 64px); pointer-events: none; }
+.final-background { position: absolute; z-index: -1; inset: 0; pointer-events: none; }
 .final-background img { object-fit: cover; object-position: center; }
-.final-background::after { content: ""; position: absolute; inset: 0; background: linear-gradient(rgb(43 25 16 / .82) 70%,#241a17); }
+.final-background::after { content: ""; position: absolute; inset: 0; background: rgb(43 25 16 / .82); }
 .final-grid { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.07fr); gap: 64px; align-items: center; }
 .final-copy { padding: 20px 0; }
 .final-copy > .eyebrow { color: #ead5cd; }
@@ -398,10 +397,6 @@ main { position: relative; isolation: isolate; z-index: 0; background: var(--sec
 main::before { content: ""; position: fixed; inset: 0; z-index: -1; background: radial-gradient(ellipse at 10% 80%,#ca958526,transparent 35%),linear-gradient(115deg,var(--wave-soft) 0%,var(--wave-soft) 58%,var(--wave-faded) 96%); mask-image: linear-gradient(#fff,#fff),url('/images/soft-peach-waves.png'); mask-mode: alpha,luminance; mask-size: cover; mask-position: center; mask-repeat: no-repeat; mask-composite: subtract; opacity: .9; pointer-events: none; }
 .offers-section,.benefits-section,.enrolment-section,.doctor-section,.faq-section { background: transparent; }
 .yoga-section,.conscious-section,.postpartum-section { background-color: var(--section-foundation); }
-/* Quiet the decorative surface only where it meets an opaque photographic section. */
-.benefits-section,.enrolment-section,.doctor-section,.faq-section { background-image: linear-gradient(var(--wave-edge-top,transparent),transparent 64px,transparent calc(100% - 64px),var(--wave-edge-bottom,transparent)); }
-.benefits-section,.enrolment-section,.faq-section { --wave-edge-bottom: var(--section-foundation); }
-.enrolment-section,.doctor-section { --wave-edge-top: var(--section-foundation); }
 
 @media (min-width: 1151px) and (max-width: 1350px) { .yoga-intro > p:not(.eyebrow) { max-width: 260px; } }
 @media (min-width: 901px) and (max-width: 1150px) { .yoga-intro > p:not(.eyebrow) { max-width: 190px; margin-left: -12px; } }
@@ -508,7 +503,8 @@ main::before { content: ""; position: fixed; inset: 0; z-index: -1; background: 
   .step-copy { padding: 20px; }
   .journey-steps h3 { font-size: 20px; }
   .conscious-layout { grid-template-columns: 1fr; gap: 30px; }
-  .conscious-background { top: -64px; bottom: -64px; left: -28px; right: -32px; }
+  /* The photo ends inside this stacked section; retain its internal lower fade. */
+  .conscious-background { top: -64px; bottom: -64px; left: -28px; right: -32px; mask-image: linear-gradient(90deg,#000 78%,transparent 96%),linear-gradient(#000 calc(100% - 48px),transparent); mask-composite: intersect; }
   .conscious-intro h2 { font-size: 33px; }
   .activities { padding: 0; }
   .activity h3 { font-size: 17px; }
@@ -645,7 +641,7 @@ main::before { content: ""; position: fixed; inset: 0; z-index: -1; background: 
   .programme-story > p:not(.eyebrow):not(.programme-status) { font-size: 12px; }
   .programme-details { padding: 22px; }
   .conscious-layout { gap: 60px; }
-  .conscious-background { top: -50px; bottom: -30px; left: -20px; right: -20px; mask-image: linear-gradient(transparent,#000 48px,#000 88%,transparent 100%); }
+  .conscious-background { top: -50px; bottom: -30px; left: -20px; right: -20px; mask-image: linear-gradient(#000 88%,transparent 100%); mask-composite: add; }
   .conscious-background::after { background: linear-gradient(90deg,#fcf2e8e0,#fcf2e899); }
   .yoga-editorial-layout { gap: 170px; }
   .yoga-section-background img { top: 285px !important; }
