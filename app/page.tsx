@@ -22,15 +22,17 @@ export default function Home() {
       <section id="top" className="hero" aria-labelledby="hero-heading">
         <div className="container hero-grid">
           <div className="hero-content">
-            <div className="hero-background" aria-hidden="true"><Image src="/images/5faf67df-f8b9-4f15-be90-ca09eed6064b.png" alt="" fill sizes="100vw" priority /></div>
             <p className="eyebrow hero-enter" style={{ animationDelay: "40ms" }}>{copy.hero.eyebrow}</p>
             <h1 id="hero-heading" className="hero-enter" style={{ animationDelay: "100ms" }}>{copy.hero.title}</h1>
             <p className="hero-description hero-enter" style={{ animationDelay: "180ms" }}>{copy.hero.body}</p>
+            <figure className="hero-visual hero-enter" style={{ animationDelay: "260ms" }}>
+              <div className="hero-photo"><Image src="/images/pregnancy-community.webp" alt="Women connecting through a guided group activity at The BirthWave, with other participants gathered around them" fill sizes="(max-width: 900px) 92vw, 48vw" priority className="maternity-image" /></div>
+              <figcaption className="hero-photo-caption"><p>A moment of connection at a BirthWave group session.</p><p className="hero-location"><MapPin size={15} aria-hidden="true" /><span>{copy.hero.support}</span></p></figcaption>
+            </figure>
             <div className="hero-ctas hero-enter" style={{ animationDelay: "340ms" }}>
               <EnquiryLink target="hero" interest="Prenatal Yoga">Enquire About Prenatal Yoga</EnquiryLink>
               <a className="button button-outline" href="#conscious-pregnancy">Explore Conscious Pregnancy<ArrowRight className="directional-arrow" size={17} aria-hidden="true" /></a>
             </div>
-            <div className="hero-photo-caption hero-enter" style={{ animationDelay: "400ms" }}><p>A moment of connection at a BirthWave group session.</p><p className="hero-location"><MapPin size={15} aria-hidden="true" /><span>{copy.hero.support}</span></p></div>
           </div>
           <div className="hero-form-wrap hero-enter" style={{ animationDelay: "500ms" }}><EnquiryForm placement="hero" /></div>
         </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useSyncExternalStore, type FormEvent } from "react";
-import { ArrowUpRight, Check, LockKeyhole } from "lucide-react";
+import { ArrowUpRight, Check } from "lucide-react";
 import { privacyMessage, site } from "@/config/site";
 import { emptyEnquiry, enquiryOptions, interests, submitEnquiry, validateEnquiry, type EnquiryData, type EnquiryErrors, type Interest } from "@/lib/enquiry";
 
@@ -106,10 +106,10 @@ export function EnquiryForm({ placement }: { placement: "hero" | "final" }) {
           <label className="checkbox-label" htmlFor={id("contactConsent")}><input id={id("contactConsent")} name="contactConsent" type="checkbox" required checked={data.contactConsent} onChange={(event) => update("contactConsent", event.target.checked)} aria-invalid={!!errors.contactConsent} aria-describedby={errors.contactConsent ? id("contactConsent-error") : undefined} /><span>I agree to be contacted by The BirthWave about this enquiry and have read the <a href={site.privacy} target="_blank" rel="noreferrer">Privacy Policy</a>. <span aria-hidden="true">*</span></span></label>
           {fieldError("contactConsent")}
           <label className="checkbox-label" htmlFor={id("promotionalConsent")}><input id={id("promotionalConsent")} name="promotionalConsent" type="checkbox" checked={data.promotionalConsent} onChange={(event) => update("promotionalConsent", event.target.checked)} /><span>I would also like to receive program news and promotional updates. (Optional)</span></label>
+          <details className="form-guidance"><summary>Privacy &amp; medical guidance</summary><p>{privacyMessage}</p></details>
         </div>
         {submissionError && <p className="field-error" role="alert">{submissionError}</p>}
         <button ref={submitButton} type="submit" disabled={!hydrated || busy} className="button submit-button" aria-busy={busy}><span>{busy ? "Please wait…" : "Request Details"}</span><ArrowUpRight size={18} aria-hidden="true" /></button>
-        {placement === "hero" && <div className="form-privacy"><LockKeyhole size={15} aria-hidden="true" /><p>{privacyMessage}</p></div>}
       </form>
     </div>
     <dialog ref={dialog} className="thank-you" aria-labelledby={id("thanks-title")} aria-describedby={id("thanks-description")}
