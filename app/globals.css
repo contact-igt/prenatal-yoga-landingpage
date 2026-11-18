@@ -197,7 +197,7 @@ svg { flex-shrink: 0; }
 .price-display span { font-size: 12px; }
 .price-display .enquire-price { font-size: 35px; }
 .tax-note { font-size: 10px; margin-top: 5px; }
-.practice-label { display: flex; align-items: center; gap: 9px; margin-top: 17px; padding: 13px 15px; background: #e9d5c8; border-radius: 3px; font-size: 12px; font-weight: 500; color: var(--brown); }
+.practice-label { display: flex; align-items: center; gap: 9px; margin-top: 17px; padding: 4px 2px; font-size: 12px; font-weight: 500; color: var(--brown); }
 .service-details { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-block: 17px; }
 .service-details > div { padding: 15px 17px; background: rgb(255 253 251 / .65); border-radius: 3px; }
 .service-details dt { font-size: 12px; font-weight: 500; color: var(--brown); margin-bottom: 6px; }
@@ -207,33 +207,31 @@ svg { flex-shrink: 0; }
 
 /* 05 — a clear, icon-led enrolment journey. */
 .enrolment-section { background: #f9f4ed; }
-.journey-heading { display: flex; justify-content: space-between; align-items: center; margin-bottom: 45px; }
+.journey-heading { display: flex; justify-content: flex-start; align-items: center; margin-bottom: 45px; }
 .journey-heading h2 { margin-top: 16px; }
-.journey-flourish { width: 74px; height: 74px; border: 1px solid #d3b5a4; border-radius: 50%; display: grid; place-items: center; color: var(--clay-dark); }
 .journey-steps { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
 .journey-steps li { padding: 28px 30px 30px; background: var(--paper); border-radius: 5px; border-bottom: 3px solid #dec6b8; }
 .step-symbol { position: relative; color: var(--clay-dark); padding-block: 4px; margin-bottom: 23px; }
 .step-symbol > svg:first-child { box-sizing: content-box; padding: 13px; background: #f6ece4; border-radius: 50%; }
-.step-arrow { position: absolute; right: 0; top: 16px; }
 .journey-steps h3 { font-size: 22px; max-width: 300px; margin-bottom: 15px; }
 .journey-steps p { font-size: 12px; line-height: 1.9; }
 .journey-cta { margin-top: 35px; }
 
 /* 06 — clay, authentic group photography, and a proposed programme ledger. */
-.conscious-section { position: relative; background: var(--clay); overflow: hidden; }
-.conscious-background { position: absolute; inset: 0; opacity: .14; }
+.conscious-section { position: relative; background: #ead8ce; overflow: hidden; }
+.conscious-background { position: absolute; inset: 0; opacity: .1; }
 .conscious-background img { object-fit: cover; object-position: center; }
-.conscious-section::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg,#ca9585f5,#ca9585a3); pointer-events: none; }
+.conscious-section::after { content: ""; position: absolute; inset: 0; background: linear-gradient(110deg,#ead8cedf,#f7eee8b8); pointer-events: none; }
 .conscious-layout { position: relative; z-index: 1; display: grid; grid-template-columns: .95fr 1fr; gap: 36px 90px; align-items: start; }
-.conscious-section .eyebrow { color: #4c3028; }
-.programme-status { display: inline-block; padding: 5px 0; font-size: 9px; letter-spacing: .14em; color: #4c3028; margin-top: 20px; }
-.conscious-intro h2 { font-size: clamp(32px,3.2vw,44px); color: #3e2821; margin: 10px 0 23px; }
-.conscious-intro > p:not(.eyebrow):not(.programme-status) { color: #492f27; font-size: 13px; line-height: 1.95; }
+.conscious-section .eyebrow { color: #62483e; }
+.programme-status { display: inline-block; padding: 5px 0; font-size: 9px; letter-spacing: .14em; color: #62483e; margin-top: 20px; }
+.conscious-intro h2 { font-size: clamp(32px,3.2vw,44px); color: #503930; margin: 10px 0 23px; }
+.conscious-intro > p:not(.eyebrow):not(.programme-status) { color: #5d473d; font-size: 13px; line-height: 1.95; }
 .programme-details { display: flex; flex-direction: column; gap: 16px; margin-block: 29px; }
-.programme-details dt { display: flex; align-items: center; gap: 8px; font-size: 10px; font-weight: 600; color: #3e2821; margin-bottom: 2px; text-transform: uppercase; letter-spacing: .08em; }
-.programme-details dd { margin: 0; font-size: 11px; line-height: 1.9; color: #492f27; }
+.programme-details dt { display: flex; align-items: center; gap: 8px; font-size: 10px; font-weight: 600; color: #503930; margin-bottom: 2px; text-transform: uppercase; letter-spacing: .08em; }
+.programme-details dd { margin: 0; font-size: 11px; line-height: 1.9; color: #5d473d; }
 .conscious-intro .button { font-size: 11px; padding-inline: 18px; gap: 18px; }
-.activities { padding: 28px 30px; background: rgb(252 248 245 / .88); border-radius: 5px; }
+.activities { padding: 28px 30px; background: rgb(255 252 249 / .78); border: 1px solid rgb(255 255 255 / .8); border-radius: 5px; box-shadow: 0 18px 45px -32px #634c43; backdrop-filter: blur(10px); }
 .activities > .eyebrow { margin-bottom: 9px; }
 .activity { display: flex; align-items: flex-start; gap: 17px; padding: 19px 0; }
 .activity:last-child { padding-bottom: 3px; }
@@ -241,7 +239,7 @@ svg { flex-shrink: 0; }
 .proposed-label { font-size: 8px; font-weight: 600; letter-spacing: .12em; color: #895a4a; margin-bottom: 4px; }
 .activity h3 { font-size: 18px; margin-bottom: 7px; color: #4e352a; }
 .activity p:last-child { font-size: 11px; line-height: 1.9; color: #665045; }
-.programme-disclaimer { grid-column: 1 / -1; display: flex; align-items: flex-start; gap: 14px; font-size: 11px; color: #492f27; line-height: 1.9; padding-top: 4px; max-width: 1040px; }
+.programme-disclaimer { grid-column: 1 / -1; display: flex; align-items: flex-start; gap: 14px; font-size: 11px; color: #5d473d; line-height: 1.9; padding-top: 4px; max-width: 1040px; }
 .programme-disclaimer svg { margin-top: 2px; }
 
 /* 07 — a large, unaltered practitioner portrait with an editorial caption. */
@@ -282,7 +280,9 @@ svg { flex-shrink: 0; }
 .is-open .faq-answer { grid-template-rows: 1fr; opacity: 1; visibility: visible; }
 
 /* 09 — a compact, independent continuation of the care journey. */
-.postpartum-section { background: var(--paper); }
+.postpartum-section { position: relative; isolation: isolate; background: #fffdfb; overflow: hidden; }
+.postpartum-section::before { content: ""; position: absolute; z-index: -1; width: 360px; height: 360px; right: 4%; top: 50%; transform: translateY(-50%); border-radius: 48% 52% 58% 42%; background: #f4e5df; opacity: .65; }
+.postpartum-section::after { content: ""; position: absolute; z-index: -1; width: 180px; height: 180px; right: 1%; top: 22%; border: 1px solid #dfc6b8; border-radius: 50%; opacity: .7; }
 .postpartum-layout { display: grid; grid-template-columns: 1.15fr .9fr; gap: 100px; align-items: center; }
 .postpartum-copy h2 { max-width: 500px; margin: 17px 0 22px; }
 .postpartum-copy > p:not(.eyebrow) { font-size: 13px; line-height: 1.95; max-width: 570px; }
@@ -301,7 +301,8 @@ svg { flex-shrink: 0; }
 .contact-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 20px; }
 .contact-actions .button { font-size: 11px; gap: 9px; }
 .contact-actions .text-link { font-size: 10px; gap: 7px; }
-.clinic-contact { margin-top: 20px; padding: 23px 25px; background: rgb(255 253 251 / .48); border-radius: 4px; }
+.clinic-contact { margin-top: 20px; }
+.clinic-contact .contact-actions { margin-top: 23px; }
 address { font-style: normal; font-size: 12px; color: var(--brown); display: flex; flex-direction: column; gap: 8px; }
 address > div { display: flex; align-items: flex-start; gap: 13px; margin-bottom: 7px; max-width: 400px; }
 address > div > svg { margin-top: 3px; color: #865b4e; }

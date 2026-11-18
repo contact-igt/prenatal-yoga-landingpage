@@ -54,7 +54,7 @@ export default function Home() {
 
       <section id="why-prenatal-yoga" className="section benefits-section" aria-labelledby="benefits-heading">
         <div className="container">
-          <div className="section-heading split-heading" data-reveal="up"><div><p className="eyebrow">MOVE WITH AWARENESS</p><h2 id="benefits-heading">{copy.benefits.title}</h2></div><p>{copy.benefits.body}</p></div>
+          <div className="section-heading split-heading" data-reveal="up"><div><p className="eyebrow">MOVE WITH AWARENESS</p><h2 id="benefits-heading">{copy.benefits.title}</h2></div><p className="supporting-note">{copy.benefits.body}</p></div>
           <div className="benefits-composition">
             <div className="benefits-photo" data-reveal="image"><Image src="/images/guided-practice.webp" alt="A BirthWave facilitator demonstrating gentle movement during an education session" fill sizes="(max-width: 700px) 85vw, 32vw" /><span className="photo-note">A little space.<br />Just for you.</span></div>
             {benefits.map((benefit, index) => { const Icon = benefitIcons[index]; return <article className={`benefit benefit-${index + 1}`} key={benefit.title} data-reveal={index % 2 ? "up" : "side"} data-delay={index * 70}><div className="benefit-top"><Icon size={23} strokeWidth={1.3} aria-hidden="true" /></div><h3>{benefit.title}</h3><p>{benefit.body}</p></article>; })}
@@ -65,7 +65,7 @@ export default function Home() {
 
       <section id="prenatal-yoga" className="section yoga-section" aria-labelledby="yoga-heading">
         <div className="container">
-          <div className="section-heading split-heading" data-reveal="up"><div><p className="eyebrow">YOUR GUIDED PRACTICE</p><h2 id="yoga-heading">{copy.yoga.title}</h2></div><p>{copy.yoga.body}</p></div>
+          <div className="section-heading split-heading" data-reveal="up"><div><p className="eyebrow">YOUR GUIDED PRACTICE</p><h2 id="yoga-heading">{copy.yoga.title}</h2></div><p className="supporting-note">{copy.yoga.body}</p></div>
           <div className="yoga-details" data-reveal="up">
             <div className="class-photo"><Image src="/images/class-community.webp" alt="A guided group session in The BirthWave’s bright education space" fill sizes="(max-width: 700px) 92vw, 35vw" /><span className="class-photo-label">Room to learn.<br />Space to feel supported.</span></div>
             <div className="yoga-price-panel"><div className="price-summary"><p className="eyebrow">PRENATAL YOGA</p><div className="price-display">{yoga.showPrice ? <><strong>{yogaFee}</strong><span>per month</span></> : <strong className="enquire-price">Enquire about fees</strong>}</div><p className="tax-note">{yoga.tax}</p></div><p className="practice-label"><Check size={17} aria-hidden="true" />Guided pregnancy-appropriate practice.</p>
@@ -78,8 +78,8 @@ export default function Home() {
 
       <section id="getting-started" className="section enrolment-section" aria-labelledby="enrolment-heading">
         <div className="container">
-          <div className="journey-heading" data-reveal="up"><div><p className="eyebrow">AT YOUR OWN PACE</p><h2 id="enrolment-heading">Getting started is simple.</h2></div><span className="journey-flourish" aria-hidden="true"><ArrowUpRight size={44} strokeWidth={1} /></span></div>
-          <ol className="journey-steps">{steps.map((step, index) => { const Icon = stepIcons[index]; return <li key={step.title} data-reveal="up" data-delay={index * 100}><div className="step-symbol"><Icon size={24} strokeWidth={1.4} aria-hidden="true" />{index < 2 && <ArrowUpRight className="step-arrow" size={21} strokeWidth={1} aria-hidden="true" />}</div><h3>{step.title}</h3><p>{step.body}</p></li>; })}</ol>
+          <div className="journey-heading" data-reveal="up"><div><p className="eyebrow">AT YOUR OWN PACE</p><h2 id="enrolment-heading">Getting started is simple.</h2></div></div>
+          <ol className="journey-steps">{steps.map((step, index) => { const Icon = stepIcons[index]; return <li key={step.title} data-reveal="up" data-delay={index * 100}><div className="step-symbol"><Icon size={24} strokeWidth={1.4} aria-hidden="true" /></div><h3>{step.title}</h3><p>{step.body}</p></li>; })}</ol>
           <div className="journey-cta" data-reveal="up"><EnquiryLink interest="Prenatal Yoga" className="button button-outline">Ask the Team About Joining</EnquiryLink></div>
         </div>
       </section>
@@ -116,7 +116,7 @@ export default function Home() {
           <div className="final-copy" data-reveal="up">
             <p className="eyebrow">WE’RE HERE TO HELP</p><h2 id="enquiry-heading">{copy.enquiry.title}</h2><p>{copy.enquiry.body}</p>
             <div className="clinic-photo"><Image src="/images/clinic-space.webp" alt="The warm, softly lit reception space at The BirthWave" fill sizes="(max-width: 900px) 92vw, 46vw" /></div>
-            <div className="clinic-contact"><address><div><MapPin size={21} aria-hidden="true" /><p>{site.address}</p></div><a href={site.phoneHref}>Phone: {site.phone}</a><a href={site.whatsappHref} target="_blank" rel="noreferrer">WhatsApp: {site.whatsapp}</a></address><div className="contact-actions"><a className="button button-outline" href={site.phoneHref}><Phone size={17} aria-hidden="true" />Call The BirthWave</a><a className="text-link" href={site.whatsappHref} target="_blank" rel="noreferrer"><MessageCircle size={18} aria-hidden="true" />Message on WhatsApp<ArrowUpRight size={16} aria-hidden="true" /></a></div></div>
+            <div className="clinic-contact"><address><div><MapPin size={21} aria-hidden="true" /><p>{site.address}</p></div><a href={site.phoneHref}>Phone: {site.phone}</a><a href={site.whatsappHref} target="_blank" rel="noreferrer">WhatsApp: {site.whatsapp}</a></address><div className="contact-actions"><a className="button button-outline" href={site.phoneHref}><Phone size={17} aria-hidden="true" />Call The BirthWave</a><a className="button button-outline" href={site.whatsappHref} target="_blank" rel="noreferrer"><MessageCircle size={18} aria-hidden="true" />Message on WhatsApp<ArrowUpRight size={16} aria-hidden="true" /></a></div></div>
           </div>
           <div data-reveal="up" data-delay="100"><EnquiryForm placement="final" /></div>
         </div>
