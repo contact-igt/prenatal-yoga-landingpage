@@ -1,0 +1,12 @@
+node_modules/
+.next/
+out/
+output/
+reference/
+.playwright-cli/
+*.tsbuildinfo
+*.log
+__pycache__/
+.env*
+!.env.example
+WEBP*.zip

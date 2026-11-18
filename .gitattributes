@@ -1,0 +1,10 @@
+* text=auto eol=lf
+*.pdf binary
+*.docx binary
+*.png binary
+*.webp binary
+*.woff2 binary
+*.ttf binary
+*.zip binary
+prenatalyogaprompt.md -text whitespace=cr-at-eol
+public/fonts/*-OFL.txt -whitespace
