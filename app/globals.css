@@ -188,8 +188,15 @@ svg { flex-shrink: 0; }
 .safety-note svg { color: var(--clay-dark); margin-top: 2px; }
 
 /* 04 — a service dossier, with an understated fee presentation. */
-.yoga-section { background: var(--paper); }
-.yoga-details { display: grid; grid-template-columns: .82fr 1fr; background: #f4e9e1; border-radius: 4px; overflow: hidden; }
+.yoga-section { position: relative; isolation: isolate; overflow: hidden; background: #f3e7dc; }
+.yoga-section-background { position: absolute; inset: 0; z-index: -2; pointer-events: none; }
+.yoga-section-background img { object-fit: cover; object-position: center 55%; }
+.yoga-section::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: linear-gradient(90deg, #fcf3e9f5 0%, #fcf3e9e8 24%, #fcf3e955 47%, #fcf3e922 64%, #fcf3e97a 100%); }
+.yoga-section::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: linear-gradient(to bottom,#fcf6f0,transparent 32px,transparent calc(100% - 32px),#fcf6f0); }
+.yoga-editorial-layout { display: grid; grid-template-columns: .9fr 1fr; align-items: start; gap: 100px; }
+.yoga-intro h2 { margin: 20px 0 28px; max-width: 440px; }
+.yoga-intro > p:not(.eyebrow) { max-width: 450px; font-size: 14px; line-height: 1.95; color: #504039; }
+.yoga-details { background: rgb(248 239 231 / .94); border-radius: 6px; overflow: hidden; box-shadow: 0 15px 45px -28px #59443c66; }
 .class-photo { position: relative; min-height: 550px; }
 .class-photo img { object-fit: cover; object-position: 36% center; }
 .class-photo-label { position: absolute; bottom: 0; left: 0; right: 0; padding: 90px 32px 30px; background: linear-gradient(transparent,#302724b3); color: white; font-family: var(--font-jakarta),sans-serif; font-size: 24px; line-height: 1.4; letter-spacing: -.03em; }
@@ -221,20 +228,21 @@ svg { flex-shrink: 0; }
 .journey-cta { margin-top: 35px; }
 
 /* 06 — clay, authentic group photography, and a proposed programme ledger. */
-.conscious-section { position: relative; background: #ead8ce; overflow: hidden; }
-.conscious-background { position: absolute; inset: 0; opacity: .1; }
-.conscious-background img { object-fit: cover; object-position: center; }
-.conscious-section::after { content: ""; position: absolute; inset: 0; background: linear-gradient(110deg,#ead8cedf,#f7eee8b8); pointer-events: none; }
-.conscious-layout { position: relative; z-index: 1; display: grid; grid-template-columns: .95fr 1fr; gap: 36px 90px; align-items: start; }
+.conscious-section { position: relative; background: #f3e6dd; overflow: hidden; }
+.conscious-layout { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 96px; align-items: start; }
+.conscious-intro { position: relative; isolation: isolate; }
+.conscious-background { position: absolute; z-index: -1; top: -100px; bottom: -100px; left: calc((min(1280px, 100vw - 112px) - 100vw) / 2); right: -48px; pointer-events: none; }
+.conscious-background img { object-fit: cover; object-position: 65% center; }
+.conscious-background::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg,#fcf2e8e8 0%,#fcf2e8c4 46%,#fcf2e838 90%,#f3e6dd 100%); }
 .conscious-section .eyebrow { color: #62483e; }
 .programme-status { display: inline-block; padding: 5px 0; font-size: 9px; letter-spacing: .14em; color: #62483e; margin-top: 20px; }
 .conscious-intro h2 { font-size: clamp(32px,3.2vw,44px); color: #503930; margin: 10px 0 23px; }
-.conscious-intro > p:not(.eyebrow):not(.programme-status) { color: #5d473d; font-size: 13px; line-height: 1.95; }
+.conscious-intro-content > p:not(.eyebrow):not(.programme-status) { color: #5d473d; font-size: 13px; line-height: 1.95; }
 .programme-details { display: flex; flex-direction: column; gap: 16px; margin-block: 29px; }
 .programme-details dt { display: flex; align-items: center; gap: 8px; font-size: 10px; font-weight: 600; color: #503930; margin-bottom: 2px; text-transform: uppercase; letter-spacing: .08em; }
 .programme-details dd { margin: 0; font-size: 11px; line-height: 1.9; color: #5d473d; }
 .conscious-intro .button { font-size: 11px; padding-inline: 18px; gap: 18px; }
-.activities { padding: 28px 30px; background: rgb(255 252 249 / .78); border: 1px solid rgb(255 255 255 / .8); border-radius: 5px; box-shadow: 0 18px 45px -32px #634c43; backdrop-filter: blur(10px); }
+.activities { padding: 28px 30px; background: #fffaf6; border: 1px solid rgb(255 255 255 / .8); border-radius: 5px; box-shadow: 0 18px 45px -32px #634c43; }
 .activities > .eyebrow { margin-bottom: 9px; }
 .activity { display: flex; align-items: flex-start; gap: 17px; padding: 19px 0; }
 .activity:last-child { padding-bottom: 3px; }
@@ -242,7 +250,7 @@ svg { flex-shrink: 0; }
 .proposed-label { font-size: 8px; font-weight: 600; letter-spacing: .12em; color: #895a4a; margin-bottom: 4px; }
 .activity h3 { font-size: 18px; margin-bottom: 7px; color: #4e352a; }
 .activity p:last-child { font-size: 11px; line-height: 1.9; color: #665045; }
-.programme-disclaimer { grid-column: 1 / -1; display: flex; align-items: flex-start; gap: 14px; font-size: 11px; color: #5d473d; line-height: 1.9; padding-top: 4px; max-width: 1040px; }
+.programme-disclaimer { display: flex; align-items: flex-start; gap: 14px; font-size: 11px; color: #5d473d; line-height: 1.9; margin-top: 36px; max-width: 560px; }
 .programme-disclaimer svg { margin-top: 2px; }
 
 /* 07 — a large, unaltered practitioner portrait with an editorial caption. */
@@ -335,6 +343,23 @@ address p { color: var(--brown); }
 .footer-bottom p { color: #decbbf; font-size: 9px; }
 .footer-bottom > div { display: flex; align-items: center; gap: 26px; }
 
+/* One supplied wave asset, with soft edge fades to join the independent sections. */
+.hero,.offers-section,.benefits-section,.enrolment-section,.doctor-section,.faq-section,.postpartum-section,.final-section {
+  background-color: #fcf6f0;
+  background-image: linear-gradient(to bottom,#fcf6f0 0%,transparent 13%,transparent 87%,#fcf6f0 100%),linear-gradient(var(--wave-tint, #fffaf550),var(--wave-tint, #fffaf550)),url('/images/soft-peach-waves.png');
+  background-size: cover;
+  background-position: center,center,var(--wave-position, center);
+  background-repeat: no-repeat;
+}
+.hero { --wave-position: left center; --wave-tint: #fffaf54a; }
+.offers-section { --wave-position: right bottom; --wave-tint: #fffaf575; }
+.benefits-section { --wave-position: left bottom; --wave-tint: #fffaf55a; }
+.enrolment-section { --wave-position: 65% center; --wave-tint: #fffaf57a; }
+.doctor-section { --wave-position: left top; --wave-tint: #fffaf568; }
+.faq-section { --wave-position: right center; --wave-tint: #fffaf590; }
+.postpartum-section { --wave-position: left bottom; --wave-tint: #fffaf550; }
+.final-section { --wave-position: 35% bottom; --wave-tint: #fffaf53d; }
+
 @media (min-width: 1600px) {
   .hero-grid { gap: 78px; }
   .hero h1 { font-size: 56px; }
@@ -356,8 +381,10 @@ address p { color: var(--brown); }
   .benefit { padding: 22px; }
   .benefits-photo { min-height: 455px; }
   .yoga-price-panel { padding: 30px; }
+  .yoga-editorial-layout { gap: 55px; }
   .service-details { gap: 17px; }
-  .conscious-layout { gap: 35px 50px; }
+  .conscious-layout { gap: 72px; }
+  .conscious-background { left: -36px; right: -36px; }
   .doctor-layout { gap: 65px; padding-inline: 10px; }
   .doctor-copy h2 { font-size: 36px; }
   .faq-layout { gap: 55px; }
@@ -413,6 +440,10 @@ address p { color: var(--brown); }
   .benefit-4 { grid-row: 3; grid-column: 2; }
   .benefit p { max-width: none; }
   .yoga-details { grid-template-columns: 1fr; }
+  .yoga-editorial-layout { grid-template-columns: 1fr; gap: 210px; }
+  .yoga-intro { max-width: 540px; }
+  .yoga-section-background img { object-position: 50% center; }
+  .yoga-section::before { background: linear-gradient(180deg,#fcf3e9f5 0%,#fcf3e9dd 25%,#fcf3e922 55%,#fcf3e966 100%); }
   .class-photo { min-height: 0; height: 340px; }
   .yoga-price-panel { padding: 27px; }
   .price-display strong { font-size: 49px; }
@@ -423,7 +454,8 @@ address p { color: var(--brown); }
   .journey-steps { gap: 18px; }
   .journey-steps li { padding: 23px 21px; }
   .journey-steps h3 { font-size: 20px; }
-  .conscious-layout { gap: 30px; }
+  .conscious-layout { gap: 64px; }
+  .conscious-background { top: -75px; bottom: -75px; left: -28px; right: -32px; }
   .conscious-intro h2 { font-size: 33px; }
   .activities { padding: 24px 21px; }
   .activity { gap: 13px; }
@@ -548,7 +580,14 @@ address p { color: var(--brown); }
   .conscious-layout { grid-template-columns: 1fr; gap: 30px; }
   .conscious-intro > .eyebrow { font-size: 8px; letter-spacing: .1em; }
   .conscious-intro h2 { font-size: 34px; }
-  .conscious-intro > p:not(.eyebrow):not(.programme-status) { font-size: 12px; }
+  .conscious-intro-content > p:not(.eyebrow):not(.programme-status) { font-size: 12px; }
+  .conscious-layout { gap: 60px; }
+  .conscious-background { top: -58px; bottom: -30px; left: -20px; right: -20px; }
+  .conscious-background::after { background: linear-gradient(90deg,#fcf2e8e0,#fcf2e899); }
+  .yoga-editorial-layout { gap: 170px; }
+  .yoga-section-background img { object-position: 38% center; }
+  .yoga-intro > p:not(.eyebrow) { font-size: 12px; }
+  .yoga-intro h2 { margin: 13px 0 22px; }
   .programme-status { margin-top: 19px; }
   .conscious-intro .button { width: 100%; font-size: 10px; padding-inline: 12px; gap: 10px; }
   .activities { padding: 24px; }

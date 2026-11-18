@@ -47,6 +47,8 @@ The current revision adds a fixed five-action toolbar (WhatsApp, phone, Instagra
 
 ## Source and component map
 
+The finalized background pass starts from the restored version. Guided Practice uses the original `EXP04556 copy.webp` group activity photograph (the existing `programme-background.webp` derivative) across the full section, with its introduction on the left and the approved pricing/details panel on the right. Conscious Pregnancy uses the supplied `5327da0d-608a-4e6b-b778-e0fa35152b5a.png` only behind its left content zone; its right panel remains on a separate solid surface. The supplied `soft-peach-waves.png` is shared by the other eight section backgrounds with varied tint and placement. The generated reference photograph is not used. Content, contact destinations, forms and animations are unchanged. Desktop/mobile visual review and seven-width geometry checks confirm separation of the two Conscious Pregnancy zones, full-section Guided Practice photography and all four detail boxes.
+
 - `app/page.tsx`: server-rendered ten-section composition, header and footer.
 - `app/layout.tsx`: local font loading, metadata, configurable canonical, non-indexable review defaults.
 - `app/globals.css`: Tailwind import, design tokens, responsive layouts and motion.
