@@ -12,16 +12,16 @@ const poppins = localFont({ src: [
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.canonical || "http://127.0.0.1:3000"),
-  title: "Prenatal Yoga & Conscious Pregnancy | The BirthWave, Chennai",
-  description: "Explore guided prenatal yoga at The BirthWave in Nungambakkam, Chennai, and register your interest in the upcoming Conscious Pregnancy Program.",
+  title: "Online Prenatal Yoga Classes | The BirthWave",
+  description: "Explore guided online prenatal yoga classes with The BirthWave. Pregnancy-appropriate movement, breathing and relaxation from home. ₹4,500 per month, subject to medical suitability.",
   robots: { index: site.indexable, follow: site.indexable },
   icons: { icon: "/brand/logo.png" },
   ...(site.canonical ? { alternates: { canonical: site.canonical } } : {}),
   openGraph: {
-    title: "A more connected pregnancy journey | The BirthWave",
-    description: "Make space for movement, breath and support. Explore prenatal yoga and the upcoming Conscious Pregnancy Program.",
+    title: "Online Prenatal Yoga Classes | The BirthWave",
+    description: "Guided pregnancy-appropriate movement, breathing and relaxation from the comfort of home.",
     type: "website", locale: "en_IN", siteName: site.name,
-    images: [{ url: "/images/pregnancy-community.webp", width: 1800, height: 956, alt: "A moment of connection during a BirthWave group activity" }],
+    images: [{ url: "/images/d056632c-5977-49a3-97ed-7995e66680f7-clean.webp", width: 1774, height: 887, alt: "An expectant mother practising seated prenatal yoga" }],
     ...(site.canonical ? { url: site.canonical } : {}),
   },
 };

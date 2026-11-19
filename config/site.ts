@@ -18,14 +18,13 @@ export const site = {
   indexable: process.env.NEXT_PUBLIC_INDEXABLE === "true",
 } as const;
 
-// The master prompt explicitly requests this discussed fee for local review.
-// Confirm fee, tax treatment and inclusions with the clinic before public launch.
+// The revised client PDF specifies the online programme and monthly fee.
 export const yoga = {
   showPrice: true,
   monthlyFee: 4500,
   currency: "INR",
-  tax: "Tax details confirmed at enrolment.",
-  format: "Ask about current online and in-clinic options.",
+  tax: "Applicable taxes, if any, and final enrolment details will be confirmed before registration.",
+  format: "Online",
   frequency: "Ask our team about class frequency and duration.",
   batches: "Ask about batch days, timings and capacity.",
   instructor: "Ask our team about the instructor and verified credentials.",
@@ -40,11 +39,24 @@ export const privacyMessage = "We will use the details you provide to respond to
 
 export const navigation = [
   { href: "#prenatal-yoga", label: "Prenatal Yoga" },
-  { href: "#conscious-pregnancy", label: "Conscious Pregnancy" },
-  { href: "#our-approach", label: "Care Approach" },
+  { href: "#benefits", label: "Benefits" },
+  { href: "#getting-started", label: "How It Works" },
+  { href: "#our-approach", label: "Our Approach" },
   { href: "#faqs", label: "FAQs" },
-  { href: "#enquiry", label: "Contact" },
+  { href: "#contact", label: "Contact" },
 ];
+
+export const onlineFooterLinks = {
+  care: [
+    { label: "Pregnancy Care", href: site.antenatal },
+    { label: "Birth Preparation", href: site.birthPreparation },
+  ],
+  explore: [
+    { label: "About The BirthWave", href: `${site.official}/about` },
+    { label: "Contact", href: `${site.official}/contact` },
+    { label: "Privacy Policy", href: site.privacy },
+  ],
+} as const;
 
 // Verified against the official homepage footer; campaign contacts above stay separate.
 export const footerLinks = {

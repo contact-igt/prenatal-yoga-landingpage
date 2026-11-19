@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Plus } from "lucide-react";
-import { faqs } from "@/config/content";
+import { onlineFaqs as faqs } from "@/config/online-content";
 
 export function FAQ() {
   const [open, setOpen] = useState<number | null>(0);

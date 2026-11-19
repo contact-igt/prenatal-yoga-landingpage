@@ -1,6 +1,24 @@
-# BirthWave Prenatal Yoga and Conscious Pregnancy
+# BirthWave Online Prenatal Yoga
 
-A standalone Next.js App Router, React, TypeScript and Tailwind CSS landing page. All work is local; no deployment or remote push is configured. The final master-prompt overrides govern visible content and the frontend-only enquiry interaction.
+A standalone Next.js App Router, React, TypeScript and Tailwind CSS landing page.
+
+## Current content update — 19 November 2026
+
+The latest 11-page **The BirthWave Online Prenatal Yoga — Landing Page Content** PDF is the source for current visitor-facing copy. The Change Guide explains the differences. `config/online-content.ts` contains that copy; existing design tokens, fonts, photographic backgrounds, cards, animations, footer styling and assets are preserved.
+
+The page follows all 13 PDF sections: hero, understanding prenatal yoga, benefits, class activities, online classes, eligibility, approach, specialist, four enrolment steps, fees, ten FAQs, enquiry, and contact/footer. Contact occupies the existing right-hand panel beside the final form. The old two-offer promotion, Conscious Pregnancy preview and postpartum bridge are removed from this landing page. Their reusable assets and components remain.
+
+Both forms use required full name, phone and contact consent, with optional email, pregnancy weeks and question. The legacy routing value is fixed to Prenatal Yoga; there is no visible interest selector. Submission context now includes `consentVersion: "2026-11-19"`, `classFormat: "Online"` and `programme: "Regular Prenatal Yoga"`. No medical details go to analytics or persistent browser storage.
+
+**Operational dependency:** no lead service, API route or CRM adapter exists in the supplied project. The former no-op handler cannot support the new “We've received your enquiry” claim. The current adapter therefore rejects with a recoverable phone/WhatsApp fallback, retains entered data, and never shows a false receipt. The exact PDF success modal is wired to the real-success path and will open once an authorized adapter resolves after accepting the lead. No submissions are sent during local review.
+
+**Missing asset:** no identified, approved portrait of Dr. Amudha Varshini was found. Her supplied name, qualifications, role and full biography appear in a text-only profile. Another doctor's photograph is not used as her portrait. Existing photographs elsewhere are temporary selections for client image review.
+
+**Client confirmations:** preferred campaign phone/WhatsApp destination, approved specialist portrait/credentials, current batch details and tax treatment, and the actual enquiry endpoint/routing. Existing configured contacts remain temporarily: phone +91 93630 31925 and WhatsApp +91 79042 51378.
+
+Current verification commands are `npm run build`, `npm run lint`, `python scripts/online-content-audit.py` (optionally pass the source PDF path), and `playwright-cli run-code --filename scripts/online-browser-qa.js` using the running local server. The content audit checks 181 independent PDF copy blocks. The browser script checks all sections, fields, error recovery, success-dialog presentation, navigation, disclosures, images, clean boundaries and responsive geometry. Live lead delivery remains untestable until an adapter is supplied.
+
+The detailed two-programme design and future-integration notes below are retained as **historical reference**; the current update above supersedes their old copy, form payload and demonstration-success behaviour.
 
 ## Local development
 

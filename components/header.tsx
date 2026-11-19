@@ -13,7 +13,7 @@ export function Header() {
     <div className="container header-inner">
       <a href="#top" className="brand" aria-label="The BirthWave — back to top"><Image src="/brand/logo.png" width={150} height={74} alt="The BirthWave" priority /></a>
       <nav className="desktop-nav" aria-label="Main navigation">{navigation.map((item) => <a key={item.href} href={item.href}>{item.label}</a>)}</nav>
-      <div className="header-actions"><EnquiryLink className="button button-small" target="hero">Enquire Now</EnquiryLink>
+      <div className="header-actions"><EnquiryLink className="button button-small" target="hero">Enquire About Classes</EnquiryLink>
         <button ref={toggle} className="menu-toggle" aria-label={open ? "Close navigation" : "Open navigation"} aria-expanded={open} aria-controls="mobile-nav" onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</button>
       </div>
     </div>
