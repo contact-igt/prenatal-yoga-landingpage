@@ -14,11 +14,9 @@ export const onlineCopy = {
     eyebrow: "MOVE WITH CARE",
     title: "Your body is changing. The way you move can change too.",
     paragraphs: [
-      "As your baby grows, everyday activities such as sitting, standing, bending and moving around may begin to feel different.",
-      "You might notice changes in your posture, flexibility, energy or comfort. And sometimes, you may simply want a little time to slow down.",
+      "As your baby grows, everyday activities such as sitting, standing, bending and moving around may begin to feel different. You might notice changes in your posture, flexibility, energy or comfort. And sometimes, you may simply want a little time to slow down.",
       "That's where prenatal yoga can help.",
-      "Prenatal yoga is a pregnancy-adapted form of yoga that brings together gentle movements, breathing awareness and relaxation.",
-      "Our guided online classes offer a supportive way to explore movement that is appropriate for your stage of pregnancy and individual health needs.",
+      "Prenatal yoga is a pregnancy-adapted form of yoga that brings together gentle movements, breathing awareness and relaxation. Our guided online classes offer a supportive way to explore movement that is appropriate for your stage of pregnancy and individual health needs.",
       "Because caring for yourself is an important part of your pregnancy journey.",
     ],
   },

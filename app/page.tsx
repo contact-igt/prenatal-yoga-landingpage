@@ -16,6 +16,11 @@ const benefitIcons = [MoveUpRight, Wind, Sparkles, Heart];
 const onlineIcons = [HomeIcon, Monitor, Wind, CalendarDays];
 const eligibilityIcons = [MoveUpRight, Wind, Heart, Sparkles, ShieldCheck];
 const stepIcons = [MessageCircle, CalendarDays, ShieldCheck, Monitor];
+const understandingFeatures = [
+  { title: copy.hero.highlights[1], icon: MoveUpRight },
+  { title: copy.hero.highlights[2], icon: Wind },
+  { title: copy.hero.highlights[3], icon: HomeIcon },
+];
 const yogaPhoto = "/images/d056632c-5977-49a3-97ed-7995e66680f7-clean.webp";
 const stepPhotos = [
   { src: "/images/consultation-notebook.webp", alt: "A doctor writing notes during a BirthWave consultation" },
@@ -49,8 +54,17 @@ export default function Home() {
       <section id="prenatal-yoga" className="section offers-section understanding-section" aria-labelledby="understanding-heading">
         <div className="container"><p className="eyebrow understanding-eyebrow" data-reveal="up">{copy.understanding.eyebrow}</p></div>
         <div className="container understanding-layout">
-          <div className="editorial-copy understanding-copy" data-reveal="up"><h2 id="understanding-heading">{copy.understanding.title}</h2><div className="copy-paragraphs understanding-description">{copy.understanding.paragraphs.map((p,index) => <p className={index===2||index===5 ? "understanding-emphasis" : undefined} key={p}>{p}</p>)}</div></div>
-          <div className="understanding-cutout" data-reveal="up"><Image src="/images/prenatal-yoga-cutout.webp" alt="Illustration of an expectant mother seated in a relaxed yoga pose" fill unoptimized sizes="(max-width: 600px) 90vw, (max-width: 900px) 430px, 40vw" /></div>
+          <div className="understanding-header" data-reveal="up"><h2 id="understanding-heading">{copy.understanding.title}</h2></div>
+          <div className="understanding-visual" data-reveal="up">
+            <div className="understanding-cutout"><Image src="/images/prenatal-yoga-cutout.webp" alt="Illustration of an expectant mother seated in a relaxed yoga pose" fill unoptimized sizes="(max-width: 600px) 60vw, (max-width: 900px) 450px, 30vw" /></div>
+            <svg className="understanding-feature-curve" viewBox="0 0 600 650" preserveAspectRatio="none" fill="none" aria-hidden="true"><path d="M485 149 Q535 324 485 500" /></svg>
+            <ul className="understanding-features">{understandingFeatures.map(({title,icon: Icon}) => <li key={title}><Icon size={19} strokeWidth={1.3} aria-hidden="true" /><h3>{title}</h3></li>)}</ul>
+          </div>
+          <div className="editorial-copy understanding-copy" data-reveal="up">
+            <div className="copy-paragraphs understanding-description">
+              {copy.understanding.paragraphs.map((p,index) => <p className={index===1||index===3 ? "understanding-emphasis" : undefined} key={p}>{p}</p>)}
+            </div>
+          </div>
         </div>
       </section>
 
@@ -109,8 +123,9 @@ export default function Home() {
 
       <section id="yoga-specialist" className="section doctor-section" aria-labelledby="specialist-heading">
         <div className="container doctor-layout specialist-layout">
-          <div className="doctor-copy" data-reveal="up"><p className="eyebrow">{copy.specialist.eyebrow}</p><h2 id="specialist-heading">{copy.specialist.title}</h2><div className="copy-paragraphs">{copy.specialist.paragraphs.map(p => <p key={p}>{p}</p>)}</div><EnquiryLink>Enquire About Prenatal Yoga</EnquiryLink></div>
+          <div className="doctor-copy specialist-copy" data-reveal="up"><p className="eyebrow">{copy.specialist.eyebrow}</p><h2 id="specialist-heading">{copy.specialist.title}</h2><div className="copy-paragraphs">{copy.specialist.paragraphs.map(p => <p key={p}>{p}</p>)}</div></div>
           <div className="specialist-profile" data-reveal="up"><div className="doctor-photo specialist-photo"><Image src="/images/EXP01361 copy.webp" alt="Dr. Amudha Varshini at The BirthWave" fill unoptimized sizes="(max-width: 600px) 90vw, 40vw" /></div><div className="doctor-caption"><h3>{copy.specialist.name}</h3><p>{copy.specialist.qualification}</p><p className="small-copy">{copy.specialist.role}</p></div></div>
+          <div className="specialist-cta-wrap" data-reveal="up"><EnquiryLink>Enquire About Prenatal Yoga</EnquiryLink></div>
         </div>
       </section>
 
