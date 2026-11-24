@@ -6,16 +6,23 @@ function asString(value: unknown) {
   return typeof value === "string" ? value.trim() : "";
 }
 
+function getBackendUrl() {
+  const configured = process.env.BIRTHWAVE_BACKEND_URL?.trim();
+  if (!configured) return "";
+  return configured.replace(/^(["'])(.*)\1$/, "$2").replace(/\/+$/, "");
+}
+
 function isObject(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null;
 }
 
-export async function POST(request: Request) {
-  const scriptUrl = process.env.GOOGLE_APPS_SCRIPT_URL;
-  const sharedSecret = process.env.GOOGLE_APPS_SCRIPT_SECRET;
+type BackendResponse = { success?: boolean; ok?: boolean; message?: string; details?: string[] };
 
-  if (!scriptUrl || !sharedSecret) {
-    return Response.json({ ok: false, error: "The enquiry service is not configured yet." }, { status: 503 });
+export async function POST(request: Request) {
+  const backendUrl = getBackendUrl();
+
+  if (!backendUrl) {
+    return Response.json({ ok: false, error: "The enquiry service is missing BIRTHWAVE_BACKEND_URL on the server." }, { status: 503 });
   }
 
   let input: unknown;
@@ -33,6 +40,7 @@ export async function POST(request: Request) {
   const mobile = asString(input.mobile);
   const email = asString(input.email);
   const question = asString(input.question);
+  const submissionId = asString(input.submissionId) || crypto.randomUUID();
   const data: EnquiryData = {
     fullName,
     mobile,
@@ -55,31 +63,56 @@ export async function POST(request: Request) {
   }
 
   const payload = {
-    timestamp: new Date().toISOString(),
-    fullName: data.fullName,
-    mobile: data.mobile,
+    source_key: "birthwave_prenatal_yoga",
+    name: data.fullName,
+    phone: data.mobile,
     email: data.email,
-    pregnancyWeeks: data.pregnancyWeeks,
-    question: data.question,
-    contactConsent: data.contactConsent,
-    apiKey: sharedSecret,
+    service: "Prenatal Yoga",
+    pregnancy_weeks: data.pregnancyWeeks,
+    message: data.question,
+    consent: data.contactConsent,
+    external_submission_id: submissionId,
+    attribution: {
+      source: "prenatal_yoga",
+      channel: "Landing Page",
+      landing_page: "/",
+    },
   };
 
   try {
-    const upstream = await fetch(scriptUrl, {
+    const upstream = await fetch(`${backendUrl}/birthwave-public/leads`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        "X-Client-Key": "birthwave",
+        "Idempotency-Key": submissionId,
+      },
       body: JSON.stringify(payload),
       cache: "no-store",
     });
-    const result = await upstream.json().catch(() => null) as { ok?: boolean } | null;
+    const responseText = await upstream.text();
+    let result: BackendResponse | null = null;
+    try {
+      result = JSON.parse(responseText) as BackendResponse;
+    } catch {
+      // Some upstream failures return an empty or non-JSON response.
+    }
 
-    if (!upstream.ok || !result?.ok) {
-      return Response.json({ ok: false, error: "We could not send your enquiry. Please try again." }, { status: 502 });
+    if (!upstream.ok || result?.success === false || result?.ok === false) {
+      console.error("[BirthWave] Backend rejected enquiry", {
+        status: upstream.status,
+        message: result?.message,
+        details: result?.details,
+      });
+      const error = process.env.NODE_ENV === "development" && result?.message
+        ? `Backend rejected the enquiry: ${result.message}`
+        : "We could not send your enquiry. Please try again.";
+      return Response.json({ ok: false, error }, { status: 502 });
     }
 
     return Response.json({ ok: true });
-  } catch {
+  } catch (error) {
+    console.error("[BirthWave] Could not reach lead backend", error instanceof Error ? error.message : "Unknown error");
     return Response.json({ ok: false, error: "We could not reach the enquiry service. Please try again." }, { status: 502 });
   }
 }
