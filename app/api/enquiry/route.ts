@@ -11,10 +11,9 @@ function isObject(value: unknown): value is Record<string, unknown> {
 }
 
 export async function POST(request: Request) {
-  const scriptUrl = process.env.GOOGLE_APPS_SCRIPT_URL;
-  const sharedSecret = process.env.GOOGLE_APPS_SCRIPT_SECRET;
+  const backendUrl = process.env.BIRTHWAVE_BACKEND_URL;
 
-  if (!scriptUrl || !sharedSecret) {
+  if (!backendUrl) {
     return Response.json({ ok: false, error: "The enquiry service is not configured yet." }, { status: 503 });
   }
 
@@ -33,6 +32,7 @@ export async function POST(request: Request) {
   const mobile = asString(input.mobile);
   const email = asString(input.email);
   const question = asString(input.question);
+  const submissionId = asString(input.submissionId) || crypto.randomUUID();
   const data: EnquiryData = {
     fullName,
     mobile,
@@ -55,26 +55,36 @@ export async function POST(request: Request) {
   }
 
   const payload = {
-    timestamp: new Date().toISOString(),
-    fullName: data.fullName,
-    mobile: data.mobile,
+    source_key: "birthwave_prenatal_yoga",
+    name: data.fullName,
+    phone: data.mobile,
     email: data.email,
-    pregnancyWeeks: data.pregnancyWeeks,
-    question: data.question,
-    contactConsent: data.contactConsent,
-    apiKey: sharedSecret,
+    service: "Prenatal Yoga",
+    pregnancy_weeks: data.pregnancyWeeks,
+    message: data.question,
+    consent: data.contactConsent,
+    external_submission_id: submissionId,
+    attribution: {
+      source: "prenatal_yoga",
+      channel: "Landing Page",
+      landing_page: "/",
+    },
   };
 
   try {
-    const upstream = await fetch(scriptUrl, {
+    const upstream = await fetch(`${backendUrl.replace(/\/$/, "")}/birthwave-public/leads`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        "X-Client-Key": "birthwave",
+        "Idempotency-Key": submissionId,
+      },
       body: JSON.stringify(payload),
       cache: "no-store",
     });
-    const result = await upstream.json().catch(() => null) as { ok?: boolean } | null;
+    const result = await upstream.json().catch(() => null) as { success?: boolean; ok?: boolean; message?: string } | null;
 
-    if (!upstream.ok || !result?.ok) {
+    if (!upstream.ok || result?.success === false || result?.ok === false) {
       return Response.json({ ok: false, error: "We could not send your enquiry. Please try again." }, { status: 502 });
     }
 

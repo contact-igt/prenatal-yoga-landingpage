@@ -129,11 +129,11 @@ Successful frontend validation opens the exact final-override message:
 
 The native modal contains focus, closes with Done or Escape, restores focus to the submit button and locks background scrolling while open. Frontend validation, duplicate prevention, disabled submission state and a recoverable error path are present. After successful validation the in-memory fields clear. Submission stays disabled until hydration, preventing a native form GET containing personal data if JavaScript fails.
 
-**There is no form transmission, server API route, Google Sheet, Apps Script, CRM, database, email service, localStorage, sessionStorage, cookie persistence, console logging of personal details, live analytics or advertising integration.** The `submitEnquiry` seam resolves without side effects. The thank-you state never claims that an appointment was booked or the clinic received data.
+The form submits through the server-side `/api/enquiry` route to the configured BirthWave backend. The backend receives the lead payload and is responsible for CRM persistence and Google Sheets synchronization; this landing page does not connect to Google Apps Script or Google Sheets directly. The thank-you state appears only after the backend accepts the submission.
 
-## Future integration handoff
+## Lead integration
 
-Replace only `submitEnquiry` in `lib/enquiry.ts` with an authorized service adapter. It receives a read-only `EnquiryData` object and context `{ placement: "hero" | "final", consentVersion: "2026-11-18" }`. Do not expose service credentials in browser code. Add an authenticated server-side endpoint and validate/normalize again on the server. Keep the selected interest and enquiry consent. International phone validation can be extended with a maintained telephone-number parser once the supported countries are confirmed.
+`BIRTHWAVE_BACKEND_URL` configures the backend base URL. The server route validates and normalizes the form again, then sends `POST {BIRTHWAVE_BACKEND_URL}/birthwave-public/leads` with `X-Client-Key: birthwave`, a unique `Idempotency-Key`, and the lead payload. No backend URL or credentials are exposed in browser code.
 
 Expected frontend fields:
 
@@ -148,7 +148,7 @@ type EnquiryData = {
 };
 ```
 
-Resolve only after actual acceptance by the future service. Reject on failure so the existing retry state is shown. Add server-side rate limiting, appropriate spam protection, idempotency and duplicate handling, consent records, retention/deletion controls, monitored routing, named lead owner, internal notification and next-contact date. Deduplicate phones without losing distinct enquiry intent. Do not send medical details to analytics. Do not treat this frontend demonstration as a real lead or conversion.
+The route resolves only after actual backend acceptance and rejects on failure so the existing retry state is shown. Rate limiting, spam protection, duplicate handling, consent records, retention/deletion controls, monitored routing and lead lifecycle management remain backend responsibilities. Do not send medical details to analytics.
 
 Future attribution requirements, deliberately inactive now: `utm_source`, `utm_medium`, `utm_campaign`, `utm_content`, `utm_term`, `gclid`, `fbclid`, `landing_page_path`, referring URL, timestamp, consent version, source channel and enquiry-type identifier. Implement consent-aware attribution and persistence only as part of the approved integration.
 

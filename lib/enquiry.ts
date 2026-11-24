@@ -45,16 +45,15 @@ export type EnquirySubmitHandler = (data: Readonly<EnquiryData>, context: Enquir
 
 export class EnquiryUnavailableError extends Error {}
 export const submitEnquiry: EnquirySubmitHandler = async (data, context) => {
+  void context;
+  const submissionId = crypto.randomUUID();
   const response = await fetch("/api/enquiry", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       ...data,
-      ...context,
-      // The current form has no visible interest selector. Keep the existing
-      // routing value explicit in the sheet payload.
+      submissionId,
       interest: data.interest || "Prenatal Yoga",
-      pagePath: window.location.pathname,
     }),
   });
 
