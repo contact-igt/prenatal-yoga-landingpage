@@ -6,15 +6,23 @@ function asString(value: unknown) {
   return typeof value === "string" ? value.trim() : "";
 }
 
+function getBackendUrl() {
+  const configured = process.env.BIRTHWAVE_BACKEND_URL?.trim();
+  if (!configured) return "";
+  return configured.replace(/^(["'])(.*)\1$/, "$2").replace(/\/+$/, "");
+}
+
 function isObject(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null;
 }
 
+type BackendResponse = { success?: boolean; ok?: boolean; message?: string; details?: string[] };
+
 export async function POST(request: Request) {
-  const backendUrl = process.env.BIRTHWAVE_BACKEND_URL;
+  const backendUrl = getBackendUrl();
 
   if (!backendUrl) {
-    return Response.json({ ok: false, error: "The enquiry service is not configured yet." }, { status: 503 });
+    return Response.json({ ok: false, error: "The enquiry service is missing BIRTHWAVE_BACKEND_URL on the server." }, { status: 503 });
   }
 
   let input: unknown;
@@ -72,7 +80,7 @@ export async function POST(request: Request) {
   };
 
   try {
-    const upstream = await fetch(`${backendUrl.replace(/\/$/, "")}/birthwave-public/leads`, {
+    const upstream = await fetch(`${backendUrl}/birthwave-public/leads`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -82,14 +90,29 @@ export async function POST(request: Request) {
       body: JSON.stringify(payload),
       cache: "no-store",
     });
-    const result = await upstream.json().catch(() => null) as { success?: boolean; ok?: boolean; message?: string } | null;
+    const responseText = await upstream.text();
+    let result: BackendResponse | null = null;
+    try {
+      result = JSON.parse(responseText) as BackendResponse;
+    } catch {
+      // Some upstream failures return an empty or non-JSON response.
+    }
 
     if (!upstream.ok || result?.success === false || result?.ok === false) {
-      return Response.json({ ok: false, error: "We could not send your enquiry. Please try again." }, { status: 502 });
+      console.error("[BirthWave] Backend rejected enquiry", {
+        status: upstream.status,
+        message: result?.message,
+        details: result?.details,
+      });
+      const error = process.env.NODE_ENV === "development" && result?.message
+        ? `Backend rejected the enquiry: ${result.message}`
+        : "We could not send your enquiry. Please try again.";
+      return Response.json({ ok: false, error }, { status: 502 });
     }
 
     return Response.json({ ok: true });
-  } catch {
+  } catch (error) {
+    console.error("[BirthWave] Could not reach lead backend", error instanceof Error ? error.message : "Unknown error");
     return Response.json({ ok: false, error: "We could not reach the enquiry service. Please try again." }, { status: 502 });
   }
 }
