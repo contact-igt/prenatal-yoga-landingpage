@@ -56,7 +56,7 @@ async page => {
     await submit.click();
     check(await form.locator('[aria-invalid=true]').count()===3,`${placement}: required name, phone and consent validate`);
     await form.locator('[name=fullName]').fill('QA Visitor');
-    await form.locator('[name=mobile]').fill('+91 98765 43210');
+    await form.locator('[name=mobile]').fill('9876543210');
     await form.locator('[name=contactConsent]').check();
     await form.locator('[name=email]').fill('invalid-email');
     await submit.click();

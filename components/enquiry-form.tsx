@@ -3,7 +3,7 @@
 import { useRef, useState, useSyncExternalStore, type FormEvent } from "react";
 import { ArrowUpRight, Check } from "lucide-react";
 import { privacyMessage, site } from "@/config/site";
-import { emptyEnquiry, EnquiryUnavailableError, submitEnquiry, validateEnquiry, type EnquiryData, type EnquiryErrors } from "@/lib/enquiry";
+import { emptyEnquiry, EnquiryUnavailableError, sanitizeEmail, sanitizeFullName, sanitizeMobile, submitEnquiry, validateEnquiry, type EnquiryData, type EnquiryErrors } from "@/lib/enquiry";
 import { onlineCopy } from "@/config/online-content";
 
 const copy = onlineCopy.enquiry;
@@ -68,11 +68,11 @@ export function EnquiryForm({ placement }: { placement: "hero" | "final" }) {
         <p className="required-note">* Required fields</p>
         <div className="form-grid">
           <div className="field field-wide"><label htmlFor={id("fullName")}>Full Name <span aria-hidden="true">*</span></label>
-            <input id={id("fullName")} name="fullName" placeholder="Enter your full name" autoComplete="name" required maxLength={100} value={data.fullName} onChange={(event) => update("fullName", event.target.value)} aria-invalid={!!errors.fullName} aria-describedby={errors.fullName ? id("fullName-error") : undefined} />{fieldError("fullName")}</div>
+            <input id={id("fullName")} name="fullName" placeholder="Enter your full name" autoComplete="name" required maxLength={100} value={data.fullName} onChange={(event) => update("fullName", sanitizeFullName(event.target.value))} aria-invalid={!!errors.fullName} aria-describedby={errors.fullName ? id("fullName-error") : undefined} />{fieldError("fullName")}</div>
           <div className="field"><label htmlFor={id("mobile")}>Phone Number <span aria-hidden="true">*</span></label>
-            <input id={id("mobile")} name="mobile" placeholder="+91 XXXXX XXXXX" type="tel" inputMode="tel" autoComplete="tel" required maxLength={24} value={data.mobile} onChange={(event) => update("mobile", event.target.value)} aria-invalid={!!errors.mobile} aria-describedby={errors.mobile ? id("mobile-error") : undefined} />{fieldError("mobile")}</div>
+            <input id={id("mobile")} name="mobile" placeholder="9876543210" type="tel" inputMode="numeric" autoComplete="tel" required maxLength={10} pattern="[6-9][0-9]{9}" value={data.mobile} onChange={(event) => update("mobile", sanitizeMobile(event.target.value))} aria-invalid={!!errors.mobile} aria-describedby={errors.mobile ? id("mobile-error") : undefined} />{fieldError("mobile")}</div>
           <div className="field"><label htmlFor={id("email")}>Email Address <span className="optional">(Optional)</span></label>
-            <input id={id("email")} name="email" placeholder="Enter your email address" type="email" autoComplete="email" maxLength={254} value={data.email} onChange={(event) => update("email", event.target.value)} aria-invalid={!!errors.email} aria-describedby={errors.email ? id("email-error") : undefined} />{fieldError("email")}</div>
+            <input id={id("email")} name="email" placeholder="Enter your email address" type="email" autoComplete="email" maxLength={254} value={data.email} onChange={(event) => update("email", sanitizeEmail(event.target.value))} aria-invalid={!!errors.email} aria-describedby={errors.email ? id("email-error") : undefined} />{fieldError("email")}</div>
           <div className="field field-wide"><label htmlFor={id("pregnancyWeeks")}>How many weeks pregnant are you? <span className="optional">(Optional)</span></label>
             <input id={id("pregnancyWeeks")} name="pregnancyWeeks" placeholder="Enter the number of weeks" type="number" inputMode="numeric" min={1} step={1} value={data.pregnancyWeeks} onChange={(event) => update("pregnancyWeeks", event.target.value)} aria-invalid={!!errors.pregnancyWeeks} aria-describedby={errors.pregnancyWeeks ? id("pregnancyWeeks-error") : undefined} />{fieldError("pregnancyWeeks")}</div>
           <div className="field field-wide"><label htmlFor={id("question")}>Do you have a question for us? <span className="optional">(Optional)</span></label>
