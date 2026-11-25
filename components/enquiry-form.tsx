@@ -63,7 +63,7 @@ export function EnquiryForm({ placement }: { placement: "hero" | "final" }) {
   }
   return <>
     <div className="enquiry-card" id={`${placement}-enquiry`}>
-      <div className="form-intro"><span className="eyebrow">{copy.eyebrow}</span><h2 id={id("title")}>{copy.title}</h2>{copy.paragraphs.map(p => <p key={p}>{p}</p>)}</div>
+      <div className="form-intro"><span className="eyebrow">{copy.eyebrow}</span><h2 id={id("title")}>{copy.title}</h2></div>
       <form ref={form} onSubmit={handleSubmit} noValidate aria-labelledby={id("title")}>
         <p className="required-note">* Required fields</p>
         <div className="form-grid">

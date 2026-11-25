@@ -87,7 +87,6 @@ export const onlineCopy = {
   enquiry: {
     eyebrow: "LET'S HELP YOU GET STARTED",
     title: "Ready to explore prenatal yoga?",
-    paragraphs: ["Take the first step towards making gentle movement and relaxation part of your pregnancy routine.", "Share a few details, and our team will help you understand the online classes and how to join."],
     consent: "I agree to be contacted by The BirthWave regarding my prenatal yoga enquiry and have read the",
     submit: "Get Online Yoga Class Details",
     successTitle: "Thank you for reaching out!",
@@ -112,6 +111,128 @@ export const classActivities = [
   { title: "Mobility & Body Awareness", body: "Practise movements that encourage awareness of posture, balance and comfortable mobility." },
   { title: "Breathing Techniques", body: "Spend time understanding your breath and practising techniques that support relaxation." },
   { title: "Rest & Relaxation", body: "Make space to slow down and finish with calming, gentle relaxation practices." },
+];
+export type VideoCarouselItem = {
+  id: string;
+  title: string;
+  description: string;
+  videoId: string;
+  source?: "youtube" | "file";
+  src?: string;
+  category?: string;
+  presenter?: string;
+  role?: string;
+};
+export const videoCarouselItems: VideoCarouselItem[] = [
+  {
+    id: "birthwave-short-one",
+    title: "Prenatal yoga at The BirthWave",
+    description: "A glimpse into the calm, guided approach behind The BirthWave's prenatal yoga experience.",
+    videoId: "XOX6NjavgSk",
+  },
+  {
+    id: "birthwave-short-two",
+    title: "A moment of movement and calm",
+    description: "See how gentle movement and mindful pauses can become part of your pregnancy routine.",
+    videoId: "hIZD5yHpCEw",
+  },
+  {
+    id: "birthwave-short-three",
+    title: "Move with care during pregnancy",
+    description: "A short look at creating a more mindful, comfortable movement practice during pregnancy.",
+    videoId: "KWVUXIlGom8",
+  },
+  {
+    id: "birthwave-short-four",
+    title: "Feel supported through movement",
+    description: "A gentle glimpse into making space for movement, breathing and calm during pregnancy.",
+    videoId: "82Ov38wTzlI",
+  },
+  {
+    id: "birthwave-video-five",
+    title: "A calmer pregnancy routine",
+    description: "Explore simple moments of movement and relaxation to support your pregnancy journey.",
+    videoId: "6QgwpPQDSRc",
+  },
+  {
+    id: "birthwave-short-six",
+    title: "Make space to slow down",
+    description: "A short reminder to create gentle, comfortable pauses for yourself during pregnancy.",
+    videoId: "swoWSPaKCjc",
+  },
+  {
+    id: "birthwave-short-seven",
+    title: "Gentle guidance for every stage",
+    description: "Discover a supportive way to stay connected with your body as pregnancy changes.",
+    videoId: "LL81e-_ewIc",
+  },
+  {
+    id: "birthwave-short-eight",
+    title: "Stay connected with your body",
+    description: "A gentle glimpse into mindful movement and body awareness throughout pregnancy.",
+    videoId: "oMWQwC-GIZo",
+  },
+  {
+    id: "birthwave-short-nine",
+    title: "Breathe into a calmer moment",
+    description: "Explore a simple pause for breath, awareness and relaxation during your pregnancy journey.",
+    videoId: "TR2CNh5EI_A",
+  },
+  {
+    id: "birthwave-local-one",
+    title: "Staying strong during pregnancy",
+    description: "A practical movement idea for staying active safely during pregnancy.",
+    videoId: "local-one",
+    source: "file",
+    src: "/video/Can you lift weights safely during pregnancyStaying strong during pregnancy doesn’t always mean .mp4",
+    category: "PREGNANCY MOVEMENT",
+    presenter: "The BirthWave Care Team",
+    role: "Pregnancy Wellness",
+  },
+  {
+    id: "birthwave-local-two",
+    title: "Post-delivery pelvic floor strength",
+    description: "A simple post-delivery movement focus for rebuilding pelvic floor strength.",
+    videoId: "local-two",
+    source: "file",
+    src: "/video/Exercises you can do post-delivery to improve pelvic floor strength 🤍After childbirth, your pel.mp4",
+    category: "POST-DELIVERY CARE",
+    presenter: "The BirthWave Care Team",
+    role: "Pelvic Floor Support",
+  },
+  {
+    id: "birthwave-local-three",
+    title: "Knee-friendly squatting guidance",
+    description: "Understand what may be contributing to knee discomfort during a squat.",
+    videoId: "local-three",
+    source: "file",
+    src: "/video/Experiencing knee pain while squatting during pregnancy The problem might not be just your knees.mp4",
+    category: "MOVEMENT & COMFORT",
+    presenter: "The BirthWave Care Team",
+    role: "Pregnancy Movement",
+  },
+  {
+    id: "birthwave-local-four",
+    title: "Preparing your body for birth",
+    description: "A short movement-led look at preparing your body for birth.",
+    videoId: "local-four",
+    source: "file",
+    src: "/video/Preparing for birth is about more than just exercises. 🤰✨Want to learn how to prepare your body.mp4",
+    category: "PREPARING FOR BIRTH",
+    presenter: "The BirthWave Care Team",
+    role: "Birth Preparation",
+  },
+  {
+    id: "birthwave-local-five",
+    title: "Movement for a breech position",
+    description: "A gentle movement reference for a baby in breech or transverse position.",
+    videoId: "local-five",
+    source: "file",
+    src: "/video/🤰 Baby in breech or transverse position Have you heard about Downward-Facing DogDownward Dog is.mp4",
+    category: "PREGNANCY GUIDANCE",
+    presenter: "The BirthWave Care Team",
+    role: "Pregnancy Movement",
+  },
 ];
 export const onlinePoints = [
   { title: "Join From Home", body: "Attend your online session from a comfortable, suitable space in your home." },
