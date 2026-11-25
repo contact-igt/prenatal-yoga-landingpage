@@ -104,9 +104,8 @@ export async function POST(request: Request) {
         message: result?.message,
         details: result?.details,
       });
-      const error = process.env.NODE_ENV === "development" && result?.message
-        ? `Backend rejected the enquiry: ${result.message}`
-        : "We could not send your enquiry. Please try again.";
+      const safeBackendMessage = upstream.status < 500 && result?.message ? result.message : "";
+      const error = safeBackendMessage || "We could not send your enquiry. Please try again.";
       return Response.json({ ok: false, error }, { status: 502 });
     }
 

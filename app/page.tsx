@@ -6,10 +6,11 @@ import { EnquiryLink } from "@/components/ui/enquiry-link";
 import { RevealObserver } from "@/components/ui/reveal";
 import { FAQ } from "@/components/faq";
 import { ProgrammeActivities } from "@/components/programme-activities";
+import { VideoCarousel } from "@/components/video-carousel";
 import { FloatingToolbar } from "@/components/floating-toolbar";
 import { Footer } from "@/components/footer";
 import { HeroImageAlignment } from "@/components/hero-image-alignment";
-import { approachPoints, classActivities, onlineBenefits, onlineCopy as copy, onlinePoints, onlineSteps } from "@/config/online-content";
+import { approachPoints, classActivities, onlineBenefits, onlineCopy as copy, onlinePoints, onlineSteps, videoCarouselItems } from "@/config/online-content";
 import { site, yogaFee } from "@/config/site";
 
 const benefitIcons = [MoveUpRight, Wind, Sparkles, Heart];
@@ -28,6 +29,7 @@ const stepPhotos = [
   { src: "/images/doctor-santoshi.webp", alt: "An obstetrician at The BirthWave" },
   { src: yogaPhoto, alt: "An expectant mother seated on a yoga mat" },
 ];
+const heroParagraphs = [copy.hero.paragraphs[0], copy.hero.paragraphs.slice(1).join(" ")];
 
 export default function Home() {
   return <>
@@ -40,7 +42,7 @@ export default function Home() {
             <div className="hero-background" aria-hidden="true"><div className="hero-photo-layer"><Image src="/images/pregnancy.webp" alt="" fill unoptimized priority /></div></div>
             <p className="eyebrow hero-enter" style={{ animationDelay: "40ms" }}>{copy.hero.eyebrow}</p>
             <h1 id="hero-heading" className="hero-title-ending hero-enter" style={{ animationDelay: "100ms" }}>{copy.hero.title}</h1>
-            <div className="hero-description hero-enter" style={{ animationDelay: "180ms" }}>{copy.hero.paragraphs.map(p => <p key={p}>{p}</p>)}</div>
+            <div className="hero-description hero-enter" style={{ animationDelay: "180ms" }}>{heroParagraphs.map(p => <p key={p}>{p}</p>)}</div>
             <ul className="hero-highlights">{copy.hero.highlights.map(item => <li key={item}><Check size={14} aria-hidden="true" /><span>{item}</span></li>)}</ul>
             <div className="hero-ctas hero-enter" style={{ animationDelay: "340ms" }}>
               <a className="button" href="#online-classes"><span>Explore Our Online Classes</span><ArrowRight className="directional-arrow" size={17} aria-hidden="true" /></a>
@@ -88,6 +90,17 @@ export default function Home() {
           <ProgrammeActivities items={classActivities} label={null} idPrefix="class-activity" kind="yoga" />
         </div>
         <div className="container experience-note-wrap"><p className="programme-disclaimer experience-note" data-reveal="up"><ShieldCheck size={22} aria-hidden="true" /><span>{copy.classes.note}</span></p></div>
+      </section>
+
+      <section id="video-stories" className="section video-section" aria-labelledby="video-heading">
+        <div className="container">
+          <div className="section-heading video-section-heading" data-reveal="up">
+            <p className="eyebrow">SEE THE EXPERIENCE</p>
+            <h2 id="video-heading">A little movement. A little calm.</h2>
+            <p>Take a quick look at the gentle, supportive atmosphere behind our prenatal yoga practice.</p>
+          </div>
+          <div data-reveal="up"><VideoCarousel items={videoCarouselItems} /></div>
+        </div>
       </section>
 
       <section id="online-classes" className="section online-section" aria-labelledby="online-heading">
