@@ -12,9 +12,7 @@
 }
 
 .heading h2 {
-  max-width: 15ch;
   margin-top: 12px;
-  font-size: clamp(32px, 3.2vw, 56px);
 }
 
 .title {
@@ -32,10 +30,10 @@
 }
 
 .intro {
-  max-width: 34ch;
+  max-width: 390px;
   padding-bottom: 4px;
-  font-size: clamp(16px, 1.3vw, 22px);
-  line-height: 1.65;
+  font-size: 14px;
+  line-height: 1.9;
 }
 
 .gallery {
@@ -101,6 +99,10 @@
 @media (max-width: 600px) {
   .heading {
     width: calc(100% - 40px);
+  }
+
+  .intro {
+    font-size: 12px;
   }
 
   .galleryRail {
