@@ -39,8 +39,8 @@ export const privacyMessage = "We will use the details you provide to respond to
 
 export const navigation = [
   { href: "#prenatal-yoga", label: "Prenatal Yoga" },
-  { href: "#benefits", label: "Benefits" },
   { href: "#gallery", label: "Gallery" },
+  { href: "#benefits", label: "Benefits" },
   { href: "#getting-started", label: "How It Works" },
   { href: "#our-approach", label: "Our Approach" },
   { href: "#faqs", label: "FAQs" },
