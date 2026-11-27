@@ -1,9 +1,10 @@
 import Image from "next/image";
-import { Accessibility, ArrowRight, CalendarDays, Check, ClipboardPen, Flower2, HeartHandshake, Home as HomeIcon, MapPin, MessageCircle, Monitor, MonitorPlay, MoveUpRight, PersonStanding, Phone, ShieldCheck, Video, Wind } from "lucide-react";
+import { Accessibility, ArrowRight, CalendarDays, Check, ClipboardPen, Flower2, Home as HomeIcon, MapPin, MessageCircle, Monitor, MonitorPlay, MoveUpRight, Phone, ShieldCheck, Video } from "lucide-react";
 import { Header } from "@/components/header";
 import { EnquiryForm } from "@/components/enquiry-form";
 import { EnquiryLink } from "@/components/ui/enquiry-link";
 import { RevealObserver } from "@/components/ui/reveal";
+import { YogaIcon } from "@/components/ui/yoga-icon";
 import { FAQ } from "@/components/faq";
 import { ProgrammeActivities } from "@/components/programme-activities";
 import { PrenatalGallery } from "@/components/prenatal-gallery";
@@ -15,20 +16,20 @@ import { HeroImageAlignment } from "@/components/hero-image-alignment";
 import { approachPoints, classActivities, onlineBenefits, onlineCopy as copy, onlinePoints, onlineSteps, videoCarouselItems } from "@/config/online-content";
 import { site, yogaFee } from "@/config/site";
 
-const benefitIcons = [Accessibility, Wind, PersonStanding, Flower2];
+const benefitIcons = ["warmup", "breathing", "mobility", "lotus"] as const;
 const onlineCards = [
   { icon: HomeIcon, href: "#getting-started", label: "See how to join from home" },
   { icon: MonitorPlay, href: "#class-experience", label: "Explore the guided class activities" },
   { icon: Accessibility, href: "#who-can-join", label: "See who can join prenatal yoga" },
 ];
 const onlineRoutine = onlinePoints[3];
-const eligibilityIcons = [Accessibility, Wind, Flower2, HeartHandshake, ShieldCheck];
+const eligibilityIcons = ["practice", "breathing", "lotus", "guidance", "adaptation"] as const;
 const stepIcons = [ClipboardPen, CalendarDays, ShieldCheck, Video];
 const understandingFeatures = [
-  { title: copy.hero.highlights[1], icon: MoveUpRight },
-  { title: copy.hero.highlights[2], icon: Wind },
-  { title: copy.hero.highlights[3], icon: HomeIcon },
-];
+  { title: copy.hero.highlights[1], icon: "prenatal-pose" },
+  { title: copy.hero.highlights[2], icon: "breathing" },
+  { title: copy.hero.highlights[3], icon: "home" },
+] as const;
 const yogaPhoto = "/images/d056632c-5977-49a3-97ed-7995e66680f7-clean.webp";
 const stepPhotos = [
   { src: "/images/consultation-notebook.webp", alt: "A doctor writing notes during a BirthWave consultation" },
@@ -50,7 +51,14 @@ export default function Home() {
             <p className="eyebrow hero-enter" style={{ animationDelay: "40ms" }}>{copy.hero.eyebrow}</p>
             <h1 id="hero-heading" className="hero-title-ending hero-enter" style={{ animationDelay: "100ms" }}>{copy.hero.title}</h1>
             <div className="hero-description hero-enter" style={{ animationDelay: "180ms" }}>{heroParagraphs.map(p => <p key={p}>{p}</p>)}</div>
-            <ul className="hero-highlights">{copy.hero.highlights.map(item => <li key={item}><Check size={14} aria-hidden="true" /><span>{item}</span></li>)}</ul>
+            <ul className="hero-highlights">
+              {copy.hero.highlights.map(item => (
+                <li key={item}>
+                  <span className="hero-highlight-check" aria-hidden="true"><Check size={13} strokeWidth={2.6} /></span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
             <div className="hero-ctas hero-enter" style={{ animationDelay: "340ms" }}>
               <a className="button button-outline" href="#online-classes"><span>Explore Our Online Classes</span><Monitor className="button-icon" size={17} aria-hidden="true" /></a>
               <EnquiryLink target="hero">Get Class Details</EnquiryLink>
@@ -72,31 +80,13 @@ export default function Home() {
           <div className="understanding-visual" data-reveal="up">
             <div className="understanding-cutout"><Image src="/images/prenatal-yoga-cutout.webp" alt="Illustration of an expectant mother seated in a relaxed yoga pose" fill unoptimized sizes="(max-width: 600px) 60vw, (max-width: 900px) 450px, 30vw" /></div>
             <svg className="understanding-feature-curve" viewBox="0 0 600 650" preserveAspectRatio="none" fill="none" aria-hidden="true"><path d="M485 149 Q535 324 485 500" /></svg>
-            <ul className="understanding-features">{understandingFeatures.map(({title,icon: Icon}) => <li key={title}><Icon size={19} strokeWidth={1.3} aria-hidden="true" /><h3>{title}</h3></li>)}</ul>
+            <ul className="understanding-features">
+              {understandingFeatures.map(({ title, icon }) => (
+                <li key={title}><span className="understanding-icon-badge"><YogaIcon name={icon} /></span><h3>{title}</h3></li>
+              ))}
+            </ul>
           </div>
         </div>
-      </section>
-
-      <section id="benefits" className="section benefits-section" aria-labelledby="benefits-heading">
-        <div className="container">
-          <div className="section-heading" data-reveal="up"><p className="eyebrow">{copy.benefits.eyebrow}</p><h2 id="benefits-heading">{copy.benefits.title}</h2></div>
-          <div className="benefits-composition">
-            <div className="benefits-photo" data-reveal="image"><Image src="/images/clinic-space.webp" alt="The warm lounge and seating area inside The BirthWave clinic" fill sizes="(max-width: 700px) 85vw, 32vw" /></div>
-            {onlineBenefits.map((benefit, index) => { const Icon = benefitIcons[index]; return <article className={`benefit benefit-${index + 1}`} key={benefit.title} data-reveal={index % 2 ? "up" : "side"} data-delay={index * 70}><div className="benefit-top"><Icon strokeWidth={1.65} aria-hidden="true" /></div><h3>{benefit.title}</h3><p>{benefit.body}</p></article>; })}
-            <div className="journey-cta benefits-cta" data-reveal="up"><EnquiryLink>Ask About Online Yoga Classes</EnquiryLink></div>
-          </div>
-        </div>
-      </section>
-
-      <section id="class-experience" className="section conscious-section" aria-labelledby="classes-heading">
-        <div className="container"><p className="eyebrow experience-eyebrow" data-reveal="up">{copy.classes.eyebrow}</p></div>
-        <div className="container conscious-layout experience-layout">
-          <div className="conscious-intro"><div className="conscious-background" aria-hidden="true"><Image src="/images/5327da0d-608a-4e6b-b778-e0fa35152b5a.png" alt="" fill sizes="(max-width: 600px) 100vw, 50vw" /></div>
-            <div className="conscious-intro-content" data-reveal="up"><div className="programme-story experience-story"><span className="experience-rule" aria-hidden="true" /><h2 id="classes-heading">{copy.classes.title}</h2><div className="copy-paragraphs">{copy.classes.paragraphs.map(p => <p key={p}>{p}</p>)}</div></div></div>
-          </div>
-          <ProgrammeActivities items={classActivities} label={null} idPrefix="class-activity" kind="yoga" />
-        </div>
-        <div className="container experience-note-wrap"><p className="programme-disclaimer experience-note" data-reveal="up"><ShieldCheck size={22} aria-hidden="true" /><span>{copy.classes.note}</span></p></div>
       </section>
 
       <section id="gallery" className={`section ${galleryStyles.section}`} aria-labelledby="gallery-heading">
@@ -116,6 +106,23 @@ export default function Home() {
         <PrenatalGallery />
       </section>
 
+      <section id="benefits" className="section benefits-section" aria-labelledby="benefits-heading">
+        <div className="container">
+          <div className="section-heading" data-reveal="up"><p className="eyebrow">{copy.benefits.eyebrow}</p><h2 id="benefits-heading">{copy.benefits.title}</h2></div>
+          <div className="benefits-composition">
+            <div className="benefits-photo" data-reveal="image"><Image src="/images/clinic-space.webp" alt="The warm lounge and seating area inside The BirthWave clinic" fill sizes="(max-width: 700px) 85vw, 32vw" /></div>
+            {onlineBenefits.map((benefit, index) => (
+              <article className={`benefit benefit-${index + 1}`} key={benefit.title} data-reveal={index % 2 ? "up" : "side"} data-delay={index * 70}>
+                <div className="benefit-top"><YogaIcon name={benefitIcons[index]} /></div>
+                <h3>{benefit.title}</h3>
+                <p>{benefit.body}</p>
+              </article>
+            ))}
+            <div className="journey-cta benefits-cta" data-reveal="up"><EnquiryLink>Ask About Online Yoga Classes</EnquiryLink></div>
+          </div>
+        </div>
+      </section>
+
       <section id="video-stories" className="section video-section" aria-labelledby="video-heading">
         <div className="container">
           <div className="section-heading video-section-heading" data-reveal="up">
@@ -125,6 +132,17 @@ export default function Home() {
           </div>
           <div data-reveal="up"><VideoCarousel items={videoCarouselItems} /></div>
         </div>
+      </section>
+
+      <section id="class-experience" className="section conscious-section" aria-labelledby="classes-heading">
+        <div className="container"><p className="eyebrow experience-eyebrow" data-reveal="up">{copy.classes.eyebrow}</p></div>
+        <div className="container conscious-layout experience-layout">
+          <div className="conscious-intro"><div className="conscious-background" aria-hidden="true"><Image src="/images/5327da0d-608a-4e6b-b778-e0fa35152b5a.png" alt="" fill sizes="(max-width: 600px) 100vw, 50vw" /></div>
+            <div className="conscious-intro-content" data-reveal="up"><div className="programme-story experience-story"><span className="experience-rule" aria-hidden="true" /><h2 id="classes-heading">{copy.classes.title}</h2><div className="copy-paragraphs">{copy.classes.paragraphs.map(p => <p key={p}>{p}</p>)}</div></div></div>
+          </div>
+          <ProgrammeActivities items={classActivities} label={null} idPrefix="class-activity" kind="yoga" />
+        </div>
+        <div className="container experience-note-wrap"><p className="programme-disclaimer experience-note" data-reveal="up"><ShieldCheck size={22} aria-hidden="true" /><span>{copy.classes.note}</span></p></div>
       </section>
 
       <section id="online-classes" className="section online-section" aria-labelledby="online-heading">
@@ -171,7 +189,14 @@ export default function Home() {
           <p className="eligibility-introduction" data-reveal="up">{copy.eligibility.introduction}</p>
           <div className="eligibility-orbit" data-reveal="up"><svg className="eligibility-orbit-lines" viewBox="0 0 640 640" fill="none" aria-hidden="true"><circle cx="320" cy="320" r="294" /><circle cx="320" cy="320" r="306" /><g><circle cx="85" cy="143" r="6" /><circle cx="555" cy="143" r="6" /><circle cx="50" cy="437" r="6" /><circle cx="590" cy="437" r="6" /><circle cx="320" cy="614" r="6" /></g></svg>
             <div className="eligibility-orbit-photo"><Image src={yogaPhoto} alt="An expectant mother seated on a yoga mat with relaxed hands" fill unoptimized sizes="(max-width: 600px) 75vw, 440px" /></div>
-            <ul className="eligibility-points eligibility-orbit-points">{copy.eligibility.points.map((p,index) => { const Icon=eligibilityIcons[index]; return <li className={`orbit-point orbit-point-${index+1}`} key={p}><div className="benefit-top"><Icon strokeWidth={1.65} aria-hidden="true" /></div><p>{p}</p></li>; })}</ul>
+            <ul className="eligibility-points eligibility-orbit-points">
+              {copy.eligibility.points.map((point, index) => (
+                <li className={`orbit-point orbit-point-${index + 1}`} key={point}>
+                  <div className="benefit-top"><YogaIcon name={eligibilityIcons[index]} /></div>
+                  <p>{point}</p>
+                </li>
+              ))}
+            </ul>
           </div>
           <p className="eligibility-patient-note" data-reveal="up">{copy.eligibility.patient}</p>
           <div className="eligibility-support editorial-copy" data-reveal="up"><p className="guidance-question">{copy.eligibility.question}</p><p>{copy.eligibility.guidance}</p><EnquiryLink>Speak With Our Team</EnquiryLink></div>

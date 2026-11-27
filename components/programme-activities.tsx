@@ -1,11 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { Accessibility, BookOpen, Flower2, Heart, MoveUpRight, Music2, Package, PersonStanding, Plus, Wind } from "lucide-react";
+import { BookOpen, MoveUpRight, Music2, Package, Plus, Wind } from "lucide-react";
+import { YogaIcon } from "@/components/ui/yoga-icon";
 import { activities } from "@/config/content";
 
 const icons = [Wind, MoveUpRight, Music2, BookOpen, Package];
-const yogaIcons = [Accessibility, Heart, PersonStanding, Wind, Flower2];
+const yogaIcons = ["warmup", "prenatal-pose", "mobility", "breathing", "lotus"] as const;
 
 export function ProgrammeActivities({ items = activities, label = "THE PROPOSED EXPERIENCE", idPrefix = "activity", kind = "programme" }: {
   items?: ReadonlyArray<{ title: string; body: string }>; label?: string | null; idPrefix?: string; kind?: "programme" | "yoga";
@@ -14,7 +15,7 @@ export function ProgrammeActivities({ items = activities, label = "THE PROPOSED 
   return <div className={`activities activities-${kind}`} data-reveal="up" data-delay="100">
     {label && <p className="eyebrow">{label}</p>}
     {items.map((activity, index) => {
-      const Icon = (kind === "yoga" ? yogaIcons : icons)[index];
+      const Icon = icons[index];
       const expanded = open === index;
       return <article className={`activity${expanded ? " is-expanded" : ""}`} key={activity.title}
         onMouseEnter={() => { if (matchMedia("(hover: hover)").matches) setOpen(index); }}
@@ -24,7 +25,7 @@ export function ProgrammeActivities({ items = activities, label = "THE PROPOSED 
           onFocus={event => { if (event.currentTarget.matches(":focus-visible")) setOpen(index); }}
           onClick={() => setOpen(expanded ? null : index)}>
           <span className="activity-icon-badge" aria-hidden="true">
-            <Icon className="activity-icon" size={23} strokeWidth={kind === "yoga" ? 1.65 : 1.4} />
+            {kind === "yoga" ? <YogaIcon name={yogaIcons[index]} /> : <Icon className="activity-icon" size={23} strokeWidth={1.4} />}
           </span>
           <span>{activity.title}</span>
           <Plus className="activity-toggle" size={18} aria-hidden="true" />
