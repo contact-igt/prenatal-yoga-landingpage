@@ -23,7 +23,6 @@ export const onlineCopy = {
   benefits: {
     eyebrow: "WHY PRENATAL YOGA?",
     title: "Feel more at ease with your changing body.",
-    body: "Prenatal yoga is not about pushing yourself or doing difficult poses. It's about finding comfortable ways to move, breathe and make time for yourself.",
   },
   classes: {
     eyebrow: "YOUR GUIDED YOGA EXPERIENCE",

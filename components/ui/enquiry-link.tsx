@@ -1,11 +1,11 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { ArrowRight } from "lucide-react";
+import { MessageSquareText } from "lucide-react";
 import type { Interest } from "@/lib/enquiry";
 
-export function EnquiryLink({ children, interest, target = "final", className = "button" }: {
-  children: ReactNode; interest?: Interest; target?: "hero" | "final"; className?: string;
+export function EnquiryLink({ children, interest, target = "final", className = "button", endIcon }: {
+  children: ReactNode; interest?: Interest; target?: "hero" | "final"; className?: string; endIcon?: ReactNode;
 }) {
   return <a className={className} href={target === "hero" ? "#hero-enquiry" : "#enquiry"}
     onClick={(event) => {
@@ -16,6 +16,6 @@ export function EnquiryLink({ children, interest, target = "final", className = 
       form.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth", block: "start" });
       (form.querySelector("input") as HTMLInputElement | null)?.focus({ preventScroll: true });
     }}>
-    <span>{children}</span><ArrowRight className="directional-arrow" size={17} aria-hidden="true" />
+    <span>{children}</span>{endIcon ?? <MessageSquareText className="button-icon" size={17} aria-hidden="true" />}
   </a>;
 }
