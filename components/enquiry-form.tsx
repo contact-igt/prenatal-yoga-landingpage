@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState, useSyncExternalStore, type FormEvent } from "react";
-import { ArrowUpRight, Check } from "lucide-react";
+import { Check, LoaderCircle, Send } from "lucide-react";
 import { privacyMessage, site } from "@/config/site";
 import { emptyEnquiry, EnquiryUnavailableError, sanitizeEmail, sanitizeFullName, sanitizeMobile, submitEnquiry, validateEnquiry, type EnquiryData, type EnquiryErrors } from "@/lib/enquiry";
 import { onlineCopy } from "@/config/online-content";
@@ -83,7 +83,10 @@ export function EnquiryForm({ placement }: { placement: "hero" | "final" }) {
           {fieldError("contactConsent")}
         </div>
         {submissionError && <p className="field-error" role="alert">{submissionError}</p>}
-        <button ref={submitButton} type="submit" disabled={!hydrated || busy} className="button submit-button" aria-busy={busy}><span>{busy ? "Please wait…" : copy.submit}</span><ArrowUpRight size={18} aria-hidden="true" /></button>
+        <button ref={submitButton} type="submit" disabled={!hydrated || busy} className="button submit-button" aria-busy={busy}>
+          <span>{busy ? "Please wait…" : copy.submit}</span>
+          {busy ? <LoaderCircle className="button-icon is-spinning" size={17} aria-hidden="true" /> : <Send className="button-icon" size={17} aria-hidden="true" />}
+        </button>
       </form>
     </div>
     <dialog ref={dialog} className="thank-you" aria-labelledby={id("thanks-title")} aria-describedby={id("thanks-description")}
